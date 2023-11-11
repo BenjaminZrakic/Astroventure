@@ -1,9 +1,6 @@
 extends CharacterBody2D
 
-
 @export var movement_data : PlayerMovementData 
-
-
 
 @onready var animated_sprite = $AnimatedSprite
 @onready var coyote_jump_timer = $"Coyote Jump Timer"
@@ -18,8 +15,6 @@ var was_wall_normal = Vector2.ZERO
 var GravityDirection = "Down"
 var GravDrive = 1
 var GravityX = false
-
-
 
 func _physics_process(delta):
 	apply_gravity(delta)
@@ -202,4 +197,3 @@ func _on_grav_left_checker_body_entered(body):
 			GravityX = true
 			GravDrive = -1
 			GravityDirection="Left"
-

@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @onready var level_completed = $CanvasLayer/LevelCompleted
 @onready var start_in = %StartIn
 @onready var start_in_label = %StartInLabel
