@@ -8,6 +8,7 @@
 
 [node name="LevelOne" instance=ExtResource("1_vbw0e")]
 next_level = ExtResource("2_mhpo1")
+countdown = true
 
 [node name="Player" parent="." index="0"]
 position = Vector2(28, 112)

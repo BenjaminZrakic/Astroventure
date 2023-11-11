@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dvx2tbb5lba8s" path="res://Scenes/spikes.tscn" id="3_6tkv1"]
 
 [node name="LevelTwo" instance=ExtResource("1_sdtsa")]
+countdown = true
 
 [node name="Player" parent="." index="0"]
 position = Vector2(82, 96)

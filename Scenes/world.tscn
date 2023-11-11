@@ -1,9 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkkor7cqf3sc2"]
+[gd_scene load_steps=10 format=3 uid="uid://dkkor7cqf3sc2"]
 
 [ext_resource type="Script" path="res://Scenes/world.gd" id="1_mrn2n"]
 [ext_resource type="PackedScene" uid="uid://bmj1urynsj1ph" path="res://Scenes/character.tscn" id="2_iwlls"]
 [ext_resource type="PackedScene" uid="uid://dv1p5jxki2fse" path="res://Scenes/LevelTileMap.tscn" id="4_h2cwe"]
+[ext_resource type="PackedScene" uid="uid://3mgi3xpbrlny" path="res://Scenes/hazard_area.tscn" id="5_rl5ou"]
 [ext_resource type="PackedScene" uid="uid://cv1202d8pg8ct" path="res://Scenes/level_completed.tscn" id="5_sx1wa"]
+
+[sub_resource type="Animation" id="Animation_8ywv5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/StartIn:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/StartIn/CenterContainer/StartInLabel:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Start in: 3"]
+}
 
 [sub_resource type="Animation" id="Animation_haihy"]
 resource_name = "countdown"
@@ -33,38 +61,14 @@ tracks/1/keys = {
 "values": ["Start in: 3", "Start in: 2", "Start in: 1", "Go!"]
 }
 
-[sub_resource type="Animation" id="Animation_8ywv5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/StartIn:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/StartIn/CenterContainer/StartInLabel:text")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["Start in: 3"]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qs7am"]
 _data = {
 "RESET": SubResource("Animation_8ywv5"),
 "countdown": SubResource("Animation_haihy")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cyip4"]
+size = Vector2(1483, 20)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_mrn2n")
@@ -82,6 +86,7 @@ visible = false
 
 [node name="StartIn" type="ColorRect" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -121,6 +126,13 @@ process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_qs7am")
 }
+
+[node name="HazardArea" parent="." instance=ExtResource("5_rl5ou")]
+position = Vector2(-19, 253)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+position = Vector2(458.5, 0)
+shape = SubResource("RectangleShape2D_cyip4")
 
 [connection signal="next_level" from="CanvasLayer/LevelCompleted" to="." method="go_to_next_level"]
 [connection signal="retry" from="CanvasLayer/LevelCompleted" to="." method="_on_level_completed_retry"]

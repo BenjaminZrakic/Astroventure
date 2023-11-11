@@ -8,6 +8,7 @@ extends Node2D
 @onready var level_time_label = %LevelTimeLabel
 
 @export var next_level: PackedScene
+@export var countdown = false
 
 var level_time = 0.0
 var start_level_msec = 0.0
@@ -18,8 +19,9 @@ func _ready():
 	Events.level_completed.connect(show_level_completed)
 	get_tree().paused = true
 	LevelTransition.fade_from_black()
-	animation_player.play("countdown")
-	await animation_player.animation_finished
+	if countdown:
+		animation_player.play("countdown")
+		await animation_player.animation_finished
 	get_tree().paused = false
 	start_level_msec = Time.get_ticks_msec() #vrijeme od pocetka u ms
 	if not next_level is PackedScene:
