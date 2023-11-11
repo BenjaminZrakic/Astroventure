@@ -9,8 +9,9 @@
 [node name="LevelOne" instance=ExtResource("1_vbw0e")]
 next_level = ExtResource("2_mhpo1")
 countdown = true
+timer = true
 
-[node name="Player" parent="." index="0"]
+[node name="Player" parent="." index="1"]
 position = Vector2(28, 112)
 floor_snap_length = 1.5
 

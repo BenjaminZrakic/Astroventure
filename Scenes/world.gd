@@ -9,6 +9,7 @@ extends Node2D
 
 @export var next_level: PackedScene
 @export var countdown = false
+@export var timer = false
 
 var level_time = 0.0
 var start_level_msec = 0.0
@@ -29,7 +30,8 @@ func _ready():
 
 func _process(delta):
 	level_time = Time.get_ticks_msec() - start_level_msec
-	level_time_label.text = str(level_time / 1000.0)
+	if timer:
+		level_time_label.text = str(level_time / 1000.0)
 
 func show_level_completed():
 	level_completed.show()
