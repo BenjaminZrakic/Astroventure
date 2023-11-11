@@ -1,9 +1,6 @@
 extends CharacterBody2D
 
-
 @export var movement_data : PlayerMovementData 
-
-
 
 @onready var animated_sprite = $AnimatedSprite
 @onready var coyote_jump_timer = $"Coyote Jump Timer"
@@ -36,8 +33,8 @@ func _physics_process(delta):
 	var just_left_ledge = was_on_floor and not is_on_floor() and velocity.y >= 0
 	if just_left_ledge:
 		coyote_jump_timer.start()
-	if Input.is_action_just_pressed("ui_accept"):
-		movement_data = load("res://Resources/FasterMovement.tres")
+	#if Input.is_action_just_pressed("ui_accept"):
+	#	movement_data = load("res://Resources/FasterMovement.tres")
 	
 	just_wall_jumped = false
 

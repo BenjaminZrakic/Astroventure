@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkbccvep5acik"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5n5n"]
+size = Vector2(12, 124)
+
+[node name="GravLeftChecker" type="Area2D"]
+position = Vector2(-84, -29)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -21)
+shape = SubResource("RectangleShape2D_r5n5n")
