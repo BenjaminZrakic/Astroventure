@@ -1,12 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5w7n2c5dadc6"]
+[gd_scene load_steps=4 format=3 uid="uid://c5w7n2c5dadc6"]
+
+[ext_resource type="Script" path="res://Scenes/grav_up_checker.gd" id="1_qkiok"]
+[ext_resource type="Texture2D" uid="uid://ckb8n37xekbns" path="res://Assets/GravNomaly.png" id="2_gmfgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5n5n"]
-size = Vector2(12, 124)
+size = Vector2(12, 16)
 
 [node name="GravUpChecker" type="Area2D"]
-position = Vector2(90, -26)
 collision_mask = 2
+script = ExtResource("1_qkiok")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -21)
 shape = SubResource("RectangleShape2D_r5n5n")
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+texture = ExtResource("2_gmfgy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

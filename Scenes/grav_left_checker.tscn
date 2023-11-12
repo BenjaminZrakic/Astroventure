@@ -1,12 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkbccvep5acik"]
+[gd_scene load_steps=4 format=3 uid="uid://bkbccvep5acik"]
+
+[ext_resource type="Script" path="res://Scenes/grav_left_checker.gd" id="1_21g2k"]
+[ext_resource type="Texture2D" uid="uid://ckb8n37xekbns" path="res://Assets/GravNomaly.png" id="2_11dvt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5n5n"]
-size = Vector2(12, 124)
+size = Vector2(12, 16)
 
 [node name="GravLeftChecker" type="Area2D"]
-position = Vector2(-84, -29)
 collision_mask = 2
+script = ExtResource("1_21g2k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -21)
 shape = SubResource("RectangleShape2D_r5n5n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_11dvt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -155,42 +155,42 @@ func update_animations(input_axis):
 
 
 func _on_hazard_detector_area_entered(area):
+	if GravityDirection!="Down":
+		set_gravity_down()
 	global_position= starting_position
+	
 
 
-func _on_anti_grav_checker_body_entered(body):
-	if body.is_in_group("Player"):
-		if GravityDirection!="Down":
-			set_up_direction(Vector2.UP)
-			rotation_degrees=0
-			position.y += 16
-			GravDrive = 1
+func set_gravity_down():
+	if GravityDirection!="Down":
+		set_up_direction(Vector2.UP)
+		rotation_degrees=0
+		position.y += 16
+		GravDrive = 1
+		GravityX = false
+		GravityDirection="Down"
+
+
+func set_gravity_up():
+	if GravityDirection!="Up":
+			set_up_direction(Vector2.DOWN)
+			rotation_degrees=180
+			if GravityDirection=="Down":
+				position.y -= 16
+			GravDrive = -1
 			GravityX = false
-			GravityDirection="Down"
+			GravityDirection="Up"
 
 
-func _on_grav_up_checker_body_entered(body):
-	if body.is_in_group("Player"):
-		if GravityDirection!="Up":
-				set_up_direction(Vector2.DOWN)
-				rotation_degrees=180
-				if GravityDirection=="Down":
-					position.y -= 16
-				GravDrive = -1
-				GravityX = false
-				GravityDirection="Up"
+func set_gravity_right():
+	if GravityDirection!="Right":
+		rotation_degrees = -90
+		set_up_direction(Vector2.LEFT)
+		GravityX = true
+		GravDrive = 1
+		GravityDirection="Right"
 
-
-func _on_grav_right_checker_body_entered(body):
-	if body.is_in_group("Player"):
-		if GravityDirection!="Right":
-			rotation_degrees = -90
-			set_up_direction(Vector2.LEFT)
-			GravityX = true
-			GravDrive = 1
-			GravityDirection="Right"
-
-func _on_grav_left_checker_body_entered(body):
+func set_gravity_left():
 	if GravityDirection!="Left":
 			rotation_degrees = 90
 			set_up_direction(Vector2.RIGHT)
