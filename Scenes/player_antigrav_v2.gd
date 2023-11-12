@@ -158,7 +158,7 @@ func _on_hazard_detector_area_entered(area):
 	if GravityDirection!="Down":
 		set_gravity_down()
 	global_position= starting_position
-	
+	velocity = Vector2.ZERO
 
 
 func set_gravity_down():
