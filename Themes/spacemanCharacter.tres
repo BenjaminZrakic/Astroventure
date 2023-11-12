@@ -1,0 +1,77 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://dl3ymlg6n87id"]
+
+[ext_resource type="Texture2D" uid="uid://cd854eibutrgo" path="res://Assets/playerAstronaut.png" id="1_5mq62"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5qcq"]
+atlas = ExtResource("1_5mq62")
+region = Rect2(0, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od0de"]
+atlas = ExtResource("1_5mq62")
+region = Rect2(144, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebnr6"]
+atlas = ExtResource("1_5mq62")
+region = Rect2(24, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvobe"]
+atlas = ExtResource("1_5mq62")
+region = Rect2(48, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmwig"]
+atlas = ExtResource("1_5mq62")
+region = Rect2(72, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg24k"]
+atlas = ExtResource("1_5mq62")
+region = Rect2(96, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cgjv"]
+atlas = ExtResource("1_5mq62")
+region = Rect2(120, 0, 24, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4n1e"]
+atlas = ExtResource("1_5mq62")
+region = Rect2(0, 0, 24, 20)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5qcq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od0de")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebnr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvobe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmwig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jg24k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cgjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4n1e")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
