@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckb8n37xekbns"
-path="res://.godot/imported/GravNomaly.png-4615348e3d7677e16cb2914f6ff72edf.ctex"
+uid="uid://mf7atxoj73w3"
+path="res://.godot/imported/GravNomalySpritesheet.png-57d5c87defed90fa2fb87ba22a234e99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/GravNomaly.png"
-dest_files=["res://.godot/imported/GravNomaly.png-4615348e3d7677e16cb2914f6ff72edf.ctex"]
+source_file="res://Assets/GravNomalySpritesheet.png"
+dest_files=["res://.godot/imported/GravNomalySpritesheet.png-57d5c87defed90fa2fb87ba22a234e99.ctex"]
 
 [params]
 

@@ -17,6 +17,7 @@ var GravDrive = 1
 var GravityX = false
 
 func _physics_process(delta):
+	
 	apply_gravity(delta)
 
 	handle_wall_jump()
@@ -37,7 +38,7 @@ func _physics_process(delta):
 	if was_on_wall:
 		was_wall_normal = get_wall_normal()
 	move_and_slide()
-	var just_left_ledge = was_on_floor and not is_on_floor() and velocity.y >= 0
+	var just_left_ledge = was_on_floor and not is_on_floor() # and velocity.y >= 0 
 	if just_left_ledge:
 		coyote_jump_timer.start()
 	#if Input.is_action_just_pressed("ui_accept"):
@@ -54,12 +55,13 @@ func apply_gravity(delta):
 	if not is_on_floor():
 		if not GravityX:
 			velocity.y += gravity * delta * movement_data.gravity_scale * GravDrive
+			velocity.y = clamp(velocity.y, -600,600)
 		else:
 			velocity.x += gravity * delta * movement_data.gravity_scale * GravDrive
-			
+			velocity.x = clamp(velocity.x, -600,600)
 			
 func handle_jump():
-	
+	#print(coyote_jump_timer.time_left)
 	if is_on_floor(): air_jump = true
 	# Handle Jump.
 	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
@@ -71,11 +73,15 @@ func handle_jump():
 			coyote_jump_timer.stop()
 
 	elif not is_on_floor():
-		if Input.is_action_just_released("ui_up") and velocity.y < movement_data.jump_velocity/2:
-			if not GravityX: 
-				velocity.y = movement_data.jump_velocity/2 * GravDrive
+		if Input.is_action_just_released("ui_up"):
+			if not GravityX:
+				if velocity.y < movement_data.jump_velocity/2: 
+					velocity.y = movement_data.jump_velocity/2 
 			else:
-				velocity.x = movement_data.jump_velocity/2 * GravDrive
+			
+				if velocity.x < movement_data.jump_velocity/2: 
+					velocity.x = movement_data.jump_velocity/2
+
 		if Input.is_action_just_pressed("ui_up") and air_jump and not just_wall_jumped:
 			if not GravityX:
 				velocity.y = movement_data.jump_velocity *0.8 * GravDrive
@@ -113,7 +119,7 @@ func apply_acceleration(input_axis, delta):
 		if not GravityX:
 			velocity.x = move_toward(velocity.x, movement_data.speed*input_axis, movement_data.accelaration*delta)
 		else: 
-			velocity.y = move_toward(velocity.y, movement_data.speed*input_axis*-1 * GravDrive, movement_data.accelaration*delta)
+			velocity.y = move_toward(velocity.y, movement_data.speed*input_axis*-1, movement_data.accelaration*delta)
 
 
 func apply_air_accelaration(input_axis, delta):
@@ -123,7 +129,7 @@ func apply_air_accelaration(input_axis, delta):
 		if not GravityX:
 			velocity.x = move_toward(velocity.x, movement_data.speed*input_axis, movement_data.air_accelaration*delta)
 		else:
-			velocity.y = move_toward(velocity.y, movement_data.speed*input_axis*-1 * GravDrive, movement_data.air_accelaration*delta)
+			velocity.y = move_toward(velocity.y, movement_data.speed*input_axis*-1 , movement_data.air_accelaration*delta)
 			
 func apply_friction(input_axis, delta):
 	if input_axis==0 and is_on_floor():
@@ -142,7 +148,7 @@ func apply_air_resistance(input_axis, delta):
 
 func update_animations(input_axis):
 	if input_axis!=0:
-		if GravityDirection=="Up": 
+		if GravityDirection=="Up" or GravityDirection=="Left": 
 			animated_sprite.flip_h = (input_axis>0)
 		else:
 			animated_sprite.flip_h = (input_axis<0)
@@ -155,10 +161,11 @@ func update_animations(input_axis):
 
 
 func _on_hazard_detector_area_entered(area):
-	if GravityDirection!="Down":
-		set_gravity_down()
-	global_position= starting_position
-	velocity = Vector2.ZERO
+	get_tree().reload_current_scene()
+#	if GravityDirection!="Down":
+#		set_gravity_down()
+#	global_position= starting_position
+#	velocity = Vector2.ZERO
 
 
 func set_gravity_down():
@@ -188,6 +195,8 @@ func set_gravity_right():
 		set_up_direction(Vector2.LEFT)
 		GravityX = true
 		GravDrive = 1
+		if GravityDirection=="Left":
+				position.x+=16
 		GravityDirection="Right"
 
 func set_gravity_left():
@@ -196,4 +205,9 @@ func set_gravity_left():
 			set_up_direction(Vector2.RIGHT)
 			GravityX = true
 			GravDrive = -1
+			if GravityDirection=="Right":
+				position.x-=16
 			GravityDirection="Left"
+
+func set_spawn(new_position):
+	starting_position = new_position
