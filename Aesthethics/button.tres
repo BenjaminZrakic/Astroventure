@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://dejvr5rqllmfx"]
 
-[ext_resource type="StyleBox" uid="uid://c5wwtvvt0may2" path="res://Themes/Black9Slice.tres" id="1_8udwc"]
-[ext_resource type="StyleBox" uid="uid://bf28nlcvgo3ly" path="res://Themes/WhiteSliceTexture.tres" id="1_w36qi"]
+[ext_resource type="StyleBox" uid="uid://c5wwtvvt0may2" path="res://Aesthethics/Black9Slice.tres" id="1_8udwc"]
+[ext_resource type="StyleBox" uid="uid://bf28nlcvgo3ly" path="res://Aesthethics/WhiteSliceTexture.tres" id="1_w36qi"]
 
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)

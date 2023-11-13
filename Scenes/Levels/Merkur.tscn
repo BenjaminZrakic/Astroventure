@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://b31buuekgr8yi"]
 
-[ext_resource type="PackedScene" uid="uid://dkkor7cqf3sc2" path="res://Scenes/world.tscn" id="1_5d7uo"]
-[ext_resource type="Script" path="res://Scenes/Merkur.gd" id="2_qspt0"]
+[ext_resource type="PackedScene" uid="uid://dkkor7cqf3sc2" path="res://Scenes/Level Assets/world.tscn" id="1_5d7uo"]
+[ext_resource type="Script" path="res://Scenes/Levels/Merkur.gd" id="2_qspt0"]
 [ext_resource type="Resource" uid="uid://bsq4y7ak87qk2" path="res://Resources/merkurMovement.tres" id="3_adgt8"]
-[ext_resource type="PackedScene" uid="uid://bsfimydkpnvog" path="res://Scenes/sigurna_zona.tscn" id="4_h37h2"]
+[ext_resource type="PackedScene" uid="uid://bsfimydkpnvog" path="res://Scenes/Level Assets/sigurna_zona.tscn" id="4_h37h2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_542q2"]
 size = Vector2(20, 72)

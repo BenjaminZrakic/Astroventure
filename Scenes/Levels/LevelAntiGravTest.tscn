@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bu3x338aspdf8"]
 
-[ext_resource type="PackedScene" uid="uid://dkkor7cqf3sc2" path="res://Scenes/world.tscn" id="1_pxpnt"]
-[ext_resource type="PackedScene" uid="uid://b3vq6pqyijpqj" path="res://Scenes/grav_down_checker.tscn" id="2_mrh1r"]
-[ext_resource type="PackedScene" uid="uid://c5w7n2c5dadc6" path="res://Scenes/grav_up_checker.tscn" id="3_6fa7s"]
-[ext_resource type="PackedScene" uid="uid://cgg7ik74nny1u" path="res://Scenes/grav_right_checker.tscn" id="4_p2wmn"]
-[ext_resource type="PackedScene" uid="uid://bkbccvep5acik" path="res://Scenes/grav_left_checker.tscn" id="5_6f4xo"]
+[ext_resource type="PackedScene" uid="uid://dkkor7cqf3sc2" path="res://Scenes/Level Assets/world.tscn" id="1_pxpnt"]
+[ext_resource type="PackedScene" uid="uid://b3vq6pqyijpqj" path="res://Scenes/Level Assets/AntiGravity/grav_down_checker.tscn" id="2_mrh1r"]
+[ext_resource type="PackedScene" uid="uid://c5w7n2c5dadc6" path="res://Scenes/Level Assets/AntiGravity/grav_up_checker.tscn" id="3_6fa7s"]
+[ext_resource type="PackedScene" uid="uid://cgg7ik74nny1u" path="res://Scenes/Level Assets/AntiGravity/grav_right_checker.tscn" id="4_p2wmn"]
+[ext_resource type="PackedScene" uid="uid://bkbccvep5acik" path="res://Scenes/Level Assets/AntiGravity/grav_left_checker.tscn" id="5_6f4xo"]
 
 [node name="World" instance=ExtResource("1_pxpnt")]
 

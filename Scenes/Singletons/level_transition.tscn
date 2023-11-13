@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b0rryvfnobbvp"]
 
-[ext_resource type="Script" path="res://Scenes/level_transition.gd" id="1_6yjxk"]
+[ext_resource type="Script" path="res://Scenes/Singletons/level_transition.gd" id="1_6yjxk"]
 
 [sub_resource type="Animation" id="Animation_3vuy2"]
 resource_name = "FadeFromBlack"

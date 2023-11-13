@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://iqsopd1ey4aw"]
 
-[ext_resource type="Script" path="res://Scenes/heart.gd" id="1_goris"]
+[ext_resource type="Script" path="res://Scenes/Level Assets/heart.gd" id="1_goris"]
 [ext_resource type="Texture2D" uid="uid://pepdxjguqg82" path="res://Assets/heart.png" id="1_ldhbm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pc1w0"]

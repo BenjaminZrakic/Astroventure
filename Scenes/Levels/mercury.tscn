@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://d00hfjpqshrg"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/mercury.gd" id="1_q60q1"]
+[ext_resource type="PackedScene" uid="uid://bmj1urynsj1ph" path="res://Scenes/Player/character.tscn" id="2_w8gw3"]
+[ext_resource type="PackedScene" uid="uid://bk7dqiarkbwq5" path="res://Scenes/Level Assets/Asteroids/asteroid.tscn" id="3_y830s"]
+
+[node name="Mercury" type="Node2D"]
+script = ExtResource("1_q60q1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-0.376404, 0.415741)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-1815.59, 55.6468)
+scale = Vector2(1.20193, 0.561523)
+polygon = PackedVector2Array(1960.98, 226.059, 1268.76, 226.059, 1268.76, 176.195, 1961.82, 176.195)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_w8gw3")]
+position = Vector2(-20, 147)
+floor_snap_length = 3.0
+
+[node name="Asteroids" type="Node" parent="."]
+
+[node name="Asteroid" parent="Asteroids" instance=ExtResource("3_y830s")]
+position = Vector2(17, 43)
+size = 2

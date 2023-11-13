@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cv1202d8pg8ct"]
 
-[ext_resource type="Script" path="res://Scenes/level_completed.gd" id="1_4voqc"]
+[ext_resource type="Script" path="res://Scenes/UI/level_completed.gd" id="1_4voqc"]
 
 [node name="LevelCompleted" type="ColorRect"]
 process_mode = 3

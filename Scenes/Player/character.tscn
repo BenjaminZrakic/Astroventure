@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bmj1urynsj1ph"]
 
-[ext_resource type="Script" path="res://Scenes/player_antigrav_v2.gd" id="1_4r3eb"]
+[ext_resource type="Script" path="res://Scenes/Player/player_antigrav_v2.gd" id="1_4r3eb"]
 [ext_resource type="Resource" uid="uid://b1rkom08snay1" path="res://Resources/SlowMovementData.tres" id="2_eofbi"]
-[ext_resource type="SpriteFrames" uid="uid://dl3ymlg6n87id" path="res://Themes/spacemanCharacter.tres" id="3_wn5jf"]
+[ext_resource type="SpriteFrames" uid="uid://dl3ymlg6n87id" path="res://Aesthethics/spacemanCharacter.tres" id="3_wn5jf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pagqt"]
 size = Vector2(10, 15)
