@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Screens/main_menu.gd" id="1_4lr2w"]
 [ext_resource type="Theme" uid="uid://dejvr5rqllmfx" path="res://Aesthethics/button.tres" id="2_ct3br"]
-[ext_resource type="Texture2D" uid="uid://dyyfvxhmumchb" path="res://Assets/Main Menu background/Space Background (5).png" id="3_s45pb"]
+[ext_resource type="Texture2D" uid="uid://dcoyclq8dtwjm" path="res://Assets/Main Menu background/Space Background (11).png" id="3_61u4g"]
 [ext_resource type="FontFile" uid="uid://y40yurqaewrq" path="res://Crang.ttf" id="4_a4oju"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y4tm3"]
@@ -19,9 +19,14 @@ size_flags_horizontal = 4
 theme = ExtResource("2_ct3br")
 script = ExtResource("1_4lr2w")
 
-[node name="Background" type="TextureRect" parent="."]
-layout_mode = 2
-texture = ExtResource("3_s45pb")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -3
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+offset_right = 360.0
+offset_bottom = 180.0
+texture = ExtResource("3_61u4g")
+expand_mode = 5
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 2
