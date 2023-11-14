@@ -39,7 +39,7 @@ func show_level_completed():
 
 func go_to_next_level():
 	await LevelTransition.fade_to_black()
-	if not next_level is PackedScene: get_tree().change_scene_to_file("res://Scenes/victory_screen.tscn")
+	if not next_level is PackedScene: get_tree().change_scene_to_file("res://Scenes/Screens/victory_screen.tscn")
 	else: get_tree().change_scene_to_packed(next_level)
 	#LevelTransition.fade_from_black()
 	get_tree().paused = false
