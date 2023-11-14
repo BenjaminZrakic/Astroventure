@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Screens/main_menu.gd" id="1_4lr2w"]
 [ext_resource type="Theme" uid="uid://dejvr5rqllmfx" path="res://Aesthethics/button.tres" id="2_ct3br"]
-[ext_resource type="Texture2D" uid="uid://b2ae4xx26gifp" path="res://Assets/MainMenuBackground.png" id="3_hetco"]
+[ext_resource type="Texture2D" uid="uid://dyyfvxhmumchb" path="res://Assets/Main Menu background/Space Background (5).png" id="3_s45pb"]
 [ext_resource type="FontFile" uid="uid://y40yurqaewrq" path="res://Crang.ttf" id="4_a4oju"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y4tm3"]
@@ -10,7 +10,7 @@ font = ExtResource("4_a4oju")
 font_size = 24
 
 [node name="MainMenu" type="CenterContainer"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -21,7 +21,7 @@ script = ExtResource("1_4lr2w")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("3_hetco")
+texture = ExtResource("3_s45pb")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 2
