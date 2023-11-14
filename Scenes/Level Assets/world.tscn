@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkkor7cqf3sc2"]
+[gd_scene load_steps=12 format=3 uid="uid://dkkor7cqf3sc2"]
 
 [ext_resource type="Script" path="res://Scenes/Level Assets/world.gd" id="1_mrn2n"]
 [ext_resource type="PackedScene" uid="uid://bmj1urynsj1ph" path="res://Scenes/Player/character.tscn" id="2_iwlls"]
 [ext_resource type="PackedScene" uid="uid://dv1p5jxki2fse" path="res://Scenes/Level Assets/LevelTileMap.tscn" id="4_h2cwe"]
 [ext_resource type="PackedScene" uid="uid://3mgi3xpbrlny" path="res://Scenes/Level Assets/hazard_area.tscn" id="5_rl5ou"]
 [ext_resource type="PackedScene" uid="uid://cv1202d8pg8ct" path="res://Scenes/UI/level_completed.tscn" id="5_sx1wa"]
-[ext_resource type="Texture2D" uid="uid://g4ru2fj1ykx7" path="res://Assets/Stars.png" id="6_g2tsm"]
+[ext_resource type="Texture2D" uid="uid://c3tuhvud34a5g" path="res://Assets/Space Background (14).png" id="6_r8u3m"]
+[ext_resource type="SpriteFrames" uid="uid://ctssv51mvqn7o" path="res://Resources/Sun.tres" id="7_u764c"]
 
 [sub_resource type="Animation" id="Animation_8ywv5"]
 length = 0.001
@@ -143,8 +144,16 @@ layer = -3
 [node name="Background" type="TextureRect" parent="CanvasLayer2"]
 offset_right = 360.0
 offset_bottom = 180.0
-texture = ExtResource("6_g2tsm")
+texture = ExtResource("6_r8u3m")
 expand_mode = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer2"]
+position = Vector2(321, 37)
+scale = Vector2(0.4, 0.4)
+sprite_frames = ExtResource("7_u764c")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.812843
 
 [connection signal="next_level" from="CanvasLayer/LevelCompleted" to="." method="go_to_next_level"]
 [connection signal="retry" from="CanvasLayer/LevelCompleted" to="." method="_on_level_completed_retry"]
