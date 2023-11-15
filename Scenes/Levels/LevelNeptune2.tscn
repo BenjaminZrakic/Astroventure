@@ -12,6 +12,7 @@ timer = true
 
 [node name="Player" parent="." index="1"]
 position = Vector2(17, 0)
+reset_level_on_death = true
 
 [node name="Heart" parent="Hearts" index="0" instance=ExtResource("2_i8in4")]
 position = Vector2(132, -86)
