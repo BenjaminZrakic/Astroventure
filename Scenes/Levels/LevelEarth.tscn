@@ -1,13 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://bnshb78je3fp4"]
+[gd_scene load_steps=15 format=3 uid="uid://bnshb78je3fp4"]
 
-[ext_resource type="Script" path="res://Scenes/Level Assets/WorldEarth.gd" id="1_hp7iv"]
+[ext_resource type="Script" path="res://Scenes/Level Assets/world.gd" id="1_k7u3w"]
 [ext_resource type="PackedScene" uid="uid://bmj1urynsj1ph" path="res://Scenes/Player/character.tscn" id="2_0pqqc"]
+[ext_resource type="Script" path="res://Scenes/Levels/EarthScript.gd" id="2_iupip"]
 [ext_resource type="PackedScene" uid="uid://cv1202d8pg8ct" path="res://Scenes/UI/level_completed.tscn" id="3_fqbu2"]
 [ext_resource type="Resource" uid="uid://fr2a7wps5ckb" path="res://Resources/Planet movements/EarthMovement.tres" id="3_xxrao"]
 [ext_resource type="PackedScene" uid="uid://ckccbppd7eifa" path="res://Scenes/Level Assets/Checkpoint.tscn" id="4_3aefo"]
 [ext_resource type="PackedScene" uid="uid://dv1p5jxki2fse" path="res://Scenes/Level Assets/LevelTileMap.tscn" id="4_q3je7"]
 [ext_resource type="PackedScene" uid="uid://3mgi3xpbrlny" path="res://Scenes/Level Assets/hazard_area.tscn" id="5_wt37e"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Assets/moving_spikes.tscn" id="6_73tld"]
+[ext_resource type="PackedScene" uid="uid://bbxitpfb3kgxa" path="res://Scenes/Level Assets/moving_spikes.tscn" id="6_73tld"]
 [ext_resource type="PackedScene" uid="uid://iqsopd1ey4aw" path="res://Scenes/Level Assets/heart.tscn" id="6_p4stn"]
 
 [sub_resource type="Animation" id="Animation_8ywv5"]
@@ -74,11 +75,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyip4"]
 size = Vector2(1483, 20)
 
-[node name="WorldEarth" type="Node2D"]
-script = ExtResource("1_hp7iv")
-moving_spikes = ExtResource("6_73tld")
+[node name="World" type="Node2D"]
+script = ExtResource("1_k7u3w")
 
 [node name="ScriptNode" type="Node" parent="."]
+script = ExtResource("2_iupip")
+moving_spikes = ExtResource("6_73tld")
 
 [node name="Player" parent="." instance=ExtResource("2_0pqqc")]
 movement_data = ExtResource("3_xxrao")
@@ -111,16 +113,13 @@ position = Vector2(1128, -210)
 position = Vector2(1219, -4)
 
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("4_3aefo")]
-position = Vector2(1955, 60)
+position = Vector2(1955, -340)
 
 [node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("4_3aefo")]
 position = Vector2(2179, -36)
 
 [node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("4_3aefo")]
-position = Vector2(2165, 124)
-
-[node name="Checkpoint5" parent="Checkpoints" instance=ExtResource("4_3aefo")]
-position = Vector2(3054, -292)
+position = Vector2(1747, 188)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
