@@ -13,9 +13,12 @@ var air_jump = false
 var just_wall_jumped = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var was_wall_normal = Vector2.ZERO
-var GravityDirection = "Down"
+
+enum GravityDirections{DOWN, UP, LEFT, RIGHT}
+var GravityDirection = GravityDirections.DOWN
 var GravDrive = 1
 var GravityX = false
+var CheckpointGravityDirection = GravityDirections.DOWN
 
 func _physics_process(delta):
 	
@@ -149,7 +152,7 @@ func apply_air_resistance(input_axis, delta):
 
 func update_animations(input_axis):
 	if input_axis!=0:
-		if GravityDirection=="Up" or GravityDirection=="Left": 
+		if GravityDirection== GravityDirections.UP or GravityDirection == GravityDirections.LEFT: 
 			animated_sprite.flip_h = (input_axis>0)
 		else:
 			animated_sprite.flip_h = (input_axis<0)
@@ -165,53 +168,69 @@ func _on_hazard_detector_area_entered(area):
 	if reset_level_on_death:
 		get_tree().reload_current_scene()
 	else:
+		if CheckpointGravityDirection == GravityDirections.DOWN:
+			set_gravity_down()
+		elif CheckpointGravityDirection== GravityDirections.UP:
+			set_gravity_up()
+		elif CheckpointGravityDirection==GravityDirections.LEFT:
+			set_gravity_left()
+		elif CheckpointGravityDirection==GravityDirections.RIGHT:
+			set_gravity_right()
 		global_position = starting_position
-#	if GravityDirection!="Down":
-#		set_gravity_down()
-#	global_position= starting_position
-#	velocity = Vector2.ZERO
+		velocity = Vector2.ZERO
+		
+		
 
 
 func set_gravity_down():
-	if GravityDirection!="Down":
+	if GravityDirection != GravityDirections.DOWN:
 		set_up_direction(Vector2.UP)
 		rotation_degrees=0
-		position.y += 16
+		if GravityDirection == GravityDirections.UP:
+				#animated_sprite.flip_h = !animated_sprite.flip_h
+				position.y += 16
 		GravDrive = 1
 		GravityX = false
-		GravityDirection="Down"
+		GravityDirection= GravityDirections.DOWN
 
 
 func set_gravity_up():
-	if GravityDirection!="Up":
+	if GravityDirection!=GravityDirections.UP:
 			set_up_direction(Vector2.DOWN)
 			rotation_degrees=180
-			if GravityDirection=="Down":
+			if GravityDirection== GravityDirections.DOWN:
+				#animated_sprite.flip_h = !animated_sprite.flip_h
 				position.y -= 16
+			elif GravityDirection == GravityDirections.RIGHT or GravityDirections.LEFT:
+				position.y -= 8
 			GravDrive = -1
 			GravityX = false
-			GravityDirection="Up"
+			GravityDirection=GravityDirections.UP
 
 
 func set_gravity_right():
-	if GravityDirection!="Right":
+	if GravityDirection != GravityDirections.RIGHT:
 		rotation_degrees = -90
 		set_up_direction(Vector2.LEFT)
 		GravityX = true
 		GravDrive = 1
-		if GravityDirection=="Left":
+		if GravityDirection==GravityDirections.LEFT:
 				position.x+=16
-		GravityDirection="Right"
+				#animated_sprite.flip_h = !animated_sprite.flip_h
+		GravityDirection=GravityDirections.RIGHT
+		
 
 func set_gravity_left():
-	if GravityDirection!="Left":
+	if GravityDirection!=GravityDirections.LEFT:
 			rotation_degrees = 90
 			set_up_direction(Vector2.RIGHT)
 			GravityX = true
 			GravDrive = -1
-			if GravityDirection=="Right":
+			if GravityDirection == GravityDirections.RIGHT:
 				position.x-=16
-			GravityDirection="Left"
+				#animated_sprite.flip_h = !animated_sprite.flip_h
+			GravityDirection=GravityDirections.LEFT
 
 func set_spawn(new_position):
 	starting_position = new_position
+	CheckpointGravityDirection = GravityDirection

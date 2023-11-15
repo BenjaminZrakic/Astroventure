@@ -82,6 +82,8 @@ script = ExtResource("1_mrn2n")
 
 [node name="Spikey bois" type="Node" parent="."]
 
+[node name="Checkpoints" type="Node" parent="."]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="LevelCompleted" parent="CanvasLayer" instance=ExtResource("5_sx1wa")]
