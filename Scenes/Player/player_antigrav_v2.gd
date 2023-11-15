@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var movement_data : PlayerMovementData 
+@export var reset_level_on_death = false
 
 @onready var animated_sprite = $AnimatedSprite
 @onready var coyote_jump_timer = $"Coyote Jump Timer"
@@ -15,6 +16,7 @@ var was_wall_normal = Vector2.ZERO
 var GravityDirection = "Down"
 var GravDrive = 1
 var GravityX = false
+
 
 func _physics_process(delta):
 	
@@ -161,7 +163,10 @@ func update_animations(input_axis):
 
 
 func _on_hazard_detector_area_entered(area):
-	get_tree().reload_current_scene()
+	if reset_level_on_death:
+		get_tree().reload_current_scene()
+	else:
+		global_position = starting_position
 #	if GravityDirection!="Down":
 #		set_gravity_down()
 #	global_position= starting_position
@@ -210,4 +215,5 @@ func set_gravity_left():
 			GravityDirection="Left"
 
 func set_spawn(new_position):
+	print("help")
 	starting_position = new_position

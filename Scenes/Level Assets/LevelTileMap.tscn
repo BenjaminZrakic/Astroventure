@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bfdwgln01fhik" path="res://Assets/tileset.png" id="1_2ubb3"]
 [ext_resource type="Texture2D" uid="uid://c5mcva2i8kvlg" path="res://Assets/slopes.png" id="2_bj2fc"]
 [ext_resource type="Texture2D" uid="uid://b05e1bdaavkuo" path="res://Assets/slopes_flipped.png" id="3_3gdob"]
-[ext_resource type="Texture2D" uid="uid://b2r41lkcilorg" path="res://Assets/spikes.png" id="4_5bl1n"]
+[ext_resource type="Texture2D" uid="uid://d1tdtd0glqvm2" path="res://Assets/spikes_anim.png" id="4_eg4fb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_djyjc"]
 resource_name = "autotile"
@@ -667,8 +667,9 @@ texture = ExtResource("3_3gdob")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_stma2"]
 resource_name = "Spikes"
-texture = ExtResource("4_5bl1n")
+texture = ExtResource("4_eg4fb")
 0:0/next_alternative_id = 5
+0:0/animation_columns = 1
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0

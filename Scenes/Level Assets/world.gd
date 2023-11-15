@@ -9,6 +9,12 @@ extends Node2D
 @export var next_level: PackedScene
 @export var countdown = false
 @export var timer = false
+<<<<<<< Updated upstream
+=======
+@export var reset_level_on_death = false
+@export var scene_tile_name : PackedScene
+>>>>>>> Stashed changes
+
 
 var level_time = 0.0
 var start_level_msec = 0.0
