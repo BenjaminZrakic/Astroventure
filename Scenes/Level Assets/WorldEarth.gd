@@ -9,7 +9,7 @@ extends Node2D
 @export var next_level: PackedScene
 @export var countdown = false
 @export var timer = false
-@export var scene_tile_name : PackedScene
+@export var moving_spikes : PackedScene
 
 var level_time = 0.0
 var start_level_msec = 0.0
@@ -31,36 +31,38 @@ func _ready():
 	addObjects()
 
 func addObjects():
-	var usedCells = $LevelTileMap.get_used_cells(2)
+	var usedCells = $LevelTileMap.get_used_cells(2) + $LevelTileMap.get_used_cells(3)
 	for cell in usedCells:
-		var cellSrcId = $LevelTileMap.get_cell_source_id(2, cell)
-		var cellAlt = $LevelTileMap.get_cell_alternative_tile(2, cell)
+		var cellLayer = 2 if $LevelTileMap.get_cell_source_id(2, cell) != -1 else 3
+		var cellSrcId = $LevelTileMap.get_cell_source_id(cellLayer, cell)
+		var cellAlt = $LevelTileMap.get_cell_alternative_tile(cellLayer, cell)
 		var place_at = to_global($LevelTileMap.map_to_local(cell))
 		if cellSrcId == 3:
-			place_scene_tile(place_at, 2, cellAlt)
+			place_spike(place_at, cellLayer, cellAlt)
 	$LevelTileMap.clear_layer(2)
+	$LevelTileMap.clear_layer(3)
 
-func place_scene_tile(place_at, cellLayer, cellAlt):
-	var scene_tile_instance = scene_tile_name.instantiate()
-	add_child(scene_tile_instance)
+func place_spike(place_at, cellLayer, cellAlt):
+	var spike_instance = moving_spikes.instantiate()
+	if cellLayer == 3:
+		spike_instance.retracted = true
+	add_child(spike_instance)
 	if cellAlt == 0:
-		pass	# zbog offseta i toga kako se rotira morate ih namistit malo,
-				# a brojevi ovise o vasem centru i tilemapu
-		#place_at.x -= 8
-		#place_at.y += 8
+		place_at.x -=24
+		place_at.y +=4
 	elif cellAlt == 2:
-		scene_tile_instance.rotation = PI
-		#place_at.x += 8
-		#place_at.y -= 8
+		spike_instance.rotation = PI
+		place_at.x -= 8
+		place_at.y -= 12
 	elif cellAlt == 3:
-		scene_tile_instance.rotation = 1.5 * PI
-		#place_at.x += 8
-		#place_at.y += 8
+		spike_instance.rotation = 1.5 * PI
+		place_at.x -= 8
+		place_at.y += 4
 	elif cellAlt == 4:
-		scene_tile_instance.rotation = 0.5 * PI
-		#place_at.x -= 8
-		#place_at.y -= 8
-	scene_tile_instance.position = place_at
+		spike_instance.rotation = 0.5 * PI
+		place_at.x -= 24
+		place_at.y -= 12
+	spike_instance.position = place_at
 
 func _process(delta):
 	level_time = Time.get_ticks_msec() - start_level_msec
@@ -74,7 +76,7 @@ func show_level_completed():
 
 func go_to_next_level():
 	await LevelTransition.fade_to_black()
-	if not next_level is PackedScene: get_tree().change_scene_to_file("res://Scenes/Screens/victory_screen.tscn")
+	if not next_level is PackedScene: get_tree().change_scene_to_file("res://Scenes/victory_screen.tscn")
 	else: get_tree().change_scene_to_packed(next_level)
 	#LevelTransition.fade_from_black()
 	get_tree().paused = false

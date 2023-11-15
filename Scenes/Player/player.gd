@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite
 @onready var coyote_jump_timer = $"Coyote Jump Timer"
-@onready var starting_position = global_position
+@onready var spawn_point = global_position
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var air_jump = false
@@ -105,9 +105,14 @@ func update_animations(input_axis):
 
 
 func _on_hazard_detector_area_entered(area):
-	global_position= starting_position
+	global_position = spawn_point
+	velocity = Vector2.ZERO
 
 
 func _on_anti_grav_checker_body_entered(body):
 	if body.is_in_group("Player"):
 		print("Hi!")
+
+
+func _on_checkpoint_checkpoint_activated(new_position):
+	spawn_point = new_position
