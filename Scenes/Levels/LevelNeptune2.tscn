@@ -72,7 +72,7 @@ position = Vector2(-272, 310)
 position = Vector2(171, -419)
 
 [node name="Checkpoint" parent="Checkpoints" index="1" instance=ExtResource("3_dpuur")]
-position = Vector2(-496, -48)
+position = Vector2(-496, -62)
 rotation = 1.5708
 
 [node name="LevelTileMap" parent="." index="6"]
