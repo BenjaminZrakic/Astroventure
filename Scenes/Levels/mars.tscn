@@ -159,10 +159,11 @@ shape = SubResource("RectangleShape2D_cyip4")
 layer = -3
 
 [node name="Background" type="TextureRect" parent="CanvasLayer2"]
-offset_left = 26.0
-offset_top = 8.0
-offset_right = 386.0
-offset_bottom = 210.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("7_m0fea")
 expand_mode = 5
 
