@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5evuoky11aom"]
+[gd_scene load_steps=13 format=3 uid="uid://deuutoajy7t6y"]
 
 [ext_resource type="Script" path="res://Scenes/Level Assets/world.gd" id="1_1lmsk"]
 [ext_resource type="PackedScene" uid="uid://bmj1urynsj1ph" path="res://Scenes/Player/character.tscn" id="2_0cgi0"]

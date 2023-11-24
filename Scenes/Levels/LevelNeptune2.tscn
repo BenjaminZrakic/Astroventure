@@ -69,7 +69,7 @@ position = Vector2(465, -53)
 position = Vector2(-272, 310)
 
 [node name="Checkpoint2" parent="Checkpoints" index="0" instance=ExtResource("3_dpuur")]
-position = Vector2(171, -419)
+position = Vector2(179, -419)
 
 [node name="Checkpoint" parent="Checkpoints" index="1" instance=ExtResource("3_dpuur")]
 position = Vector2(-496, -62)

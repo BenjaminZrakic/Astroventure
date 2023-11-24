@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://7a8w0j1m350r"]
+
+[ext_resource type="PackedScene" uid="uid://d1ytv2b5seb1r" path="res://Scenes/Level Assets/Planets/planet.tscn" id="1_e6ubq"]
+
+[node name="Uranus" instance=ExtResource("1_e6ubq")]
