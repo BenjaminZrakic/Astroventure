@@ -17518,3 +17518,6 @@ script = null
 position = Vector2(-0.353554, -0.353554)
 sprite_frames = SubResource("SpriteFrames_hu4f5")
 frame_progress = 0.31295
+
+[node name="GravityArea" parent="." index="4"]
+visible = false

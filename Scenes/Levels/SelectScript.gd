@@ -16,8 +16,8 @@ func _process(delta):
 		label.visible = true
 		var direction_to_planet = ship.global_position.direction_to(global_position)
 
-		marker.position.x = clamp(direction_to_planet.x*330,0+20,360-10)
-		marker.position.y = clamp(direction_to_planet.y*170,0,180-10)
+		marker.position.x = clamp(direction_to_planet.x*360,0+20,360-10)
+		marker.position.y = clamp(direction_to_planet.y*180,0,180-10)
 		#print(label.text +": "+ str(marker.position))
 	else:
 		label.visible = false
