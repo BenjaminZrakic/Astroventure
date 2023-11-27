@@ -25,3 +25,4 @@ floor_snap_length = 3.0
 
 [node name="Asteroid" parent="Asteroids" instance=ExtResource("3_y830s")]
 position = Vector2(17, 43)
+size = 2

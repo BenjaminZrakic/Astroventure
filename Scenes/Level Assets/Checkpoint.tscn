@@ -37,8 +37,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmhxp"]
-size = Vector2(11, 14)
+[sub_resource type="CircleShape2D" id="CircleShape2D_n60n3"]
+radius = 53.5374
 
 [node name="Checkpoint" type="Area2D"]
 collision_mask = 2
@@ -53,6 +53,6 @@ frame_progress = 0.488973
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(5.5, -7)
-shape = SubResource("RectangleShape2D_dmhxp")
+shape = SubResource("CircleShape2D_n60n3")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
