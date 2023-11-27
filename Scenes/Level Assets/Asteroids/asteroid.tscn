@@ -160,8 +160,8 @@ animations = [{
 radius = 16.0
 
 [node name="Asteroid" type="Area2D"]
-collision_layer = 4
-collision_mask = 2
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_nppom")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -172,5 +172,8 @@ animation = &"bigMeteor"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_yg8t7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
