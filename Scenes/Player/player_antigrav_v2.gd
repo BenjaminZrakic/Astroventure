@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var movement_data : PlayerMovementData 
 @export var reset_level_on_death = false
+@export var wide_static_camera = false
 
 @onready var animated_sprite = $AnimatedSprite
 @onready var coyote_jump_timer = $"Coyote Jump Timer"
@@ -41,6 +42,8 @@ func _physics_process(delta):
 		if was_on_wall:
 			was_wall_normal = get_wall_normal()
 		move_and_slide()
+		if wide_static_camera:
+			position.x = clamp(position.x, -250, 250)
 		var just_left_ledge = was_on_floor and not is_on_floor() # and velocity.y >= 0 
 		if just_left_ledge:
 			coyote_jump_timer.start()
