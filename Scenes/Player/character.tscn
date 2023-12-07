@@ -21,7 +21,7 @@ movement_data = ExtResource("2_eofbi")
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
 sprite_frames = ExtResource("3_wn5jf")
-animation = &"respawn"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
