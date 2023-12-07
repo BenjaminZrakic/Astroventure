@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var movement_data : PlayerMovementData 
 @export var reset_level_on_death = false
-@export var wide_static_camera = false
+@export var world_boundary_active = false
 
 @onready var animated_sprite = $AnimatedSprite
 @onready var coyote_jump_timer = $"Coyote Jump Timer"
@@ -22,6 +22,8 @@ var GravDrive = 1
 var GravityX = false
 var CheckpointGravityDirection = GravityDirections.DOWN
 var playerDead = false
+var leftClamp = -INF
+var rightClamp = INF
 
 func _physics_process(delta):
 	if not playerDead:
@@ -42,8 +44,8 @@ func _physics_process(delta):
 		if was_on_wall:
 			was_wall_normal = get_wall_normal()
 		move_and_slide()
-		if wide_static_camera:
-			position.x = clamp(position.x, -250, 250)
+		if world_boundary_active:
+			position.x = clamp(position.x, leftClamp, rightClamp)
 		var just_left_ledge = was_on_floor and not is_on_floor() # and velocity.y >= 0 
 		if just_left_ledge:
 			coyote_jump_timer.start()
@@ -244,3 +246,9 @@ func set_gravity_left():
 func set_spawn(new_position):
 	starting_position = new_position
 	CheckpointGravityDirection = GravityDirection
+
+func _on_world_boundary_area_entered(area):
+	if (velocity.x < 0 and leftClamp == -INF):
+		leftClamp = global_position.x
+	elif (velocity.x > 0 and rightClamp == INF):
+		rightClamp = global_position.x
