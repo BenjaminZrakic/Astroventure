@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkkor7cqf3sc2"]
+[gd_scene load_steps=13 format=3 uid="uid://dkkor7cqf3sc2"]
 
 [ext_resource type="Script" path="res://Scenes/Level Assets/world.gd" id="1_mrn2n"]
 [ext_resource type="PackedScene" uid="uid://bmj1urynsj1ph" path="res://Scenes/Player/character.tscn" id="2_iwlls"]
@@ -70,6 +70,10 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyip4"]
 size = Vector2(1483, 20)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_frchr"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hpmb2"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_mrn2n")
@@ -148,5 +152,19 @@ offset_bottom = 180.0
 texture = ExtResource("6_ocvd1")
 expand_mode = 5
 
+[node name="WorldBoundary" type="Area2D" parent="."]
+position = Vector2(-65, -9)
+rotation = 1.5708
+collision_mask = 2
+
+[node name="CollisionShape2D_Left" type="CollisionShape2D" parent="WorldBoundary"]
+shape = SubResource("WorldBoundaryShape2D_frchr")
+
+[node name="CollisionShape2D_Right" type="CollisionShape2D" parent="WorldBoundary"]
+position = Vector2(-7.62939e-06, -132)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_hpmb2")
+
 [connection signal="next_level" from="CanvasLayer/LevelCompleted" to="." method="go_to_next_level"]
 [connection signal="retry" from="CanvasLayer/LevelCompleted" to="." method="_on_level_completed_retry"]
+[connection signal="area_entered" from="WorldBoundary" to="Player" method="_on_world_boundary_area_entered"]

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var movement_data : PlayerMovementData 
 @export var reset_level_on_death = false
+@export var world_boundary_active = false
 
 @onready var animated_sprite = $AnimatedSprite
 @onready var coyote_jump_timer = $"Coyote Jump Timer"
@@ -21,6 +22,8 @@ var GravDrive = 1
 var GravityX = false
 var CheckpointGravityDirection = GravityDirections.DOWN
 var playerDead = false
+var leftClamp = -INF
+var rightClamp = INF
 
 func _physics_process(delta):
 	if not playerDead:
@@ -41,6 +44,8 @@ func _physics_process(delta):
 		if was_on_wall:
 			was_wall_normal = get_wall_normal()
 		move_and_slide()
+		if world_boundary_active:
+			position.x = clamp(position.x, leftClamp, rightClamp)
 		var just_left_ledge = was_on_floor and not is_on_floor() # and velocity.y >= 0 
 		if just_left_ledge:
 			coyote_jump_timer.start()
@@ -168,6 +173,11 @@ func _on_hazard_detector_area_entered(area):
 	if reset_level_on_death:
 		get_tree().reload_current_scene()
 	else:
+		#print("I'm dead oh no")
+		velocity = Vector2.ZERO
+		animated_sprite.play_backwards("respawn")
+		animated_sprite.position.y+=1
+		await animated_sprite.animation_finished
 		if CheckpointGravityDirection == GravityDirections.DOWN:
 			set_gravity_down()
 		elif CheckpointGravityDirection== GravityDirections.UP:
@@ -177,14 +187,12 @@ func _on_hazard_detector_area_entered(area):
 		elif CheckpointGravityDirection==GravityDirections.RIGHT:
 			set_gravity_right()
 		global_position = starting_position
-		velocity = Vector2.ZERO
-	await camera_2d.global_position == global_position
-	animated_sprite.play("respawn")
-	animated_sprite.position.y+=1
-	await animated_sprite.animation_finished
-	animated_sprite.position.y-=1
-	playerDead = false
-	animated_sprite.play("idle")
+		await camera_2d.global_position == global_position
+		animated_sprite.play("respawn")
+		await animated_sprite.animation_finished
+		animated_sprite.position.y-=1
+		playerDead = false
+		animated_sprite.play("idle")
 		
 		
 
@@ -241,3 +249,9 @@ func set_gravity_left():
 func set_spawn(new_position):
 	starting_position = new_position
 	CheckpointGravityDirection = GravityDirection
+
+func _on_world_boundary_area_entered(area):
+	if (velocity.x < 0 and leftClamp == -INF):
+		leftClamp = global_position.x
+	elif (velocity.x > 0 and rightClamp == INF):
+		rightClamp = global_position.x

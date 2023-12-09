@@ -1,17 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://beaja6sbffrub"]
+[gd_scene load_steps=6 format=3 uid="uid://beaja6sbffrub"]
 
 [ext_resource type="Texture2D" uid="uid://1popf8prsden" path="res://Assets/AnomaBall.png" id="1_16j73"]
+[ext_resource type="Script" path="res://Scenes/Level Assets/Hazards/anoma_ball.gd" id="1_kcnhr"]
 [ext_resource type="PackedScene" uid="uid://3mgi3xpbrlny" path="res://Scenes/Level Assets/hazard_area.tscn" id="2_rnpcl"]
+
+[sub_resource type="Curve2D" id="Curve2D_xunlp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 52, 0, 0, 0, 0, 0, 77, 0, 0, 0, 0, 0, 74, -62)
+}
+point_count = 4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0v0j"]
 radius = 8.0
 
 [node name="AnomaBall" type="Node2D"]
+script = ExtResource("1_kcnhr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_xunlp")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, 2)
+rotates = false
+loop = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(0, -2)
 texture = ExtResource("1_16j73")
 
-[node name="HazardArea" parent="." instance=ExtResource("2_rnpcl")]
+[node name="HazardArea" parent="Path2D/PathFollow2D" instance=ExtResource("2_rnpcl")]
+position = Vector2(0, -2)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/HazardArea"]
 shape = SubResource("CircleShape2D_e0v0j")
