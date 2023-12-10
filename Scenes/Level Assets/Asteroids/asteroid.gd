@@ -31,9 +31,11 @@ func _physics_process(delta):
 	global_position += movement_vector.rotated(rotation) * speed * delta
 	
 	var screen_size = get_viewport_rect().size
-	
-
 
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		get_tree().reload_current_scene()
+	if body.is_in_group("MercurySurface"):
+		print("Asteroid collided with tilemap!")
+		global_position = Vector2(0, 0)
+	
