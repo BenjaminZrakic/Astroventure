@@ -7,6 +7,7 @@ enum AsteroidSize{LARGE, MEDIUM, SMALL}
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
 
+@onready var start_position = global_position
 
 var speed := 20
 
@@ -37,5 +38,6 @@ func _on_body_entered(body):
 		get_tree().reload_current_scene()
 	if body.is_in_group("MercurySurface"):
 		print("Asteroid collided with tilemap!")
-		global_position = Vector2(0, 0)
+		global_position = start_position
+		
 	
