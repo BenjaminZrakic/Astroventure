@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsfimydkpnvog"]
+
+[ext_resource type="Script" path="res://Scenes/Level Assets/SafeZone/sigurna_zona.gd" id="1_x2bu1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2advr"]
+size = Vector2(20, 43)
+
+[node name="SigurnaZonaSmall" type="Area2D" groups=["safeZone"]]
+priority = -4
+script = ExtResource("1_x2bu1")
+
+[node name="CollisionShape2Dsmall" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 11.5)
+shape = SubResource("RectangleShape2D_2advr")
+debug_color = Color(0.407843, 0.435294, 0.466667, 0.419608)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -10.5
+offset_right = 10.0
+offset_bottom = 33.5
+color = Color(0, 0, 0, 0.431373)

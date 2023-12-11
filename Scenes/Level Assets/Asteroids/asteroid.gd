@@ -37,7 +37,7 @@ func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		get_tree().reload_current_scene()
 	if body.is_in_group("MercurySurface"):
-		print("Asteroid collided with tilemap!")
+		rotation = randf_range(4*PI/3, 5*PI/3)
 		global_position = start_position
 		
 	
