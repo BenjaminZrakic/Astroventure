@@ -11,8 +11,8 @@ var time:float = 0.0
 var past_minute:float = -1.0
 
 @export var gradient:GradientTexture1D
-@export var INGAME_SPEED = 60
-@export var INITIAL_HOUR = 3:
+@export var INGAME_SPEED = 100
+@export var INITIAL_HOUR = 9:
 	set(h):
 		INITIAL_HOUR = h
 		time = INGAME_TO_REAL_MINUTE * INITIAL_HOUR * MINUTES_PER_HOUR
@@ -26,6 +26,7 @@ func _process(delta):
 	var value = (sin(time- PI/2) + 1.0) /2.0
 	self.color = gradient.gradient.sample(value)
 	_recalculate_time()
+	print(int(time))
 
 func _recalculate_time():
 	var total_minutes = int(time / INGAME_TO_REAL_MINUTE)
