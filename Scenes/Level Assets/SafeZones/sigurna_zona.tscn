@@ -6,6 +6,8 @@
 size = Vector2(20, 40)
 
 [node name="SigurnaZonaSmall" type="Area2D" groups=["SafeZone"]]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_pml4m")
 
 [node name="ColorRect" type="ColorRect" parent="."]

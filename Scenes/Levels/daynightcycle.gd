@@ -26,7 +26,7 @@ func _process(delta):
 	var value = (sin(time- PI/2) + 1.0) /2.0
 	self.color = gradient.gradient.sample(value)
 	_recalculate_time()
-	print(int(time))
+	
 
 func _recalculate_time():
 	var total_minutes = int(time / INGAME_TO_REAL_MINUTE)
@@ -34,6 +34,7 @@ func _recalculate_time():
 	var current_day_minutes = total_minutes % MINUTES_PER_DAY
 	var hour = int(current_day_minutes / MINUTES_PER_HOUR)
 	var minute = int(current_day_minutes % MINUTES_PER_HOUR)
+	#print(int(hour))
 	if past_minute != minute:
 		time_tick.emit(day,hour,minute)
 	

@@ -104,6 +104,7 @@ func update_animations(input_axis):
 		animated_sprite.play("jump")
 
 
+
 func _on_hazard_detector_area_entered(area):
 	global_position = spawn_point
 	velocity = Vector2.ZERO
