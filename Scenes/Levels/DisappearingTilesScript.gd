@@ -15,13 +15,13 @@ func addObjects():
 	var cellSrcId
 	var place_at
 	var placed_positions = []
+	var placed_tiles = []
 	for cell in usedCells:
 		place_at = world.to_global(tilemap.map_to_local(cell))
 		if place_at in placed_positions:
 			continue
 		cellSrcId = tilemap.get_cell_source_id(cellLayer, cell)
 		if cellSrcId == 4:
-			var placed_tiles = []
 			var tile_instance = disappearing_tiles.instantiate()
 			place_tile(tile_instance, place_at, cellLayer)
 			placed_positions.append(place_at)

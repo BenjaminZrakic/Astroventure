@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bnshb78je3fp4"]
+[gd_scene load_steps=16 format=3 uid="uid://bnshb78je3fp4"]
 
 [ext_resource type="Script" path="res://Scenes/Level Assets/world.gd" id="1_k7u3w"]
 [ext_resource type="PackedScene" uid="uid://bmj1urynsj1ph" path="res://Scenes/Player/character.tscn" id="2_0pqqc"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://3mgi3xpbrlny" path="res://Scenes/Level Assets/hazard_area.tscn" id="5_wt37e"]
 [ext_resource type="PackedScene" uid="uid://bbxitpfb3kgxa" path="res://Scenes/Level Assets/moving_spikes.tscn" id="6_73tld"]
 [ext_resource type="PackedScene" uid="uid://iqsopd1ey4aw" path="res://Scenes/Level Assets/heart.tscn" id="6_p4stn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xnpgh"]
+radius = 23.5
+height = 156.0
 
 [sub_resource type="Animation" id="Animation_8ywv5"]
 length = 0.001
@@ -114,6 +118,9 @@ position = Vector2(1219, -4)
 
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("4_3aefo")]
 position = Vector2(1971, -340)
+
+[node name="CollisionShape2D" parent="Checkpoints/Checkpoint2" index="1"]
+shape = SubResource("CapsuleShape2D_xnpgh")
 
 [node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("4_3aefo")]
 position = Vector2(1723, 188)
@@ -303,3 +310,5 @@ autowrap_mode = 0
 
 [connection signal="next_level" from="CanvasLayer/LevelCompleted" to="." method="go_to_next_level"]
 [connection signal="retry" from="CanvasLayer/LevelCompleted" to="." method="_on_level_completed_retry"]
+
+[editable path="Checkpoints/Checkpoint2"]

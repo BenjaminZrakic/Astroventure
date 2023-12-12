@@ -24,7 +24,7 @@ func _exit_tree():
 
 func _process_tilemap_collision(body: Node2D, body_rid: RID):
 	current_tilemap = body as TileMap
-	print("Yo, i am processoing yo collision")
+	#print("Yo, i am processoing yo collision")
 	var collided_tile_cords = current_tilemap.get_coords_for_body_rid(body_rid)
 	
 	for index in current_tilemap.get_layers_count():
