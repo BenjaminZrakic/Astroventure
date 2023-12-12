@@ -11,8 +11,8 @@ size = Vector2(10, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_327wf"]
 size = Vector2(6, 14)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bq427"]
-size = Vector2(8, 4)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egt18"]
+size = Vector2(4, 2)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
@@ -41,6 +41,9 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
+[node name="ResetMovementSpeedJump Timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -24)
 position_smoothing_enabled = true
@@ -59,8 +62,9 @@ shape = SubResource("RectangleShape2D_327wf")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TerrainDetector"]
-shape = SubResource("RectangleShape2D_bq427")
+shape = SubResource("RectangleShape2D_egt18")
 
+[connection signal="timeout" from="ResetMovementSpeedJump Timer" to="." method="_on_reset_movement_speed_timer_timeout"]
 [connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
 [connection signal="body_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
 [connection signal="terrain_entered" from="TerrainDetector" to="." method="_on_terrain_detector_terrain_entered"]

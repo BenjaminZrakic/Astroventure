@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite
 @onready var coyote_jump_timer = $"Coyote Jump Timer"
+
+@onready var reset_movement_speed_jump_timer = $"ResetMovementSpeedJump Timer"
 @onready var starting_position = global_position
 @onready var wall_jump_timer = $"Wall Jump Timer"
 @onready var camera_2d = $Camera2D
@@ -28,6 +30,8 @@ var rightClamp = INF
 #terrain stuff
 var friction_multiplier = 1
 var speed_multiplier = 1
+var acceleration_multiplier = 1
+var reset_movement = false
 
 func _physics_process(delta):
 	if not playerDead:
@@ -35,6 +39,8 @@ func _physics_process(delta):
 
 		handle_wall_jump()
 		handle_jump()
+		
+		reset_movement_values(delta)
 		
 		# Get the input direction and handle the movement/deceleration.
 		var input_axis = Input.get_axis("ui_left", "ui_right")
@@ -71,13 +77,19 @@ func apply_gravity(delta):
 		else:
 			velocity.x += gravity * delta * movement_data.gravity_scale * GravDrive
 			velocity.x = clamp(velocity.x, -600,600)
-			
+
 func handle_jump():
+
 	#print(coyote_jump_timer.time_left)
-	if is_on_floor() or is_on_wall(): air_jump = true
+	
+	if is_on_floor() or is_on_wall(): 
+		air_jump = true
 	# Handle Jump.
 	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("ui_up"):
+#			if reset_movement_speed_jump_timer.is_stopped():
+#				reset_movement_speed_jump_timer.start()
+			
 			if not GravityX: 
 				velocity.y = movement_data.jump_velocity * GravDrive
 			else:
@@ -129,9 +141,9 @@ func handle_wall_jump():
 func apply_acceleration(input_axis, delta):
 	if input_axis!=0 and is_on_floor():
 		if not GravityX:
-			velocity.x = move_toward(velocity.x, movement_data.speed*speed_multiplier*input_axis, movement_data.accelaration*delta)
+			velocity.x = move_toward(velocity.x, movement_data.speed*speed_multiplier*input_axis, movement_data.accelaration*acceleration_multiplier*delta)
 		else: 
-			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1, movement_data.accelaration*delta)
+			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1, movement_data.accelaration*acceleration_multiplier*delta)
 
 
 func apply_air_accelaration(input_axis, delta):
@@ -262,9 +274,36 @@ func _on_world_boundary_area_entered(area):
 
 
 func _on_terrain_detector_terrain_entered(terrain_type):
+	
+	reset_movement_speed_jump_timer.stop()
+	
+	reset_movement = false
 	if terrain_type==2:
+		print("Changing movement to ice")
 		speed_multiplier = 1.5
 		friction_multiplier = 0.1
+		acceleration_multiplier= 0.2
+	elif terrain_type==1:
+		print("Changing movement to normal")
+		reset_movement = true
 	else:
-		speed_multiplier = 1
-		friction_multiplier = 1
+		print("Starting reset timer")
+		reset_movement_speed_jump_timer.start()
+
+
+
+func _on_reset_movement_speed_timer_timeout():
+	print("Resetting movement")
+	reset_movement = true
+#	speed_multiplier = 1
+#	friction_multiplier = 1
+#	acceleration_multiplier = 1
+
+func reset_movement_values(delta):
+	if reset_movement:
+		speed_multiplier = move_toward(speed_multiplier, 1, 0.5*delta)
+		friction_multiplier = move_toward(friction_multiplier, 1, 0.5*delta)
+		acceleration_multiplier = move_toward(acceleration_multiplier, 1, 0.5*delta)
+		
+		if speed_multiplier == 1 and friction_multiplier == 1 and acceleration_multiplier == 1:
+			reset_movement = false
