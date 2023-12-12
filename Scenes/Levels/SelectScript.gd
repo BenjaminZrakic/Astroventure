@@ -8,7 +8,22 @@ extends Area2D
 @onready var marker = %Marker
 @onready var label = %Label
 @export var ship : CharacterBody2D 
+
+enum PlanetNames{
+	Mercury,
+	Venus,
+	Earth,
+	Mars,
+	Jupiter,
+	Saturn,
+	Uranus,
+	Neptune
+}
+
 @onready var UI := get_tree().get_root().get_node("MapScreen/UI") as CanvasLayer
+@onready var planet_sprite_frames = $AnimatedSprite2D.sprite_frames
+@export var planet_name := PlanetNames.Earth
+
 
 func _ready():
 	print(UI)
@@ -29,7 +44,7 @@ func _physics_process(delta):
 	if has_overlapping_bodies():
 		if Input.is_action_just_released("ui_accept"):
 			get_tree().paused=true
-			UI.pass_parameters(level)
+			UI.pass_parameters(level, planet_sprite_frames, planet_name)
 			
 			
 			

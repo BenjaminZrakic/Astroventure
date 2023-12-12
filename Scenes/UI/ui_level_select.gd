@@ -3,11 +3,47 @@ extends CanvasLayer
 @onready var begin_button = %BeginButton
 @onready var abort_button = %AbortButton
 @onready var animation_player = $AnimationPlayer
+@onready var planet = %Planet
+@onready var planet_info = %planet_info
+
 
 @export var next_level: PackedScene
 
-func pass_parameters(level : PackedScene):
+enum PlanetNames{
+	Mercury,
+	Venus,
+	Earth,
+	Mars,
+	Jupiter,
+	Saturn,
+	Uranus,
+	Neptune
+}
+
+func pass_parameters(level : PackedScene, sprite_frames : SpriteFrames, planet_name):
 	next_level = level
+	planet.sprite_frames = sprite_frames
+	planet.play("default")
+	match planet_name:
+		PlanetNames.Mercury:
+			planet_info.text = "Hello this is Mercury speaking"
+		PlanetNames.Venus:
+			planet_info.text = "Hello this is Venus speaking"
+		PlanetNames.Earth:
+			planet_info.text = "Hello this is Earth speaking"
+		PlanetNames.Mars:
+			planet_info.text = "Hello this is Mars speaking"
+		PlanetNames.Jupiter:
+			planet_info.text = "Hello this is Jupiter speaking"
+		PlanetNames.Saturn:
+			planet_info.text = "Hello this is Saturn speaking"
+		PlanetNames.Uranus:
+			planet_info.text = "Hello this is Uranus speaking"
+		PlanetNames.Neptune:
+			planet_info.text = "Hello this is Neptune speaking"
+		
+		
+	
 	show()
 	animation_player.play("AnimateText")
 	
