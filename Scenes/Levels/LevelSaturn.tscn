@@ -11,7 +11,7 @@ position = Vector2(1, 0)
 movement_data = ExtResource("2_hqp0r")
 world_boundary_active = true
 
-[node name="Camera2D" parent="Player" index="4"]
+[node name="Camera2D" parent="Player" index="5"]
 zoom = Vector2(0.704, 0.704)
 drag_horizontal_enabled = true
 drag_left_margin = 1.0
