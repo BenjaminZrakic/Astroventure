@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmj1urynsj1ph"]
+[gd_scene load_steps=8 format=3 uid="uid://bmj1urynsj1ph"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player_antigrav_v2.gd" id="1_4r3eb"]
 [ext_resource type="Resource" uid="uid://b1rkom08snay1" path="res://Resources/SlowMovementData.tres" id="2_eofbi"]
 [ext_resource type="SpriteFrames" uid="uid://dl3ymlg6n87id" path="res://Aesthethics/spacemanCharacter.tres" id="3_wn5jf"]
+[ext_resource type="PackedScene" uid="uid://dhlrcql7c28e2" path="res://Scenes/Player/terrain_detector.tscn" id="4_7dsbk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pagqt"]
 size = Vector2(10, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_327wf"]
 size = Vector2(6, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bq427"]
+size = Vector2(8, 4)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
@@ -51,5 +55,12 @@ priority = 1
 position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_327wf")
 
+[node name="TerrainDetector" parent="." instance=ExtResource("4_7dsbk")]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TerrainDetector"]
+shape = SubResource("RectangleShape2D_bq427")
+
 [connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
 [connection signal="body_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
+[connection signal="terrain_entered" from="TerrainDetector" to="." method="_on_terrain_detector_terrain_entered"]

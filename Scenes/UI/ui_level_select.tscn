@@ -1,0 +1,160 @@
+[gd_scene load_steps=9 format=3 uid="uid://hj7yxl4lnnor"]
+
+[ext_resource type="Texture2D" uid="uid://d3ymlsjvv4cgn" path="res://Assets/Stars 2.png" id="1_koott"]
+[ext_resource type="Theme" uid="uid://dejvr5rqllmfx" path="res://Aesthethics/button.tres" id="1_npgw1"]
+[ext_resource type="Script" path="res://Scenes/UI/ui_level_select.gd" id="1_nr0i6"]
+[ext_resource type="SpriteFrames" uid="uid://cgachqm1vum8" path="res://Scenes/Level Assets/Planets/earth.tres" id="2_wekf4"]
+
+[sub_resource type="Animation" id="Animation_puurs"]
+resource_name = "AnimateText"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/ColorRect/ColorRect/planet_info:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_v341w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/ColorRect/ColorRect/planet_info:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_3ceuv"]
+resource_name = "Show_UI"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pk4a8"]
+_data = {
+"AnimateText": SubResource("Animation_puurs"),
+"RESET": SubResource("Animation_v341w"),
+"Show_UI": SubResource("Animation_3ceuv")
+}
+
+[node name="UI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_nr0i6")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 2
+anchor_left = 0.111111
+anchor_top = 0.0444444
+anchor_right = 0.888889
+anchor_bottom = 0.888889
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.537255)
+metadata/_edit_use_anchors_ = true
+
+[node name="FaceRect" type="ColorRect" parent="Control/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0571429
+anchor_top = 0.0526316
+anchor_right = 0.282143
+anchor_bottom = 0.467105
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="PlanetRect" type="ColorRect" parent="Control/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0571429
+anchor_top = 0.526316
+anchor_right = 0.282143
+anchor_bottom = 0.940789
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/ColorRect/PlanetRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_koott")
+expand_mode = 1
+
+[node name="Planet" type="AnimatedSprite2D" parent="Control/ColorRect/PlanetRect/TextureRect"]
+unique_name_in_owner = true
+position = Vector2(32, 32)
+sprite_frames = ExtResource("2_wekf4")
+autoplay = "default"
+frame_progress = 0.028154
+
+[node name="ColorRect" type="ColorRect" parent="Control/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.371429
+anchor_top = 0.0526316
+anchor_right = 0.942857
+anchor_bottom = 0.789474
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="planet_info" type="RichTextLabel" parent="Control/ColorRect/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_npgw1")
+text = "Hello this is earth speaking"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/ColorRect"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 128.0
+offset_right = 264.0
+offset_bottom = 144.0
+alignment = 1
+
+[node name="BeginButton" type="Button" parent="Control/ColorRect/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+text = "Begin"
+
+[node name="AbortButton" type="Button" parent="Control/ColorRect/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+text = "Abort"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pk4a8")
+}
+
+[connection signal="button_up" from="Control/ColorRect/HBoxContainer/BeginButton" to="." method="_on_begin_button_button_up"]
+[connection signal="button_up" from="Control/ColorRect/HBoxContainer/AbortButton" to="." method="_on_abort_button_button_up"]
