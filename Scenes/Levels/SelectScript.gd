@@ -8,7 +8,10 @@ extends Area2D
 @onready var marker = %Marker
 @onready var label = %Label
 @export var ship : CharacterBody2D 
+@onready var UI := get_tree().get_root().get_node("MapScreen/UI") as CanvasLayer
 
+func _ready():
+	print(UI)
 
 func _process(delta):
 	path.set_progress(path.get_progress() + speed * delta)
@@ -25,4 +28,8 @@ func _process(delta):
 func _physics_process(delta):
 	if has_overlapping_bodies():
 		if Input.is_action_just_released("ui_accept"):
-			get_tree().change_scene_to_packed(level)
+			get_tree().paused=true
+			UI.pass_parameters(level)
+			
+			
+			

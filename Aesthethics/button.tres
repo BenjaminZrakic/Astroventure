@@ -14,3 +14,4 @@ Button/styles/hover = ExtResource("1_8udwc")
 Button/styles/normal = ExtResource("1_w36qi")
 Button/styles/pressed = ExtResource("1_w36qi")
 Label/font_sizes/font_size = 6
+RichTextLabel/font_sizes/normal_font_size = 6
