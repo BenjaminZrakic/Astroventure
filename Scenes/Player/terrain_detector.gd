@@ -41,6 +41,7 @@ func _process_tilemap_collision(body: Node2D, body_rid: RID):
 
 
 func _update_terrain(terrain_mask: int):
+	
 	if terrain_mask != current_terrain:
 		previous_terrain = current_terrain
 		current_terrain = terrain_mask
@@ -51,3 +52,11 @@ func _update_terrain(terrain_mask: int):
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	if body is TileMap:
 		_process_tilemap_collision(body, body_rid)
+
+
+func _on_body_exited(body):
+	if body is TileMap:
+		print("No terrain detected")
+		current_terrain = -1
+		previous_terrain = -1
+		emit_signal("terrain_entered", current_terrain)
