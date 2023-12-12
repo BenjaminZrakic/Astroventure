@@ -4,3 +4,5 @@
 
 [node name="TerrainDetector" type="Area2D"]
 script = ExtResource("1_gvqb1")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

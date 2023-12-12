@@ -25,6 +25,10 @@ var playerDead = false
 var leftClamp = -INF
 var rightClamp = INF
 
+#terrain stuff
+var friction_multiplier = 1
+var speed_multiplier = 1
+
 func _physics_process(delta):
 	if not playerDead:
 		apply_gravity(delta)
@@ -125,9 +129,9 @@ func handle_wall_jump():
 func apply_acceleration(input_axis, delta):
 	if input_axis!=0 and is_on_floor():
 		if not GravityX:
-			velocity.x = move_toward(velocity.x, movement_data.speed*input_axis, movement_data.accelaration*delta)
+			velocity.x = move_toward(velocity.x, movement_data.speed*speed_multiplier*input_axis, movement_data.accelaration*delta)
 		else: 
-			velocity.y = move_toward(velocity.y, movement_data.speed*input_axis*-1, movement_data.accelaration*delta)
+			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1, movement_data.accelaration*delta)
 
 
 func apply_air_accelaration(input_axis, delta):
@@ -135,24 +139,24 @@ func apply_air_accelaration(input_axis, delta):
 		return 
 	if input_axis!=0:
 		if not GravityX:
-			velocity.x = move_toward(velocity.x, movement_data.speed*input_axis, movement_data.air_accelaration*delta)
+			velocity.x = move_toward(velocity.x, movement_data.speed*speed_multiplier*input_axis, movement_data.air_accelaration*delta)
 		else:
-			velocity.y = move_toward(velocity.y, movement_data.speed*input_axis*-1 , movement_data.air_accelaration*delta)
+			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1 , movement_data.air_accelaration*delta)
 			
 func apply_friction(input_axis, delta):
 	if input_axis==0 and is_on_floor():
 		if not GravityX:
-			velocity.x = move_toward(velocity.x, 0, movement_data.friction*delta)
+			velocity.x = move_toward(velocity.x, 0, movement_data.friction*friction_multiplier*delta)
 		else:
-			velocity.y = move_toward(velocity.y, 0, movement_data.friction*delta)
+			velocity.y = move_toward(velocity.y, 0, movement_data.friction*friction_multiplier*delta)
 
 
 func apply_air_resistance(input_axis, delta):
 	if input_axis==0 and not is_on_floor():
 		if not GravityX:
-			velocity.x = move_toward(velocity.x, 0, movement_data.air_resistance*delta)
+			velocity.x = move_toward(velocity.x, 0, movement_data.air_resistance*friction_multiplier*delta)
 		else:
-			velocity.y = move_toward(velocity.y, 0, movement_data.air_resistance*delta)
+			velocity.y = move_toward(velocity.y, 0, movement_data.air_resistance*friction_multiplier*delta)
 
 func update_animations(input_axis):
 	if input_axis!=0:
@@ -255,3 +259,12 @@ func _on_world_boundary_area_entered(area):
 		leftClamp = global_position.x
 	elif (velocity.x > 0 and rightClamp == INF):
 		rightClamp = global_position.x
+
+
+func _on_terrain_detector_terrain_entered(terrain_type):
+	if terrain_type==2:
+		speed_multiplier = 1.5
+		friction_multiplier = 0.1
+	else:
+		speed_multiplier = 1
+		friction_multiplier = 1
