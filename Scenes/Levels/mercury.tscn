@@ -16,7 +16,7 @@
 [node name="Mercury" instance=ExtResource("1_ocyqg")]
 
 [node name="Player" parent="." index="1"]
-position = Vector2(-50, 159)
+position = Vector2(-42, 154)
 movement_data = ExtResource("2_k6tkx")
 world_boundary_active = true
 
@@ -178,11 +178,11 @@ offset_bottom = 955.32
 texture = ExtResource("9_pxyhu")
 metadata/_edit_use_anchors_ = true
 
-[node name="CanvasModulate" type="CanvasModulate" parent="CanvasLayer3" index="1"]
+[node name="DayNightCycle" type="CanvasModulate" parent="CanvasLayer3" index="1"]
 position = Vector2(90, 54)
 color = Color(0.603922, 0.819608, 1, 1)
 script = ExtResource("10_avtf7")
 gradient = ExtResource("11_xdaev")
 INITIAL_HOUR = 18
 
-[connection signal="sun_kill" from="CanvasLayer3/CanvasModulate" to="Player" method="respawn"]
+[connection signal="sun_kill" from="CanvasLayer3/DayNightCycle" to="Player" method="respawn"]

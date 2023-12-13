@@ -191,7 +191,7 @@ func respawn():
 		#print("I'm dead oh no")
 		velocity = Vector2.ZERO
 		animated_sprite.play_backwards("respawn")
-		animated_sprite.position.y += 1
+		#animated_sprite.position.y += 1
 		await animated_sprite.animation_finished
 		if CheckpointGravityDirection == GravityDirections.DOWN:
 			set_gravity_down()
@@ -205,7 +205,7 @@ func respawn():
 		await camera_2d.global_position == global_position
 		animated_sprite.play("respawn")
 		await animated_sprite.animation_finished
-		animated_sprite.position.y-=1
+		#animated_sprite.position.y-=1
 		playerDead = false
 		animated_sprite.play("idle")
 		

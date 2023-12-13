@@ -9,7 +9,7 @@ signal sun_kill()
 
 var time:float = 0.0
 var past_minute:float = -1.0
-
+var safe:bool = false
 
 
 @export var gradient:GradientTexture1D
@@ -31,7 +31,9 @@ func _process(delta):
 		sun_kill.emit()
 	self.color = gradient.gradient.sample(value)
 	_recalculate_time()
-	
+
+#func _set_safe():
+		
 
 func _recalculate_time():
 	var total_minutes = int(time / INGAME_TO_REAL_MINUTE)
