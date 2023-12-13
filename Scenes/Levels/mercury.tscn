@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxbokkpntvafe"]
+[gd_scene load_steps=13 format=3 uid="uid://dxbokkpntvafe"]
 
 [ext_resource type="PackedScene" uid="uid://dkkor7cqf3sc2" path="res://Scenes/Level Assets/world.tscn" id="1_ocyqg"]
 [ext_resource type="Resource" uid="uid://btop77c1so5py" path="res://Resources/Planet movements/MercuryMarsMovement.tres" id="2_k6tkx"]
 [ext_resource type="PackedScene" uid="uid://dlm6l3ap225j8" path="res://Scenes/Level Assets/SafeZones/sigurna_zona_medium.tscn" id="3_aat10"]
+[ext_resource type="PackedScene" uid="uid://iqsopd1ey4aw" path="res://Scenes/Level Assets/heart.tscn" id="3_hj3ex"]
 [ext_resource type="PackedScene" uid="uid://bk7dqiarkbwq5" path="res://Scenes/Level Assets/Asteroids/asteroid.tscn" id="3_y830s"]
 [ext_resource type="PackedScene" uid="uid://dmqkrm6q5rijx" path="res://Scenes/Level Assets/SafeZones/sigurna_zona_big.tscn" id="4_2ydyn"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Assets/EndLevelItem.tscn" id="4_hcfgs"]
+[ext_resource type="PackedScene" uid="uid://ckccbppd7eifa" path="res://Scenes/Level Assets/Checkpoint.tscn" id="4_hlxr6"]
 [ext_resource type="PackedScene" uid="uid://bsfimydkpnvog" path="res://Scenes/Level Assets/SafeZones/sigurna_zona.tscn" id="6_5qijd"]
 [ext_resource type="Texture2D" uid="uid://cnb2affsu4dxb" path="res://Assets/Stars 3.png" id="9_pxyhu"]
 [ext_resource type="Script" path="res://Scenes/Levels/daynightcycle.gd" id="10_avtf7"]
@@ -13,8 +16,18 @@
 [node name="Mercury" instance=ExtResource("1_ocyqg")]
 
 [node name="Player" parent="." index="1"]
-position = Vector2(-71, 148)
+position = Vector2(2607, -119)
 movement_data = ExtResource("2_k6tkx")
+world_boundary_active = true
+
+[node name="Heart" parent="Hearts" index="0" instance=ExtResource("3_hj3ex")]
+position = Vector2(2783, -282)
+
+[node name="EndLevelItem" parent="Hearts" index="1" instance=ExtResource("4_hcfgs")]
+position = Vector2(2849, -283)
+
+[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource("4_hlxr6")]
+position = Vector2(1745, 208)
 
 [node name="SafeZones" type="Node" parent="." index="6"]
 
@@ -83,13 +96,13 @@ layer_0/tile_data = PackedInt32Array(655365, 0, 1, 589829, 0, 1, 524293, 393216,
 position = Vector2(-6, 587)
 
 [node name="CollisionShape2D" parent="HazardArea" index="0"]
-position = Vector2(1410.5, -18.25)
+position = Vector2(1575.5, -113)
 
 [node name="CollisionShape2D_Left" parent="WorldBoundary" index="0"]
-position = Vector2(171, -15.0006)
+position = Vector2(186, 22.9993)
 
 [node name="CollisionShape2D_Right" parent="WorldBoundary" index="1"]
-position = Vector2(-445, -89.9984)
+position = Vector2(-411.011, -3007)
 
 [node name="Asteroids" type="Node" parent="." index="12"]
 
