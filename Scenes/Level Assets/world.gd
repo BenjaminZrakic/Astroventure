@@ -19,14 +19,6 @@ var start_level_msec = 0.0
 var heartsMax = 0
 var heartsCollected = 0
 
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		if pause_menu.visible == false:
-			get_tree().paused = true
-			pause_menu.show()
-		else:
-			get_tree().paused = false
-			pause_menu.hide()
 
 func _ready():
 	heartsMax = get_tree().get_nodes_in_group("Hearts").size()
