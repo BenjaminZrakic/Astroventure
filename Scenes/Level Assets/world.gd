@@ -6,18 +6,23 @@ extends Node2D
 @onready var animation_player = $AnimationPlayer
 @onready var level_time_label = %LevelTimeLabel
 
+
 @export var next_level: PackedScene
 @export var countdown = false
 @export var timer = false
 @export var scene_tile_name : PackedScene
+@export var level_best_time : float
 
 var level_time = 0.0
 var start_level_msec = 0.0
-
+var heartsMax = 0
+var heartsCollected = 0
 
 func _ready():
+	heartsMax = get_tree().get_nodes_in_group("Hearts").size()
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	Events.level_completed.connect(show_level_completed)
+	Events.update_score.connect(update_score)
 	get_tree().paused = true
 	LevelTransition.fade_from_black()
 	if countdown:
@@ -68,6 +73,8 @@ func _process(delta):
 		level_time_label.text = str(level_time / 1000.0)
 
 func show_level_completed():
+	level_time_label.hide()
+	level_completed.show_data(heartsCollected, heartsMax, float(level_time_label.text), level_best_time)
 	level_completed.show()
 	level_completed.retry_button.grab_focus()
 	get_tree().paused = true
@@ -83,5 +90,7 @@ func _on_level_completed_retry():
 	await LevelTransition.fade_to_black()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
-	
-	
+
+
+func update_score():
+	heartsCollected+=1

@@ -77,6 +77,7 @@ size = Vector2(1483, 20)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_mrn2n")
+level_best_time = 6.25
 
 [node name="ScriptNode" type="Node" parent="."]
 

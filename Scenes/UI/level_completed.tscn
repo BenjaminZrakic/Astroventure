@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cv1202d8pg8ct"]
+[gd_scene load_steps=3 format=3 uid="uid://cv1202d8pg8ct"]
 
 [ext_resource type="Script" path="res://Scenes/UI/level_completed.gd" id="1_4voqc"]
+[ext_resource type="Theme" uid="uid://dejvr5rqllmfx" path="res://Aesthethics/button.tres" id="2_h54kp"]
 
 [node name="LevelCompleted" type="ColorRect"]
 process_mode = 3
@@ -12,6 +13,17 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.215686)
 script = ExtResource("1_4voqc")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+anchor_left = 0.244444
+anchor_top = 0.222222
+anchor_right = 0.755556
+anchor_bottom = 0.755556
+grow_vertical = 2
+color = Color(0, 0, 0, 0.862745)
+metadata/_edit_use_anchors_ = true
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -22,11 +34,37 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_h54kp")
 text = "Level Completed!"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hearts" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_h54kp")
+text = "Hearts collected: "
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_h54kp")
+text = "Final time: "
+vertical_alignment = 1
+
+[node name="LevelGoalTime" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_h54kp")
+text = "Level goaL time: "
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_h54kp")
+text = "Total score:  "
 vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
