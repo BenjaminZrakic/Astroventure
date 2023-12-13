@@ -13,7 +13,7 @@ func _ready():
 
 func _on_start_game_pressed():
 	await LevelTransition.fade_to_black_menu()
-	get_tree().change_scene_to_file("res://Scenes/Levels/level_one.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Levels/MapScreen.tscn")
 	LevelTransition.fade_from_black()
 
 

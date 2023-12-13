@@ -1,9 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1llbuplgaq0g"]
+[gd_scene load_steps=8 format=3 uid="uid://d1llbuplgaq0g"]
 
 [ext_resource type="Script" path="res://Scenes/Screens/main_menu.gd" id="1_4lr2w"]
 [ext_resource type="Theme" uid="uid://dejvr5rqllmfx" path="res://Aesthethics/button.tres" id="2_ct3br"]
 [ext_resource type="Texture2D" uid="uid://dcoyclq8dtwjm" path="res://Assets/Main Menu background/Space Background (11).png" id="3_61u4g"]
+[ext_resource type="Shader" path="res://Aesthethics/Shaders/starfield.gdshader" id="3_obgim"]
 [ext_resource type="FontFile" uid="uid://y40yurqaewrq" path="res://Crang.ttf" id="4_a4oju"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qypt2"]
+shader = ExtResource("3_obgim")
+shader_parameter/dimensions = Vector2(1024, 600)
+shader_parameter/small_stars = 50.0
+shader_parameter/small_stars_far_size = 0.5
+shader_parameter/small_stars_near_size = 1.0
+shader_parameter/large_stars = 8.0
+shader_parameter/large_stars_far_size = 0.5
+shader_parameter/large_stars_near_size = 1.0
+shader_parameter/far_stars_color = Color(0.5, 0, 1, 1)
+shader_parameter/near_stars_color = Color(1, 1, 1, 1)
+shader_parameter/base_scroll_speed = 0.05
+shader_parameter/additional_scroll_speed = 0.05
 
 [sub_resource type="LabelSettings" id="LabelSettings_y4tm3"]
 font = ExtResource("4_a4oju")
@@ -22,7 +37,17 @@ script = ExtResource("1_4lr2w")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -3
 
+[node name="TextureRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_qypt2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="Background" type="TextureRect" parent="CanvasLayer"]
+visible = false
 offset_right = 360.0
 offset_bottom = 180.0
 texture = ExtResource("3_61u4g")
