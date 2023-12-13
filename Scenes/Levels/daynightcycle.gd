@@ -24,12 +24,13 @@ var returning = false
 
 func _ready():
 	time = INGAME_TO_REAL_MINUTE * INITIAL_HOUR * MINUTES_PER_HOUR
+	Events.player_safe.connect(_set_playerSafe)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta * INGAME_TO_REAL_MINUTE * INGAME_SPEED
 	var value = (sin(time - PI/2) + 1.0) / 2.0
-	print(value)
+	#print(value)
 	
 	if(value>=0.4) and !level_animation.is_playing() and !returning:
 		level_animation.play("flashing")
