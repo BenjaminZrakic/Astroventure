@@ -16,7 +16,7 @@
 [node name="Mercury" instance=ExtResource("1_ocyqg")]
 
 [node name="Player" parent="." index="1"]
-position = Vector2(2607, -119)
+position = Vector2(-50, 159)
 movement_data = ExtResource("2_k6tkx")
 world_boundary_active = true
 
@@ -184,3 +184,5 @@ color = Color(0.603922, 0.819608, 1, 1)
 script = ExtResource("10_avtf7")
 gradient = ExtResource("11_xdaev")
 INITIAL_HOUR = 18
+
+[connection signal="sun_kill" from="CanvasLayer3/CanvasModulate" to="Player" method="respawn"]

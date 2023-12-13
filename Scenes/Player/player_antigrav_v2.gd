@@ -183,8 +183,7 @@ func update_animations(input_axis):
 	if not is_on_floor():
 		animated_sprite.play("jump")
 
-
-func _on_hazard_detector_area_entered(area):
+func respawn():
 	playerDead = true
 	if reset_level_on_death:
 		get_tree().reload_current_scene()
@@ -192,7 +191,7 @@ func _on_hazard_detector_area_entered(area):
 		#print("I'm dead oh no")
 		velocity = Vector2.ZERO
 		animated_sprite.play_backwards("respawn")
-		animated_sprite.position.y+=1
+		animated_sprite.position.y += 1
 		await animated_sprite.animation_finished
 		if CheckpointGravityDirection == GravityDirections.DOWN:
 			set_gravity_down()
@@ -210,8 +209,8 @@ func _on_hazard_detector_area_entered(area):
 		playerDead = false
 		animated_sprite.play("idle")
 		
-		
-
+func _on_hazard_detector_area_entered(area):
+	respawn()
 
 func set_gravity_down():
 	if GravityDirection != GravityDirections.DOWN:
@@ -307,3 +306,6 @@ func reset_movement_values(delta):
 		
 		if speed_multiplier == 1 and friction_multiplier == 1 and acceleration_multiplier == 1:
 			reset_movement = false
+
+
+

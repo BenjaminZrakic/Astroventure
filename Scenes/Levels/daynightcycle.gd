@@ -5,7 +5,7 @@ const  MINUTES_PER_HOUR = 60
 const INGAME_TO_REAL_MINUTE = (2 * PI) / MINUTES_PER_DAY
 
 signal time_tick(day:int, hour:int, minute:int)
-signal sun(value:float)	
+signal sun_kill()
 
 var time:float = 0.0
 var past_minute:float = -1.0
@@ -25,8 +25,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta * INGAME_TO_REAL_MINUTE * INGAME_SPEED
-	var value = (sin(time- PI/2) + 1.0) /2.0
-	
+	var value = (sin(time - PI/2) + 1.0) / 2.0
+	print(value)
+	if(value >= 0.999):
+		sun_kill.emit()
 	self.color = gradient.gradient.sample(value)
 	_recalculate_time()
 	
