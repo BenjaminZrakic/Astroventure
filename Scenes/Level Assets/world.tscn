@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dkkor7cqf3sc2"]
+[gd_scene load_steps=14 format=3 uid="uid://dkkor7cqf3sc2"]
 
 [ext_resource type="Script" path="res://Scenes/Level Assets/world.gd" id="1_mrn2n"]
 [ext_resource type="PackedScene" uid="uid://bmj1urynsj1ph" path="res://Scenes/Player/character.tscn" id="2_iwlls"]
+[ext_resource type="PackedScene" uid="uid://e5byije8qotb" path="res://Scenes/UI/pause_menu.tscn" id="3_2b7md"]
 [ext_resource type="PackedScene" uid="uid://dv1p5jxki2fse" path="res://Scenes/Level Assets/LevelTileMap.tscn" id="4_h2cwe"]
 [ext_resource type="PackedScene" uid="uid://3mgi3xpbrlny" path="res://Scenes/Level Assets/hazard_area.tscn" id="5_rl5ou"]
 [ext_resource type="PackedScene" uid="uid://cv1202d8pg8ct" path="res://Scenes/UI/level_completed.tscn" id="5_sx1wa"]
@@ -77,7 +78,6 @@ size = Vector2(1483, 20)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_mrn2n")
-level_best_time = 6.25
 
 [node name="ScriptNode" type="Node" parent="."]
 
@@ -90,6 +90,8 @@ level_best_time = 6.25
 [node name="Checkpoints" type="Node" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_2b7md")]
 
 [node name="LevelCompleted" parent="CanvasLayer" instance=ExtResource("5_sx1wa")]
 visible = false
@@ -166,6 +168,8 @@ position = Vector2(-7.62939e-06, -132)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_hpmb2")
 
+[connection signal="main_menu" from="CanvasLayer/PauseMenu" to="." method="go_to_main_menu"]
+[connection signal="retry" from="CanvasLayer/PauseMenu" to="." method="_on_level_completed_retry"]
 [connection signal="next_level" from="CanvasLayer/LevelCompleted" to="." method="go_to_next_level"]
 [connection signal="retry" from="CanvasLayer/LevelCompleted" to="." method="_on_level_completed_retry"]
 [connection signal="area_entered" from="WorldBoundary" to="Player" method="_on_world_boundary_area_entered"]

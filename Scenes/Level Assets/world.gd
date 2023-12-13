@@ -5,6 +5,7 @@ extends Node2D
 @onready var start_in_label = %StartInLabel
 @onready var animation_player = $AnimationPlayer
 @onready var level_time_label = %LevelTimeLabel
+@onready var pause_menu = $CanvasLayer/PauseMenu
 
 
 @export var next_level: PackedScene
@@ -17,6 +18,15 @@ var level_time = 0.0
 var start_level_msec = 0.0
 var heartsMax = 0
 var heartsCollected = 0
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		if pause_menu.visible == false:
+			get_tree().paused = true
+			pause_menu.show()
+		else:
+			get_tree().paused = false
+			pause_menu.hide()
 
 func _ready():
 	heartsMax = get_tree().get_nodes_in_group("Hearts").size()
@@ -84,6 +94,11 @@ func go_to_next_level():
 	if not next_level is PackedScene: get_tree().change_scene_to_file("res://Scenes/Screens/victory_screen.tscn")
 	else: get_tree().change_scene_to_packed(next_level)
 	#LevelTransition.fade_from_black()
+	get_tree().paused = false
+
+func go_to_main_menu():
+	await LevelTransition.fade_to_black()
+	get_tree().change_scene_to_file("res://Scenes/Screens/main_menu.tscn")
 	get_tree().paused = false
 
 func _on_level_completed_retry():

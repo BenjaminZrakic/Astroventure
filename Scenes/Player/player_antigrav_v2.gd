@@ -279,21 +279,21 @@ func _on_terrain_detector_terrain_entered(terrain_type):
 	
 	reset_movement = false
 	if terrain_type==2:
-		print("Changing movement to ice")
+		#print("Changing movement to ice")
 		speed_multiplier = 1.5
 		friction_multiplier = 0.1
 		acceleration_multiplier= 0.2
 	elif terrain_type==1:
-		print("Changing movement to normal")
+		#print("Changing movement to normal")
 		reset_movement = true
 	else:
-		print("Starting reset timer")
+		#print("Starting reset timer")
 		reset_movement_speed_jump_timer.start()
 
 
 
 func _on_reset_movement_speed_timer_timeout():
-	print("Resetting movement")
+	#print("Resetting movement")
 	reset_movement = true
 #	speed_multiplier = 1
 #	friction_multiplier = 1
