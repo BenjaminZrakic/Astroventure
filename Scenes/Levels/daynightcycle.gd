@@ -9,7 +9,10 @@ signal sun_kill()
 
 var time:float = 0.0
 var past_minute:float = -1.0
-var safe:bool = false
+var playerSafe:bool = false
+var returning = false
+
+@onready var level_animation = $"../../LevelAnimation"
 
 
 @export var gradient:GradientTexture1D
@@ -27,13 +30,26 @@ func _process(delta):
 	time += delta * INGAME_TO_REAL_MINUTE * INGAME_SPEED
 	var value = (sin(time - PI/2) + 1.0) / 2.0
 	print(value)
-	if(value >= 0.999):
+	
+	if(value>=0.4) and !level_animation.is_playing() and !returning:
+		level_animation.play("flashing")
+	if (value>=0.7) and level_animation.is_playing():
+		level_animation.play("red_flashing")
+	if (value >= 0.999 and level_animation.is_playing()):
+		level_animation.play("RESET")
+		returning = true
+	
+	if value<0.05:
+		returning = false
+	
+	if(value >= 0.999) and !playerSafe:
 		sun_kill.emit()
 	self.color = gradient.gradient.sample(value)
 	_recalculate_time()
 
-#func _set_safe():
-		
+func _set_playerSafe(value):
+	playerSafe = value
+	print("Player safe: "+ str(playerSafe))
 
 func _recalculate_time():
 	var total_minutes = int(time / INGAME_TO_REAL_MINUTE)
