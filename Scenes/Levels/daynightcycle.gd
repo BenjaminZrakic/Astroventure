@@ -17,7 +17,7 @@ var returning = false
 
 @export var gradient:GradientTexture1D
 @export var INGAME_SPEED = 100
-@export var INITIAL_HOUR = 9:
+@export var INITIAL_HOUR = 1:
 	set(h):
 		INITIAL_HOUR = h
 		time = INGAME_TO_REAL_MINUTE * INITIAL_HOUR * MINUTES_PER_HOUR
