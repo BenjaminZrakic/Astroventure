@@ -1,7 +1,7 @@
 extends Node
 
 @export var moving_spikes : PackedScene
-
+@export var tilemap : TileMap
 @onready var world = get_node("..")
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,7 +9,6 @@ func _ready():
 	addObjects()
 
 func addObjects():
-	var tilemap = get_node("../LevelTileMap")
 	var usedCells = tilemap.get_used_cells(2) + tilemap.get_used_cells(3)
 	for cell in usedCells:
 		var cellLayer = 2 if tilemap.get_cell_source_id(2, cell) != -1 else 3
