@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkvs6f6irfekt"]
 
 [ext_resource type="PackedScene" uid="uid://d1ytv2b5seb1r" path="res://Scenes/Level Assets/Planets/planet.tscn" id="1_wbnqe"]
-[ext_resource type="SpriteFrames" uid="uid://cgachqm1vum8" path="res://Scenes/Level Assets/Planets/earth.tres" id="2_uak0j"]
+[ext_resource type="SpriteFrames" uid="uid://dli4a8csxhv4n" path="res://Scenes/Level Assets/Planets/earth.tres" id="2_uak0j"]
 
 [node name="Earth" instance=ExtResource("1_wbnqe")]
 

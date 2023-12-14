@@ -41,3 +41,4 @@ func _on_venus_safe_zone_body_entered(body):
 func _on_venus_safe_zone_body_exited(body):
 	if body.is_in_group("Player"):
 		enable()
+

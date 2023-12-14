@@ -81,6 +81,15 @@ script = ExtResource("1_mrn2n")
 
 [node name="ScriptNode" type="Node" parent="."]
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = -3
+
+[node name="Background" type="TextureRect" parent="CanvasLayer2"]
+offset_right = 360.0
+offset_bottom = 180.0
+texture = ExtResource("6_ocvd1")
+expand_mode = 5
+
 [node name="Player" parent="." instance=ExtResource("2_iwlls")]
 
 [node name="Hearts" type="Node" parent="."]
@@ -88,6 +97,8 @@ script = ExtResource("1_mrn2n")
 [node name="Spikey bois" type="Node" parent="."]
 
 [node name="Checkpoints" type="Node" parent="."]
+
+[node name="EndLevelItemContainer" type="Node" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -146,15 +157,6 @@ position = Vector2(-19, 253)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
 position = Vector2(458.5, 0)
 shape = SubResource("RectangleShape2D_cyip4")
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-layer = -3
-
-[node name="Background" type="TextureRect" parent="CanvasLayer2"]
-offset_right = 360.0
-offset_bottom = 180.0
-texture = ExtResource("6_ocvd1")
-expand_mode = 5
 
 [node name="WorldBoundary" type="Area2D" parent="."]
 position = Vector2(-65, -9)

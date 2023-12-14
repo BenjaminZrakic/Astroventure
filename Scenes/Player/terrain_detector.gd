@@ -56,7 +56,7 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 
 func _on_body_exited(body):
 	if body is TileMap:
-		print("No terrain detected")
+		#print("No terrain detected")
 		current_terrain = -1
 		previous_terrain = -1
 		emit_signal("terrain_entered", current_terrain)

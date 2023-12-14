@@ -1,11 +1,11 @@
 [gd_scene load_steps=20 format=3 uid="uid://c5x6p3febuudq"]
 
 [ext_resource type="Script" path="res://Scenes/Level Assets/world.gd" id="1_t31v4"]
-[ext_resource type="Resource" path="res://Resources/Planet movements/VenusUranusMovement.tres" id="3_rh8eo"]
+[ext_resource type="Resource" uid="uid://krjikwb6osnb" path="res://Resources/Planet movements/VenusUranusMovement.tres" id="3_rh8eo"]
 [ext_resource type="PackedScene" uid="uid://bmj1urynsj1ph" path="res://Scenes/Player/character.tscn" id="4_3n3c6"]
 [ext_resource type="Script" path="res://Scripts/VenusAtmosphere.gd" id="5_ew3r3"]
 [ext_resource type="PackedScene" uid="uid://ckccbppd7eifa" path="res://Scenes/Level Assets/Checkpoint.tscn" id="7_vndwo"]
-[ext_resource type="PackedScene" path="res://Scenes/Level Assets/EndLevelItem.tscn" id="8_bed2g"]
+[ext_resource type="PackedScene" uid="uid://c8yd44clm2sy4" path="res://Scenes/Level Assets/EndLevelItem.tscn" id="8_bed2g"]
 [ext_resource type="PackedScene" uid="uid://cv1202d8pg8ct" path="res://Scenes/UI/level_completed.tscn" id="8_ek45y"]
 [ext_resource type="PackedScene" uid="uid://dv1p5jxki2fse" path="res://Scenes/Level Assets/LevelTileMap.tscn" id="9_7ncet"]
 [ext_resource type="Texture2D" uid="uid://bxcvd6wid5jsy" path="res://Assets/Orange-bg.png" id="9_axogk"]
@@ -199,6 +199,7 @@ next shelter!
 [/center]"
 fit_content = true
 autowrap_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Warning2" type="RichTextLabel" parent="Text"]
 offset_left = 2197.0
@@ -216,6 +217,7 @@ find your element.
 [/center]"
 fit_content = true
 autowrap_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="SafeZones" type="Node" parent="."]
 

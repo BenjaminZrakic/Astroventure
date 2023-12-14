@@ -184,30 +184,32 @@ func update_animations(input_axis):
 		animated_sprite.play("jump")
 
 func respawn():
-	playerDead = true
-	if reset_level_on_death:
-		get_tree().reload_current_scene()
-	else:
-		#print("I'm dead oh no")
-		velocity = Vector2.ZERO
-		animated_sprite.play_backwards("respawn")
-		#animated_sprite.position.y += 1
-		await animated_sprite.animation_finished
-		if CheckpointGravityDirection == GravityDirections.DOWN:
-			set_gravity_down()
-		elif CheckpointGravityDirection== GravityDirections.UP:
-			set_gravity_up()
-		elif CheckpointGravityDirection==GravityDirections.LEFT:
-			set_gravity_left()
-		elif CheckpointGravityDirection==GravityDirections.RIGHT:
-			set_gravity_right()
-		global_position = starting_position
-		await camera_2d.global_position == global_position
-		animated_sprite.play("respawn")
-		await animated_sprite.animation_finished
-		#animated_sprite.position.y-=1
-		playerDead = false
-		animated_sprite.play("idle")
+	if !playerDead:
+		playerDead = true
+		
+		if reset_level_on_death:
+			get_tree().reload_current_scene()
+		else:
+			#print("I'm dead oh no")
+			velocity = Vector2.ZERO
+			animated_sprite.play_backwards("respawn")
+			animated_sprite.position.y += 1
+			await animated_sprite.animation_finished
+			if CheckpointGravityDirection == GravityDirections.DOWN:
+				set_gravity_down()
+			elif CheckpointGravityDirection== GravityDirections.UP:
+				set_gravity_up()
+			elif CheckpointGravityDirection==GravityDirections.LEFT:
+				set_gravity_left()
+			elif CheckpointGravityDirection==GravityDirections.RIGHT:
+				set_gravity_right()
+			global_position = starting_position
+			await camera_2d.global_position == global_position
+			animated_sprite.play("respawn")
+			await animated_sprite.animation_finished
+			animated_sprite.position.y-=1
+			playerDead = false
+			animated_sprite.play("idle")
 		
 func _on_hazard_detector_area_entered(area):
 	respawn()
