@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var movement_data : PlayerMovementData 
 @export var reset_level_on_death = false
 @export var world_boundary_active = false
+@export var camera_zoom : float = 1
 
 @onready var animated_sprite = $AnimatedSprite
 @onready var coyote_jump_timer = $"Coyote Jump Timer"
@@ -32,6 +33,10 @@ var friction_multiplier = 1
 var speed_multiplier = 1
 var acceleration_multiplier = 1
 var reset_movement = false
+
+func _ready():
+	camera_2d.zoom.x = camera_zoom
+	camera_2d.zoom.y = camera_zoom
 
 func _physics_process(delta):
 	if not playerDead:

@@ -2,6 +2,7 @@ extends Area2D
 
 @export var level : PackedScene
 @export var speed = 20
+#@export var planet_scale := 1 as float
 
 @onready var path : PathFollow2D = get_parent() as PathFollow2D
 @onready var visible_on_screen_notifier_2d = $VisibleOnScreenNotifier2D
@@ -27,11 +28,15 @@ enum PlanetNames{
 @onready var planet_name_label = %PlanetName
 @onready var planet_name_marker = $PlanetNameMarker
 @onready var center_container = %CenterContainer
+@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var collision_shape_2d = $CollisionShape2D
 
 
 func _ready():
 	print(UI)
 	planet_name_label.text = str(PlanetNames.keys()[planet_name])
+	#animated_sprite_2d.scale=planet_scale
+	#collision_shape_2d.scale = planet_scale
 
 func _process(delta):
 	#center_container.global_position = planet_name_marker.global_position

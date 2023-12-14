@@ -172,6 +172,7 @@ rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_hpmb2")
 
 [connection signal="main_menu" from="CanvasLayer/PauseMenu" to="." method="go_to_main_menu"]
+[connection signal="map_screen" from="CanvasLayer/PauseMenu" to="." method="_on_pause_menu_map_screen"]
 [connection signal="retry" from="CanvasLayer/PauseMenu" to="." method="_on_level_completed_retry"]
 [connection signal="next_level" from="CanvasLayer/LevelCompleted" to="." method="go_to_next_level"]
 [connection signal="retry" from="CanvasLayer/LevelCompleted" to="." method="_on_level_completed_retry"]

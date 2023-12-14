@@ -33,7 +33,7 @@ func _ready():
 	get_tree().paused = false
 	start_level_msec = Time.get_ticks_msec() #vrijeme od pocetka u ms
 	if not next_level is PackedScene:
-		level_completed.next_level_button.text = "Victory screen"
+		level_completed.next_level_button.text = "Map screen"
 	
 	addObjects()
 
@@ -84,14 +84,9 @@ func show_level_completed():
 
 func go_to_next_level():
 	await LevelTransition.fade_to_black()
-	if not next_level is PackedScene: get_tree().change_scene_to_file("res://Scenes/Screens/victory_screen.tscn")
+	if not next_level is PackedScene: get_tree().change_scene_to_file("res://Scenes/Levels/MapScreen.tscn")
 	else: get_tree().change_scene_to_packed(next_level)
 	#LevelTransition.fade_from_black()
-	get_tree().paused = false
-
-func go_to_main_menu():
-	await LevelTransition.fade_to_black()
-	get_tree().change_scene_to_file("res://Scenes/Screens/main_menu.tscn")
 	get_tree().paused = false
 
 func _on_level_completed_retry():
@@ -102,3 +97,5 @@ func _on_level_completed_retry():
 
 func update_score():
 	heartsCollected+=1
+
+

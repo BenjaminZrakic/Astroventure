@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c20by7l4tiaml"]
+[gd_scene load_steps=26 format=3 uid="uid://c20by7l4tiaml"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/MapScreen.gd" id="1_058mk"]
 [ext_resource type="PackedScene" uid="uid://deuo0m6mfokye" path="res://Scenes/Level Assets/ship.tscn" id="1_lgnu1"]
@@ -17,6 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://bkvs6f6irfekt" path="res://Scenes/Level Assets/Planets/earth.tscn" id="13_d0emp"]
 [ext_resource type="PackedScene" uid="uid://beno8wpaludfw" path="res://Scenes/Levels/LevelSaturn.tscn" id="14_2xjxq"]
 [ext_resource type="PackedScene" uid="uid://hj7yxl4lnnor" path="res://Scenes/UI/ui_level_select.tscn" id="14_10y4k"]
+[ext_resource type="PackedScene" uid="uid://7a8w0j1m350r" path="res://Scenes/Level Assets/Planets/uranus.tscn" id="16_6fiog"]
+[ext_resource type="PackedScene" uid="uid://bjbrkn1uecc05" path="res://Scenes/Level Assets/Planets/neptune.tscn" id="16_s6ejm"]
+[ext_resource type="PackedScene" uid="uid://brvg1g3uxenjl" path="res://Scenes/Levels/LevelUran.tscn" id="17_3lup7"]
+[ext_resource type="PackedScene" uid="uid://b1jlpjoke3a3l" path="res://Scenes/Levels/LevelNeptune2.tscn" id="17_q8e5f"]
 
 [sub_resource type="Curve2D" id="Curve2D_l5f74"]
 _data = {
@@ -98,6 +102,17 @@ scale = Vector2(0.15, 0.15)
 level = ExtResource("9_amfx0")
 ship = NodePath("../../../Ship")
 
+[node name="Label" type="Label" parent="EarthPath/EarthPathFollow2D"]
+visible = false
+offset_left = -5.67015
+offset_top = 3.8158
+offset_right = 34.3298
+offset_bottom = 12.8158
+scale = Vector2(0.301898, 0.301898)
+text = "Earth"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MarsPath" type="Path2D" parent="."]
 position = Vector2(-248, -63)
 scale = Vector2(28, 28)
@@ -146,22 +161,34 @@ ship = NodePath("../../../Ship")
 planet_name = 5
 
 [node name="UranusPath2D" type="Path2D" parent="."]
-position = Vector2(645, 161)
-scale = Vector2(110, 110)
+position = Vector2(-423, 182)
+scale = Vector2(59.6131, 59.6131)
 curve = ExtResource("3_u58ap")
 
 [node name="UranusPathFollow2D" type="PathFollow2D" parent="UranusPath2D"]
 position = Vector2(0, -100)
 rotates = false
 
+[node name="Uranus" parent="UranusPath2D/UranusPathFollow2D" node_paths=PackedStringArray("ship") instance=ExtResource("16_6fiog")]
+scale = Vector2(0.11404, 0.11404)
+level = ExtResource("17_3lup7")
+speed = 1
+ship = NodePath("../../../Ship")
+
 [node name="NeptunePath2D" type="Path2D" parent="."]
-position = Vector2(403, 242)
-scale = Vector2(150, 150)
+position = Vector2(-359, 293)
+scale = Vector2(68.2893, 68.2893)
 curve = ExtResource("3_u58ap")
 
 [node name="NeptunePathFollow2D" type="PathFollow2D" parent="NeptunePath2D"]
 position = Vector2(0, -100)
 rotates = false
+
+[node name="Neptune" parent="NeptunePath2D/NeptunePathFollow2D" node_paths=PackedStringArray("ship") instance=ExtResource("16_s6ejm")]
+scale = Vector2(0.0911031, 0.0911031)
+level = ExtResource("17_q8e5f")
+speed = 1
+ship = NodePath("../../../Ship")
 
 [node name="BG" type="CanvasLayer" parent="."]
 layer = -2

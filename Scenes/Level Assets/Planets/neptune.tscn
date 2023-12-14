@@ -75,6 +75,10 @@ shader_parameter/inside = true
 shader_parameter/add_margins = false
 
 [node name="Neptune" instance=ExtResource("1_32y2c")]
+planet_name = 7
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 material = SubResource("ShaderMaterial_chgxx")
+
+[node name="Label" parent="CanvasLayer/Marker" index="0"]
+text = "Neptune"
