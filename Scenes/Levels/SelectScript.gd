@@ -8,6 +8,7 @@ extends Area2D
 @onready var marker = %Marker
 @onready var label = %Label
 @export var ship : CharacterBody2D 
+@onready var animation_player = $AnimationPlayer
 
 enum PlanetNames{
 	Mercury,
@@ -23,12 +24,17 @@ enum PlanetNames{
 @onready var UI := get_tree().get_root().get_node("MapScreen/UI") as CanvasLayer
 @onready var planet_sprite_frames = $AnimatedSprite2D.sprite_frames
 @export var planet_name := PlanetNames.Earth
+@onready var planet_name_label = %PlanetName
+@onready var planet_name_marker = $PlanetNameMarker
+@onready var center_container = %CenterContainer
 
 
 func _ready():
 	print(UI)
+	planet_name_label.text = str(PlanetNames.keys()[planet_name])
 
 func _process(delta):
+	#center_container.global_position = planet_name_marker.global_position
 	path.set_progress(path.get_progress() + speed * delta)
 	if not visible_on_screen_notifier_2d.is_on_screen():
 		label.visible = true
@@ -45,6 +51,11 @@ func _physics_process(delta):
 		if Input.is_action_just_released("ui_accept"):
 			get_tree().paused=true
 			UI.pass_parameters(level, planet_sprite_frames, planet_name)
-			
-			
-			
+
+
+func _on_body_entered(body):
+	animation_player.play("show_outline")
+
+
+func _on_body_exited(body):
+	animation_player.play("hide_outline")

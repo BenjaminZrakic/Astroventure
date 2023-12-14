@@ -52,7 +52,7 @@ windspeed = 8.0
 average_time = 7.0
 
 [node name="Player" parent="." index="2"]
-position = Vector2(120, -800)
+position = Vector2(128, -800)
 movement_data = ExtResource("2_16oep")
 
 [node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource("3_u3s5x")]

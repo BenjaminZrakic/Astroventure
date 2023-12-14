@@ -110,7 +110,7 @@ script = ExtResource("1_wsc5t")
 next_level = ExtResource("2_q3a30")
 
 [node name="Player" parent="." instance=ExtResource("3_y0l8h")]
-position = Vector2(83, -851)
+position = Vector2(64, 96)
 movement_data = ExtResource("4_hlv08")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

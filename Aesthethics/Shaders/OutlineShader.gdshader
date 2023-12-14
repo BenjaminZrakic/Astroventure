@@ -1,9 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjbrkn1uecc05"]
-
-[ext_resource type="PackedScene" uid="uid://d1ytv2b5seb1r" path="res://Scenes/Level Assets/Planets/planet.tscn" id="1_32y2c"]
-
-[sub_resource type="Shader" id="Shader_fmcrq"]
-code = "shader_type canvas_item;
+shader_type canvas_item;
 
 uniform vec4 color : source_color = vec4(1.0);
 uniform float width : hint_range(0, 10) = 1.0;
@@ -64,17 +59,4 @@ void fragment() {
 		COLOR.rgb = inside ? mix(COLOR.rgb, color.rgb, color.a) : color.rgb;
 		COLOR.a += (1.0 - COLOR.a) * color.a;
 	}
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_chgxx"]
-shader = SubResource("Shader_fmcrq")
-shader_parameter/color = Color(1, 1, 1, 0)
-shader_parameter/width = 1.0
-shader_parameter/pattern = 0
-shader_parameter/inside = true
-shader_parameter/add_margins = false
-
-[node name="Neptune" instance=ExtResource("1_32y2c")]
-
-[node name="AnimatedSprite2D" parent="." index="0"]
-material = SubResource("ShaderMaterial_chgxx")
+}

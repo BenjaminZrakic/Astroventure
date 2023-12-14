@@ -59,7 +59,6 @@ curve = ExtResource("3_u58ap")
 
 [node name="MercuryPathFollow2D" type="PathFollow2D" parent="MercuryPath"]
 position = Vector2(0, -100)
-rotation = -1.52755
 rotates = false
 
 [node name="Mercury" parent="MercuryPath/MercuryPathFollow2D" node_paths=PackedStringArray("ship") instance=ExtResource("3_aswoj")]
@@ -91,7 +90,6 @@ curve = SubResource("Curve2D_1iops")
 
 [node name="EarthPathFollow2D" type="PathFollow2D" parent="EarthPath"]
 position = Vector2(89.7702, -43.1658)
-rotation = 1.07992
 progress = 112.037
 rotates = false
 

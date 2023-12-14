@@ -12,7 +12,7 @@ next_level = ExtResource("2_mhpo1")
 timer = true
 level_best_time = 10.0
 
-[node name="Player" parent="." index="1"]
+[node name="Player" parent="." index="2"]
 position = Vector2(28, 112)
 floor_snap_length = 1.5
 

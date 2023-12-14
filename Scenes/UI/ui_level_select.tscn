@@ -162,5 +162,5 @@ libraries = {
 wait_time = 0.001
 
 [connection signal="button_up" from="Control/ColorRect/HBoxContainer/BeginButton" to="." method="_on_begin_button_button_up"]
-[connection signal="button_up" from="Control/ColorRect/HBoxContainer/AbortButton" to="." method="_on_abort_button_button_up"]
+[connection signal="pressed" from="Control/ColorRect/HBoxContainer/AbortButton" to="." method="_on_abort_button_button_up"]
 [connection signal="timeout" from="TextTimer" to="." method="_on_timer_timeout"]

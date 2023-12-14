@@ -1,6 +1,5 @@
 [gd_scene load_steps=2504 format=3 uid="uid://bn6n6p7mpq8kw"]
 
-[ext_resource type="PackedScene" uid="uid://d1ytv2b5seb1r" path="res://Scenes/Level Assets/Planets/planet.tscn" id="1_bdk38"]
 [ext_resource type="Texture2D" uid="uid://sxtuj6yvmyua" path="res://Assets/planets_animated/sun.png" id="2_df3i4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a0mml"]
@@ -17511,13 +17510,37 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="Sun" instance=ExtResource("1_bdk38")]
-script = null
+[sub_resource type="CircleShape2D" id="CircleShape2D_faio2"]
+radius = 82.0061
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="Sun" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-0.353554, -0.353554)
 sprite_frames = SubResource("SpriteFrames_hu4f5")
+autoplay = "default"
 frame_progress = 0.31295
 
-[node name="GravityArea" parent="." index="4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_faio2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1.43051e-06, 0.5)
+scale = Vector2(2.5, 2.55)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Marker" type="Marker2D" parent="CanvasLayer"]
+unique_name_in_owner = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Marker"]
+unique_name_in_owner = true
 visible = false
+offset_left = -19.0
+offset_top = 2.0
+offset_right = 21.0
+offset_bottom = 11.0
+size_flags_horizontal = 0
+text = "Earth"
+horizontal_alignment = 1
+vertical_alignment = 1
