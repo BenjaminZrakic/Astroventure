@@ -59,20 +59,19 @@ animations = [{
 
 [node name="Ship" type="CharacterBody2D"]
 z_index = 2
-position = Vector2(530, 178)
+scale = Vector2(1.2, 1.2)
 script = ExtResource("1_r37o7")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_g2btc")
 animation = &"boost"
 autoplay = "default"
-frame_progress = 0.287861
+frame_progress = 0.359378
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0.528931, -12.4483, 14.5289, 5.55171, 14.5289, 10.5517, 2.52893, 12.5517, -2.47107, 12.5517, -14.4711, 10.5517, -14.4711, 5.55171, -0.471069, -12.4483)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -24)
 zoom = Vector2(0.2, 0.2)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
