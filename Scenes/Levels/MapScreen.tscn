@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://c20by7l4tiaml"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/MapScreen.gd" id="1_058mk"]
-[ext_resource type="PackedScene" uid="uid://deuo0m6mfokye" path="res://Scenes/Level Assets/ship.tscn" id="1_lgnu1"]
+[ext_resource type="PackedScene" path="res://Scenes/Level Assets/ship.tscn" id="1_lgnu1"]
 [ext_resource type="Texture2D" uid="uid://d3ymlsjvv4cgn" path="res://Assets/Stars 2.png" id="3_38j7l"]
 [ext_resource type="PackedScene" uid="uid://bukvrsgmj0cs4" path="res://Scenes/Level Assets/Planets/mercury.tscn" id="3_aswoj"]
 [ext_resource type="Curve2D" uid="uid://e35xfv8uj64m" path="res://Scenes/Level Assets/Planets/circle.tres" id="3_u58ap"]
@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dxbokkpntvafe" path="res://Scenes/Levels/mercury.tscn" id="6_abkxv"]
 [ext_resource type="PackedScene" uid="uid://bn6n6p7mpq8kw" path="res://Scenes/Level Assets/Planets/sun.tscn" id="7_sueuh"]
 [ext_resource type="PackedScene" uid="uid://bgto26pd61fic" path="res://Scenes/Level Assets/Planets/mars.tscn" id="9_17ieb"]
+[ext_resource type="PackedScene" uid="uid://dt1nnv6uygko1" path="res://Scenes/Levels/LevelEarthv2.tscn" id="9_amfx0"]
 [ext_resource type="PackedScene" uid="uid://cg35qg6nmwyem" path="res://Scenes/Level Assets/Planets/saturn.tscn" id="10_vhbnl"]
-[ext_resource type="PackedScene" uid="uid://bnshb78je3fp4" path="res://Scenes/Levels/LevelEarth.tscn" id="10_vo1yj"]
 [ext_resource type="PackedScene" uid="uid://cv6d2x8w5d2tc" path="res://Scenes/Level Assets/Planets/jupiter.tscn" id="10_vwetg"]
 [ext_resource type="PackedScene" uid="uid://deuutoajy7t6y" path="res://Scenes/Levels/mars.tscn" id="11_a3m16"]
 [ext_resource type="PackedScene" uid="uid://bkvs6f6irfekt" path="res://Scenes/Level Assets/Planets/earth.tscn" id="13_d0emp"]
@@ -96,7 +96,7 @@ rotates = false
 
 [node name="Earth" parent="EarthPath/EarthPathFollow2D" node_paths=PackedStringArray("ship") instance=ExtResource("13_d0emp")]
 scale = Vector2(0.15, 0.15)
-level = ExtResource("10_vo1yj")
+level = ExtResource("9_amfx0")
 ship = NodePath("../../../Ship")
 
 [node name="MarsPath" type="Path2D" parent="."]
