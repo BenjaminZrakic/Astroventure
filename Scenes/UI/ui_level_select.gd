@@ -33,7 +33,7 @@ func pass_parameters(level : PackedScene, sprite_frames : SpriteFrames, planet_n
 			planet_info.text = "Hello this is Earth speaking. 								  You are entering Mercurys orbit. Mercury is planet that is closest to the Sun. So be aware of the heat. You will feel that gravity is much weaker than gravity on Earth, but that shouldn't be a problem. Also, very helpful, Mercury has no atmosphere at all, so metheors can be an issue. 			Collect that element and come home safe. Good luck commander."
 			
 		PlanetNames.Venus:
-			planet_info.text = "Hello this is Venus speaking"
+			planet_info.text = "Venus's atmosphere is enough to destroy even your spacesuit. The combination of high pressure, temperature and toxic chemicals is too much for any material you could wear. The buildings left there from our old mining programme should protect you, just don't stay out too long."
 		PlanetNames.Earth:
 			planet_info.text = "Hello this is Earth speaking"
 		PlanetNames.Mars:

@@ -48,26 +48,27 @@ func addObjects():
 	$LevelTileMap.clear_layer(2)
 
 func place_scene_tile(place_at, cellLayer, cellAlt):
-	var scene_tile_instance = scene_tile_name.instantiate()
-	add_child(scene_tile_instance)
-	if cellAlt == 0:
-		pass	# zbog offseta i toga kako se rotira morate ih namistit malo,
-				# a brojevi ovise o vasem centru i tilemapu
-		#place_at.x -= 8
-		#place_at.y += 8
-	elif cellAlt == 2:
-		scene_tile_instance.rotation = PI
-		#place_at.x += 8
-		#place_at.y -= 8
-	elif cellAlt == 3:
-		scene_tile_instance.rotation = 1.5 * PI
-		#place_at.x += 8
-		#place_at.y += 8
-	elif cellAlt == 4:
-		scene_tile_instance.rotation = 0.5 * PI
-		#place_at.x -= 8
-		#place_at.y -= 8
-	scene_tile_instance.position = place_at
+	if scene_tile_name:
+		var scene_tile_instance = scene_tile_name.instantiate()
+		add_child(scene_tile_instance)
+		if cellAlt == 0:
+			pass	# zbog offseta i toga kako se rotira morate ih namistit malo,
+					# a brojevi ovise o vasem centru i tilemapu
+			#place_at.x -= 8
+			#place_at.y += 8
+		elif cellAlt == 2:
+			scene_tile_instance.rotation = PI
+			#place_at.x += 8
+			#place_at.y -= 8
+		elif cellAlt == 3:
+			scene_tile_instance.rotation = 1.5 * PI
+			#place_at.x += 8
+			#place_at.y += 8
+		elif cellAlt == 4:
+			scene_tile_instance.rotation = 0.5 * PI
+			#place_at.x -= 8
+			#place_at.y -= 8
+		scene_tile_instance.position = place_at
 
 func _process(delta):
 	level_time = Time.get_ticks_msec() - start_level_msec

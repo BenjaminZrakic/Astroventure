@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c20by7l4tiaml"]
+[gd_scene load_steps=22 format=3 uid="uid://c20by7l4tiaml"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/MapScreen.gd" id="1_058mk"]
 [ext_resource type="PackedScene" path="res://Scenes/Level Assets/ship.tscn" id="1_lgnu1"]
@@ -8,11 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://ctkfjm18a7q21" path="res://Scenes/Level Assets/Planets/venus.tscn" id="5_tdnmj"]
 [ext_resource type="PackedScene" uid="uid://dxbokkpntvafe" path="res://Scenes/Levels/mercury.tscn" id="6_abkxv"]
 [ext_resource type="PackedScene" uid="uid://bn6n6p7mpq8kw" path="res://Scenes/Level Assets/Planets/sun.tscn" id="7_sueuh"]
+[ext_resource type="PackedScene" uid="uid://c5x6p3febuudq" path="res://Scenes/Levels/LevelVenus.tscn" id="8_f3r6r"]
 [ext_resource type="PackedScene" uid="uid://bgto26pd61fic" path="res://Scenes/Level Assets/Planets/mars.tscn" id="9_17ieb"]
 [ext_resource type="PackedScene" uid="uid://dt1nnv6uygko1" path="res://Scenes/Levels/LevelEarthv2.tscn" id="9_amfx0"]
 [ext_resource type="PackedScene" uid="uid://cg35qg6nmwyem" path="res://Scenes/Level Assets/Planets/saturn.tscn" id="10_vhbnl"]
 [ext_resource type="PackedScene" uid="uid://cv6d2x8w5d2tc" path="res://Scenes/Level Assets/Planets/jupiter.tscn" id="10_vwetg"]
-[ext_resource type="PackedScene" uid="uid://deuutoajy7t6y" path="res://Scenes/Levels/mars.tscn" id="11_a3m16"]
+[ext_resource type="PackedScene" uid="uid://deuutoajy7t6y" path="res://Scenes/Levels/LevelMars.tscn" id="12_5wttv"]
 [ext_resource type="PackedScene" uid="uid://bkvs6f6irfekt" path="res://Scenes/Level Assets/Planets/earth.tscn" id="13_d0emp"]
 [ext_resource type="PackedScene" uid="uid://beno8wpaludfw" path="res://Scenes/Levels/LevelSaturn.tscn" id="14_2xjxq"]
 [ext_resource type="PackedScene" uid="uid://hj7yxl4lnnor" path="res://Scenes/UI/ui_level_select.tscn" id="14_10y4k"]
@@ -80,6 +81,7 @@ rotates = false
 
 [node name="Venus" parent="VenusPath/VenusPathFollow2D" node_paths=PackedStringArray("ship") instance=ExtResource("5_tdnmj")]
 scale = Vector2(0.25, 0.25)
+level = ExtResource("8_f3r6r")
 speed = 10
 ship = NodePath("../../../Ship")
 
@@ -110,7 +112,7 @@ rotates = false
 
 [node name="Mars" parent="MarsPath/MarsPathFollow2D" node_paths=PackedStringArray("ship") instance=ExtResource("9_17ieb")]
 scale = Vector2(0.09, 0.09)
-level = ExtResource("11_a3m16")
+level = ExtResource("12_5wttv")
 speed = 2
 ship = NodePath("../../../Ship")
 planet_name = 3
