@@ -10,7 +10,7 @@ signal sun_kill()
 var time:float = 0.0
 var past_minute:float = -1.0
 var playerSafe:bool = false
-var returning = false
+var returning = true
 
 @onready var level_animation = $"../../LevelAnimation"
 
@@ -40,7 +40,8 @@ func _process(delta):
 		level_animation.play("RESET")
 		returning = true
 	
-	if value<0.05:
+	
+	if value<0.4:
 		returning = false
 	
 	if(value >= 0.999) and !playerSafe:
