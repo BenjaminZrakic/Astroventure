@@ -7,9 +7,11 @@ extends CanvasLayer
 @onready var planet_info = %planet_info
 @onready var text_timer = $TextTimer
 @onready var disable_input_timer = $DisableInputTimer
+@onready var indicator = $Control/ColorRect/ColorRect/Indicator
 
 
 @export var next_level: PackedScene
+
 
 enum PlanetNames{
 	Mercury,
@@ -22,19 +24,59 @@ enum PlanetNames{
 	Neptune
 }
 
-var print_text = false
+@export var dialogPath =""
 @export var print_speed = 0.001
 
 @onready var uranus_text = load_file("res://Assets/Level dialogues/Uranus.txt")
 @onready var mercury_text = load_file("res://Assets/Level dialogues/Mercury.txt")
 @onready var neptune_text = load_file("res://Assets/Level dialogues/Neptune.txt")
 @onready var venus_text = load_file("res://Assets/Level dialogues/Venus.txt")
+@onready var jupiter_text = load_file("res://Assets/Level dialogues/Jupiter.txt")
+@onready var earth_text = load_file("res://Assets/Level dialogues/Earth.txt")
+@onready var saturn_text = load_file("res://Assets/Level dialogues/Saturn.txt")
+@onready var mars_text = load_file("res://Assets/Level dialogues/Mars.txt")
+
+var phraseNum = 0
+var finished = false
+var no_more_dialogue = false
+var dialog 
+
+func _ready():
+	text_timer.wait_time = print_speed
 
 func load_file(file):
-	
 	var file_open = FileAccess.open(file, FileAccess.READ)
-	var content = file_open.get_as_text()
+	
+	#var content = file_open.get_as_text()
+	var content : Array 
+	while !file_open.eof_reached():
+		var line = file_open.get_line()
+		content.append(line)
 	return content
+
+func nextPhrase() -> void:
+	if phraseNum >= len(dialog)-1:
+		return
+	
+	finished = false
+	
+	planet_info.bbcode_text = dialog[phraseNum]
+	
+	planet_info.visible_characters = 0
+	
+	while planet_info.visible_characters < len(planet_info.text):
+		planet_info.visible_characters+=1
+		
+		text_timer.start()
+		await(text_timer.timeout)
+	
+	phraseNum += 1
+	finished = true
+	if phraseNum >= len(dialog)-1:
+		no_more_dialogue = true
+	return
+
+
 
 func pass_parameters(level : PackedScene, sprite_frames : SpriteFrames, planet_name):
 	next_level = level
@@ -42,36 +84,37 @@ func pass_parameters(level : PackedScene, sprite_frames : SpriteFrames, planet_n
 	planet.play("default")
 	match planet_name:
 		PlanetNames.Mercury:
-			planet_info.text = mercury_text
+			dialog = mercury_text
 		PlanetNames.Venus:
-			planet_info.text = venus_text
+			dialog = venus_text
 		PlanetNames.Earth:
-			planet_info.text = "Hello this is Earth speaking"
+			dialog = earth_text
 		PlanetNames.Mars:
-			planet_info.text = "Hello this is Mars speaking"
+			dialog = mars_text
 		PlanetNames.Jupiter:
-			planet_info.text = "My name is Yoshikage Kira. I'm 33 years old. My house is in the northeast section of Morioh, where all the villas are, and I am not married. I work as an employee for the Kame Yu department stores, and I get home every day by 8 PM at the latest. I don't smoke, but I occasionally drink. I'm in bed by 11 PM, and make sure I get eight hours of sleep, no matter what. After having a glass of warm milk and doing about twenty minutes of stretches before going to bed, I usually have no problems sleeping until morning. Just like a baby, I wake up without any fatigue or stress in the morning. I was told there were no issues at my last check-up. I'm trying to explain that I'm a person who wishes to live a very quiet life. I take care not to trouble myself with any enemies, like winning and losing, that would cause me to lose sleep at night. That is how I deal with society, and I know that is what brings me happiness. Although, if I were to fight I wouldn't lose to anyone."
+			dialog = jupiter_text
 		PlanetNames.Saturn:
-			planet_info.text = "Hello this is Saturn speaking"
+			dialog = saturn_text
 		PlanetNames.Uranus:
-			planet_info.text = uranus_text
+			dialog = uranus_text
 		PlanetNames.Neptune:
-			planet_info.text = neptune_text
-		
-		
-	#print_text()
-	planet_info.visible_characters=0
+			dialog = neptune_text
+
 	show()
-	text_timer.start()
-	begin_button.grab_focus()
-	#print_text = true
-	#animation_player.play("AnimateText")
+	phraseNum = 0
+	no_more_dialogue = false
+	if(dialog):
+		nextPhrase()
+	
+	
 	
 func _process(delta):
-	if print_text:
-		planet_info.visible_characters+=1
-		if planet_info.visible_ratio==1.0:
-			print_text= false
+	indicator.visible = finished and !no_more_dialogue
+	if Input.is_action_just_pressed("ui_accept"):
+		if finished:
+			nextPhrase()
+		else:
+			planet_info.visible_characters = len(planet_info.text)
 
 func _on_begin_button_button_up():
 	await LevelTransition.fade_to_black()
@@ -85,7 +128,6 @@ func _on_abort_button_button_up():
 	Globals.disable_input = true
 	disable_input_timer.start()
 	hide()
-	print_text= false
 	get_tree().paused = false
 
 

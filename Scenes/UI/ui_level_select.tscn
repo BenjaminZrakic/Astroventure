@@ -5,45 +5,46 @@
 [ext_resource type="Script" path="res://Scenes/UI/ui_level_select.gd" id="1_nr0i6"]
 [ext_resource type="SpriteFrames" uid="uid://dli4a8csxhv4n" path="res://Scenes/Level Assets/Planets/earth.tres" id="2_wekf4"]
 
-[sub_resource type="Animation" id="Animation_puurs"]
-resource_name = "AnimateText"
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/ColorRect/ColorRect/planet_info:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
 [sub_resource type="Animation" id="Animation_v341w"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/ColorRect/ColorRect/planet_info:visible_ratio")
+tracks/0/path = NodePath("Control/ColorRect/ColorRect/Indicator:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
+"values": [Vector2(136, 104)]
 }
 
 [sub_resource type="Animation" id="Animation_3ceuv"]
 resource_name = "Show_UI"
 
+[sub_resource type="Animation" id="Animation_kt1gy"]
+resource_name = "animate_dialogue_prompt"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/ColorRect/ColorRect/Indicator:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(136, 104), Vector2(136, 100)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pk4a8"]
 _data = {
-"AnimateText": SubResource("Animation_puurs"),
 "RESET": SubResource("Animation_v341w"),
-"Show_UI": SubResource("Animation_3ceuv")
+"Show_UI": SubResource("Animation_3ceuv"),
+"animate_dialogue_prompt": SubResource("Animation_kt1gy")
 }
 
 [node name="UI" type="CanvasLayer"]
@@ -125,13 +126,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 8.0
-offset_right = -8.0
-offset_bottom = -8.0
+offset_right = -7.99988
+offset_bottom = -16.0001
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_npgw1")
+bbcode_enabled = true
 text = "My name is Yoshikage Kira. I'm 33 years old. My house is in the northeast section of Morioh, where all the villas are, and I am not married. I work as an employee for the Kame Yu department stores, and I get home every day by 8 PM at the latest. I don't smoke, but I occasionally drink. I'm in bed by 11 PM, and make sure I get eight hours of sleep, no matter what. After having a glass of warm milk and doing about twenty minutes of stretches before going to bed, I usually have no problems sleeping until morning. Just like a baby, I wake up without any fatigue or stress in the morning. I was told there were no issues at my last check-up. I'm trying to explain that I'm a person who wishes to live a very quiet life. I take care not to trouble myself with any enemies, like winning and losing, that would cause me to lose sleep at night. That is how I deal with society, and I know that is what brings me happiness. Although, if I were to fight I wouldn't lose to anyone."
 scroll_following = true
+
+[node name="Indicator" type="Polygon2D" parent="Control/ColorRect/ColorRect"]
+position = Vector2(136, 104)
+polygon = PackedVector2Array(4, 0, 0, 4, -4, 0)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/ColorRect"]
 layout_mode = 0
@@ -154,12 +160,12 @@ layout_mode = 2
 text = "Abort"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "animate_dialogue_prompt"
 libraries = {
 "": SubResource("AnimationLibrary_pk4a8")
 }
 
 [node name="TextTimer" type="Timer" parent="."]
-wait_time = 0.001
 
 [node name="DisableInputTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -167,5 +173,4 @@ one_shot = true
 
 [connection signal="button_up" from="Control/ColorRect/HBoxContainer/BeginButton" to="." method="_on_begin_button_button_up"]
 [connection signal="pressed" from="Control/ColorRect/HBoxContainer/AbortButton" to="." method="_on_abort_button_button_up"]
-[connection signal="timeout" from="TextTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="DisableInputTimer" to="." method="_on_disable_input_timer_timeout"]

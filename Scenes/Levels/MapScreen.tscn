@@ -73,6 +73,9 @@ rotation_speed = 2.5
 [node name="Sun" parent="." instance=ExtResource("7_sueuh")]
 scale = Vector2(14, 14)
 
+[node name="Sun2" parent="." instance=ExtResource("7_sueuh")]
+scale = Vector2(14, 14)
+
 [node name="PlanetLabels" type="Node" parent="."]
 
 [node name="MercuryLabel" type="Label" parent="PlanetLabels"]
