@@ -56,6 +56,16 @@ point_count = 33
 [node name="MapScreen" type="Node2D"]
 script = ExtResource("1_058mk")
 
+[node name="Label" type="Label" parent="."]
+offset_left = 776.0
+offset_top = -432.0
+offset_right = 914.0
+offset_bottom = -405.0
+scale = Vector2(7.28175, 7.28175)
+text = "Press WASD to move
+Hold SHIFT to boost
+Press Space to interact with planets"
+
 [node name="Ship" parent="." instance=ExtResource("1_lgnu1")]
 position = Vector2(1114, -85)
 rotation_speed = 2.5

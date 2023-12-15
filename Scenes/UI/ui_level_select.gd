@@ -44,7 +44,7 @@ func pass_parameters(level : PackedScene, sprite_frames : SpriteFrames, planet_n
 		PlanetNames.Saturn:
 			planet_info.text = "Hello this is Saturn speaking"
 		PlanetNames.Uranus:
-			planet_info.text = "Hello this is Uranus speaking"
+			planet_info.text = "From what we know of Uranus, it seems it was hit by a titanic collision millions of years ago causing it to rotate around it's axis at a jaw dropping 97.7 degree angle. We believe this collision might have left traces on the planet of whatever it was that hit it. Your goal is to collect it. We don't know where this object came from, what it is or how it will interact with other elements of our Solar system. Be prepared for anything."
 		PlanetNames.Neptune:
 			planet_info.text = "Hello this is Neptune speaking"
 		
