@@ -25,16 +25,26 @@ enum PlanetNames{
 var print_text = false
 @export var print_speed = 0.001
 
+@onready var uranus_text = load_file("res://Assets/Level dialogues/Uranus.txt")
+@onready var mercury_text = load_file("res://Assets/Level dialogues/Mercury.txt")
+@onready var neptune_text = load_file("res://Assets/Level dialogues/Neptune.txt")
+@onready var venus_text = load_file("res://Assets/Level dialogues/Venus.txt")
+
+func load_file(file):
+	
+	var file_open = FileAccess.open(file, FileAccess.READ)
+	var content = file_open.get_as_text()
+	return content
+
 func pass_parameters(level : PackedScene, sprite_frames : SpriteFrames, planet_name):
 	next_level = level
 	planet.sprite_frames = sprite_frames
 	planet.play("default")
 	match planet_name:
 		PlanetNames.Mercury:
-			planet_info.text = "Hello this is Earth speaking. 								  You are entering Mercurys orbit. Mercury is planet that is closest to the Sun. So be aware of the heat. You will feel that gravity is much weaker than gravity on Earth, but that shouldn't be a problem. Also, very helpful, Mercury has no atmosphere at all, so metheors can be an issue. 			Collect that element and come home safe. Good luck commander."
-			
+			planet_info.text = mercury_text
 		PlanetNames.Venus:
-			planet_info.text = "Venus's atmosphere is enough to destroy even your spacesuit. The combination of high pressure, temperature and toxic chemicals is too much for any material you could wear. The buildings left there from our old mining programme should protect you, just don't stay out too long."
+			planet_info.text = venus_text
 		PlanetNames.Earth:
 			planet_info.text = "Hello this is Earth speaking"
 		PlanetNames.Mars:
@@ -44,9 +54,9 @@ func pass_parameters(level : PackedScene, sprite_frames : SpriteFrames, planet_n
 		PlanetNames.Saturn:
 			planet_info.text = "Hello this is Saturn speaking"
 		PlanetNames.Uranus:
-			planet_info.text = "From what we know of Uranus, it seems it was hit by a titanic collision millions of years ago causing it to rotate around it's axis at a jaw dropping 97.7 degree angle. We believe this collision might have left traces on the planet of whatever it was that hit it. Your goal is to collect it. We don't know where this object came from, what it is or how it will interact with other elements of our Solar system. Be prepared for anything."
+			planet_info.text = uranus_text
 		PlanetNames.Neptune:
-			planet_info.text = "Hello this is Neptune speaking"
+			planet_info.text = neptune_text
 		
 		
 	#print_text()
