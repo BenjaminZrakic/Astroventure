@@ -40,6 +40,7 @@ var phraseNum = 0
 var finished = false
 var no_more_dialogue = false
 var dialog 
+var disable_dialogue = false
 
 func _ready():
 	text_timer.wait_time = print_speed
@@ -105,16 +106,21 @@ func pass_parameters(level : PackedScene, sprite_frames : SpriteFrames, planet_n
 	no_more_dialogue = false
 	if(dialog):
 		nextPhrase()
-	
-	
-	
+
 func _process(delta):
 	indicator.visible = finished and !no_more_dialogue
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") and !disable_dialogue:
 		if finished:
 			nextPhrase()
 		else:
 			planet_info.visible_characters = len(planet_info.text)
+	if Input.is_action_just_pressed("ui_down"):
+		begin_button.grab_focus()
+		disable_dialogue = true
+	if Input.is_action_just_pressed("ui_up"):
+		begin_button.release_focus()
+		abort_button.release_focus()
+		disable_dialogue = false
 
 func _on_begin_button_button_up():
 	await LevelTransition.fade_to_black()
@@ -129,10 +135,6 @@ func _on_abort_button_button_up():
 	disable_input_timer.start()
 	hide()
 	get_tree().paused = false
-
-
-func _on_timer_timeout():
-	planet_info.visible_characters+=1
 
 
 func _on_disable_input_timer_timeout():
