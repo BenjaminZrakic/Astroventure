@@ -17,10 +17,12 @@ func _input(event):
 			hide()
 
 func _on_retry_button_pressed():
-	retry.emit()
+	await LevelTransition.fade_to_black()
+	get_tree().paused = false
+	get_tree().reload_current_scene()
 
 
-func _on_next_level_button_pressed():
+func _on_quit_button_pressed():
 	get_tree().quit()
 
 

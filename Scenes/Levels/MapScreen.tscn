@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c20by7l4tiaml"]
+[gd_scene load_steps=27 format=3 uid="uid://c20by7l4tiaml"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/MapScreen.gd" id="1_058mk"]
 [ext_resource type="PackedScene" uid="uid://deuo0m6mfokye" path="res://Scenes/Level Assets/ship.tscn" id="1_lgnu1"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bjbrkn1uecc05" path="res://Scenes/Level Assets/Planets/neptune.tscn" id="16_s6ejm"]
 [ext_resource type="PackedScene" uid="uid://brvg1g3uxenjl" path="res://Scenes/Levels/LevelUran.tscn" id="17_3lup7"]
 [ext_resource type="PackedScene" uid="uid://b1jlpjoke3a3l" path="res://Scenes/Levels/LevelNeptune2.tscn" id="17_q8e5f"]
+[ext_resource type="PackedScene" uid="uid://e5byije8qotb" path="res://Scenes/UI/pause_menu.tscn" id="22_y8gi4"]
 
 [sub_resource type="Curve2D" id="Curve2D_l5f74"]
 _data = {
@@ -213,3 +214,13 @@ position = Vector2(0, 180)
 
 [node name="UI" parent="." instance=ExtResource("14_10y4k")]
 visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("22_y8gi4")]
+visible = false
+
+[node name="MapScreenButton" parent="CanvasLayer/PauseMenu/CenterContainer/VBoxContainer" index="3"]
+disabled = true
+
+[editable path="CanvasLayer/PauseMenu"]

@@ -52,7 +52,7 @@ func _process(delta):
 		label.visible = false
 
 func _physics_process(delta):
-	if has_overlapping_bodies():
+	if has_overlapping_bodies() and !Globals.disable_input:
 		if Input.is_action_just_released("ui_accept"):
 			get_tree().paused=true
 			UI.pass_parameters(level, planet_sprite_frames, planet_name)

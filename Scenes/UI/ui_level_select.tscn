@@ -161,6 +161,11 @@ libraries = {
 [node name="TextTimer" type="Timer" parent="."]
 wait_time = 0.001
 
+[node name="DisableInputTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="button_up" from="Control/ColorRect/HBoxContainer/BeginButton" to="." method="_on_begin_button_button_up"]
 [connection signal="pressed" from="Control/ColorRect/HBoxContainer/AbortButton" to="." method="_on_abort_button_button_up"]
 [connection signal="timeout" from="TextTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DisableInputTimer" to="." method="_on_disable_input_timer_timeout"]

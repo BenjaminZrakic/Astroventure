@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 Events="*res://Scenes/Singletons/Events.gd"
 LevelTransition="*res://Scenes/Singletons/level_transition.tscn"
+Globals="*res://Scenes/Singletons/Globals.gd"
 
 [display]
 

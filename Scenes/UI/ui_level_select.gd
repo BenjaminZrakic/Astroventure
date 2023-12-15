@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var planet = %Planet
 @onready var planet_info = %planet_info
 @onready var text_timer = $TextTimer
+@onready var disable_input_timer = $DisableInputTimer
 
 
 @export var next_level: PackedScene
@@ -71,12 +72,16 @@ func _on_begin_button_button_up():
 
 
 func _on_abort_button_button_up():
+	Globals.disable_input = true
+	disable_input_timer.start()
 	hide()
 	print_text= false
 	get_tree().paused = false
 
 
-
-
 func _on_timer_timeout():
 	planet_info.visible_characters+=1
+
+
+func _on_disable_input_timer_timeout():
+	Globals.disable_input = false
