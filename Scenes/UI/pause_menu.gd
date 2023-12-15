@@ -1,6 +1,7 @@
 extends ColorRect
 
 @onready var retry_button = %RetryButton
+@onready var resume_button = %ResumeButton
 
 signal retry()
 signal main_menu()
@@ -12,6 +13,7 @@ func _input(event):
 		if visible == false:
 			get_tree().paused = true
 			show()
+			resume_button.grab_focus()
 		else:
 			get_tree().paused = false
 			hide()

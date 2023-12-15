@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1ytv2b5seb1r"]
+[gd_scene load_steps=11 format=3 uid="uid://d1ytv2b5seb1r"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/SelectScript.gd" id="1_knuwc"]
 [ext_resource type="SpriteFrames" uid="uid://dli4a8csxhv4n" path="res://Scenes/Level Assets/Planets/earth.tres" id="3_bp0un"]
@@ -77,6 +77,9 @@ shader_parameter/add_margins = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_faio2"]
 radius = 82.0061
+
+[sub_resource type="LabelSettings" id="LabelSettings_m10l7"]
+font_size = 4
 
 [sub_resource type="Animation" id="Animation_t4fw5"]
 length = 0.001
@@ -167,6 +170,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PlanetName" type="Label" parent="CenterContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 auto_translate = false
 text = "Mercury"
@@ -188,6 +192,7 @@ offset_right = 21.0
 offset_bottom = 11.0
 size_flags_horizontal = 0
 text = "Earth"
+label_settings = SubResource("LabelSettings_m10l7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
