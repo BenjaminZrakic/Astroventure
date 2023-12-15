@@ -15,7 +15,7 @@ func _process(delta):
 func reset_tiles():
 	if activator_area_active == false:
 		print("Reseting tiles")
-		animation_player.play_backwards("disappear")
+		animation_player.play_backwards("disappear_2")
 		await(animation_player.animation_finished)
 		set_activator_area_active(true)
 

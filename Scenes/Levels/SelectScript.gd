@@ -33,6 +33,7 @@ enum PlanetNames{
 
 
 func _ready():
+	animation_player.play("RESET")
 	print(UI)
 	planet_name_label.text = str(PlanetNames.keys()[planet_name])
 	#animated_sprite_2d.scale=planet_scale
