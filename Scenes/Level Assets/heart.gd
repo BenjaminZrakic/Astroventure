@@ -71,7 +71,8 @@ func pickup():
 
 
 func _on_animated_sprite_2d_animation_finished():
-	heart_location.queue_free()
+	if heart_location != null:
+		heart_location.queue_free()
 	queue_free()
 
 
