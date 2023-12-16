@@ -6,4 +6,6 @@ signal update_score
 
 signal player_safe(value)
 
-signal player_dead(value)
+signal player_dead()
+
+signal pickup_hearts()

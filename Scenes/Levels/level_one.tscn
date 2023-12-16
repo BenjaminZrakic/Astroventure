@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dv1p5jxki2fse" path="res://Scenes/Level Assets/LevelTileMap.tscn" id="4_sawnk"]
 [ext_resource type="PackedScene" uid="uid://c8yd44clm2sy4" path="res://Scenes/Level Assets/EndLevelItem.tscn" id="4_x77cx"]
 
-[node name="LevelOne" instance=ExtResource("1_vbw0e")]
+[node name="World" instance=ExtResource("1_vbw0e")]
 next_level = ExtResource("2_mhpo1")
 timer = true
 level_best_time = 10.0

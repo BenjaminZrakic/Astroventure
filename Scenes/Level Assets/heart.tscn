@@ -1,7 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://iqsopd1ey4aw"]
+[gd_scene load_steps=14 format=3 uid="uid://iqsopd1ey4aw"]
 
 [ext_resource type="Script" path="res://Scenes/Level Assets/heart.gd" id="1_goris"]
 [ext_resource type="Texture2D" uid="uid://pepdxjguqg82" path="res://Assets/heart.png" id="1_ldhbm"]
+[ext_resource type="Texture2D" uid="uid://c5xpo4f0v14f7" path="res://Assets/FX/Smoke/FX001/FX001_01.png" id="3_3trh5"]
+[ext_resource type="Texture2D" uid="uid://ctnwvfxxl47bg" path="res://Assets/FX/Smoke/FX001/FX001_02.png" id="4_nmsli"]
+[ext_resource type="Texture2D" uid="uid://i1n855pquwvf" path="res://Assets/FX/Smoke/FX001/FX001_03.png" id="5_035km"]
+[ext_resource type="Texture2D" uid="uid://kvvrl6t4n37s" path="res://Assets/FX/Smoke/FX001/FX001_04.png" id="6_e74s4"]
+[ext_resource type="Texture2D" uid="uid://jeiijbotteg1" path="res://Assets/FX/Smoke/FX001/FX001_05.png" id="7_sqfct"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pc1w0"]
 radius = 4.0
@@ -36,12 +41,125 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0hf5x"]
+resource_name = "pickup"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -12)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"poof", 1.0, false],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_brgku"]
 _data = {
 "Float": SubResource("Animation_ja34t"),
-"RESET": SubResource("Animation_fe1cf")
+"RESET": SubResource("Animation_fe1cf"),
+"pickup": SubResource("Animation_0hf5x")
 }
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rbbec"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3trh5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nmsli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_035km")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_e74s4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_sqfct")
+}],
+"loop": false,
+"name": &"poof",
+"speed": 10.0
+}]
 
 [node name="Heart" type="Area2D" groups=["Hearts"]]
 collision_layer = 0
@@ -52,6 +170,7 @@ script = ExtResource("1_goris")
 texture = ExtResource("1_ldhbm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_pc1w0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -60,4 +179,18 @@ libraries = {
 "": SubResource("AnimationLibrary_brgku")
 }
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_rbbec")
+animation = &"poof"
+frame = 4
+frame_progress = 1.0
+
+[node name="PickupDelay" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="PickupDelay" to="." method="_on_pickup_delay_timeout"]

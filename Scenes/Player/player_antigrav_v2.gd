@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var reset_level_on_death = false
 @export var world_boundary_active = false
 @export var camera_zoom : float = 1
+@onready var heart_location = $HeartsContainer/HeartLocation
+@onready var hearts_container = $HeartsContainer
 
 @onready var animated_sprite = $AnimatedSprite
 @onready var coyote_jump_timer = $"Coyote Jump Timer"
@@ -27,6 +29,9 @@ var CheckpointGravityDirection = GravityDirections.DOWN
 var playerDead = false
 var leftClamp = -INF
 var rightClamp = INF
+
+var facing_right = 1
+var heart_counter = 0
 
 #terrain stuff
 var friction_multiplier = 1
@@ -72,6 +77,11 @@ func _physics_process(delta):
 		if just_left_wall:
 			wall_jump_timer.start()
 		update_animations(input_axis)
+		
+		if is_on_floor() and heart_counter > 0:
+			heart_counter = 0
+			Events.pickup_hearts.emit()
+			
 
 func apply_gravity(delta):
 	# Add the gravity.
@@ -176,11 +186,20 @@ func apply_air_resistance(input_axis, delta):
 			velocity.y = move_toward(velocity.y, 0, movement_data.air_resistance*friction_multiplier*delta)
 
 func update_animations(input_axis):
+	if facing_right== 1:
+		hearts_container.position.x = -abs(hearts_container.position.x)
+		hearts_container.scale.x = abs(hearts_container.scale.x)
+	elif facing_right == -1:
+		hearts_container.position.x = abs(hearts_container.position.x)
+		hearts_container.scale.x = -abs(hearts_container.scale.x)
 	if input_axis!=0:
+		
 		if GravityDirection== GravityDirections.UP or GravityDirection == GravityDirections.LEFT: 
 			animated_sprite.flip_h = (input_axis>0)
+			facing_right = -input_axis
 		else:
 			animated_sprite.flip_h = (input_axis<0)
+			facing_right = input_axis
 		animated_sprite.play("run")
 	else:
 		animated_sprite.play("idle")
@@ -191,10 +210,11 @@ func update_animations(input_axis):
 func respawn():
 	if !playerDead:
 		playerDead = true
-		
+		heart_counter = 0
 		if reset_level_on_death:
 			get_tree().reload_current_scene()
 		else:
+			Events.player_dead.emit()
 			#print("I'm dead oh no")
 			velocity = Vector2.ZERO
 			animated_sprite.play_backwards("respawn")

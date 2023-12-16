@@ -64,6 +64,16 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TerrainDetector"]
 shape = SubResource("RectangleShape2D_egt18")
 
+[node name="HeartsContainer" type="Node2D" parent="."]
+position = Vector2(-12, -15)
+
+[node name="HeartLocation" type="Marker2D" parent="HeartsContainer"]
+visible = false
+
+[node name="HeartLocation2" type="Marker2D" parent="HeartsContainer"]
+visible = false
+position = Vector2(-13, -3)
+
 [connection signal="timeout" from="ResetMovementSpeedJump Timer" to="." method="_on_reset_movement_speed_timer_timeout"]
 [connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
 [connection signal="body_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]

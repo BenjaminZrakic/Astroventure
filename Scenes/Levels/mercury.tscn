@@ -92,7 +92,7 @@ _data = {
 "red_flashing": SubResource("Animation_afp33")
 }
 
-[node name="Mercury" instance=ExtResource("1_ocyqg")]
+[node name="World" instance=ExtResource("1_ocyqg")]
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="." index="0"]
 layer = -2
