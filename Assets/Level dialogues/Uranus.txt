@@ -4,4 +4,6 @@ We believe this collision might have left traces on the planet of whatever it wa
 Your goal is to collect it. 
 We don't know where this object came from, what it is or how it will interact with other elements of our Solar system. 
 Be prepared for anything. 
-Also, remember that the average temperature of Uranus is -195°C, being the coldest planet in our solar system, so make sure to drink some tea.
+Also...
+Remember that the average temperature of Uranus is -195°C, being the coldest planet in our solar system.
+So make sure to bring some tea.

@@ -80,7 +80,10 @@ func _physics_process(delta):
 		
 		if is_on_floor() and heart_counter > 0:
 			heart_counter = 0
-			Events.pickup_hearts.emit()
+			$PickupDelay.start()
+			await($PickupDelay.timeout)
+			if !playerDead:
+				Events.pickup_hearts.emit()
 			
 
 func apply_gravity(delta):

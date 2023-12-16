@@ -3,7 +3,6 @@ extends Area2D
 @onready var animation_player = $AnimationPlayer
 
 @onready var starting_position = global_position
-@onready var pickup_delay = $PickupDelay
 
 var follow_player = false
 var speed = 20
@@ -42,13 +41,11 @@ func _on_body_entered(body):
 	player.heart_counter += 1
 	follow_player = true
 	collision_shape_2d.set_deferred("disabled", true)
-	pickup_delay.start()
 	
 	
 
 func reset_position():
 	if follow_player == true:
-		#global_position = starting_position
 		follow_player = false
 		collision_shape_2d.set_deferred("disabled", false)
 		heart_location.queue_free()
@@ -56,14 +53,9 @@ func reset_position():
 
 
 func pickup():
-	print("Picking up hearts")
+	#print("Picking up hearts")
 	if follow_player:
-		
-		if !pickup_delay.is_stopped():
-			await(pickup_delay.timeout)
-		#print("Timed out")
 		picking_up = true
-		#follow_player = false
 		var hearts = get_tree().get_nodes_in_group("Hearts")
 		print(hearts.size())
 		animation_player.play("pickup")
@@ -77,5 +69,3 @@ func _on_animated_sprite_2d_animation_finished():
 
 
 
-func _on_pickup_delay_timeout():
-	print("Im timed out")

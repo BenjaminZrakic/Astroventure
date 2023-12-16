@@ -74,6 +74,9 @@ visible = false
 visible = false
 position = Vector2(-13, -3)
 
+[node name="PickupDelay" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="timeout" from="ResetMovementSpeedJump Timer" to="." method="_on_reset_movement_speed_timer_timeout"]
 [connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
 [connection signal="body_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
