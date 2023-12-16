@@ -8,7 +8,8 @@ extends CanvasLayer
 @onready var text_timer = $TextTimer
 @onready var disable_input_timer = $DisableInputTimer
 @onready var indicator = $Control/ColorRect/ColorRect/Indicator
-
+@onready var planet_name_label = %planet_name
+@onready var planet_stats = %planet_stats
 
 @export var next_level: PackedScene
 
@@ -24,7 +25,6 @@ enum PlanetNames{
 	Neptune
 }
 
-@export var dialogPath =""
 @export var print_speed = 0.001
 
 @onready var uranus_text = load_file("res://Assets/Level dialogues/Uranus.txt")
@@ -85,20 +85,36 @@ func pass_parameters(level : PackedScene, sprite_frames : SpriteFrames, planet_n
 	planet.play("default")
 	match planet_name:
 		PlanetNames.Mercury:
+			planet_name_label.text = str(PlanetNames.keys()[planet_name])
+			planet_stats.text = "[center]Gravity: 3.70\nTemp: 167°C\nDanger: [color=green]LOW[/color]"
 			dialog = mercury_text
 		PlanetNames.Venus:
+			planet_name_label.text  = str(PlanetNames.keys()[planet_name])
+			planet_stats.text = "[center]Gravity: 8.87\nTemp: 464°C\nDanger: [color=orange]MEDIUM[/color]"
 			dialog = venus_text
 		PlanetNames.Earth:
+			planet_name_label.text  = str(PlanetNames.keys()[planet_name])
+			planet_stats.text = "[center]Gravity: 9.80\nTemp: 15°C\nDanger: [color=green]LOW[/color]"
 			dialog = earth_text
 		PlanetNames.Mars:
+			planet_name_label.text  = str(PlanetNames.keys()[planet_name])
+			planet_stats.text = "[center]Gravity: 3.71\nTemp: -65°C\nDanger: [color=orange]MEDIUM[/color]"
 			dialog = mars_text
 		PlanetNames.Jupiter:
+			planet_name_label.text  = str(PlanetNames.keys()[planet_name])
+			planet_stats.text = "[center]Gravity: 24.79\nTemp: -110°C\nDanger: [color=red]HIGH[/color]"
 			dialog = jupiter_text
 		PlanetNames.Saturn:
+			planet_name_label.text  = str(PlanetNames.keys()[planet_name])
+			planet_stats.text = "[center]Gravity: 10.44\nTemp: -140°C\nDanger: [color=green]LOW[/color]"
 			dialog = saturn_text
 		PlanetNames.Uranus:
+			planet_name_label.text  = str(PlanetNames.keys()[planet_name])
+			planet_stats.text = "[center]Gravity: 8.87\nTemp: -195°C\nDanger: [color=red]HIGH[/color]"
 			dialog = uranus_text
 		PlanetNames.Neptune:
+			planet_name_label.text  = str(PlanetNames.keys()[planet_name])
+			planet_stats.text = "[center]Gravity: 11.15\nTemp: -200°C\nDanger: [color=orange]MEDIUM[/color]"
 			dialog = neptune_text
 
 	show()
