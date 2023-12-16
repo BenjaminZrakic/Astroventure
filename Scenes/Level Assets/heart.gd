@@ -37,7 +37,7 @@ func _on_body_entered(body):
 	player = body
 	heart_location = Marker2D.new()
 	player.hearts_container.add_child(heart_location)
-	heart_location.position = Vector2(player.heart_counter*-13,player.heart_counter*-3)
+	heart_location.position = Vector2(player.heart_counter*-13,player.heart_counter%2*-3)
 	player.heart_counter += 1
 	follow_player = true
 	collision_shape_2d.set_deferred("disabled", true)
@@ -56,6 +56,7 @@ func pickup():
 	#print("Picking up hearts")
 	if follow_player:
 		picking_up = true
+		follow_player = false
 		var hearts = get_tree().get_nodes_in_group("Hearts")
 		print(hearts.size())
 		animation_player.play("pickup")

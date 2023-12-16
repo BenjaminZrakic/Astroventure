@@ -18,11 +18,11 @@ func show_data(heartsCollected, heartsMax, level_time, level_best_time):
 	
 
 func calculate_score(heartsCollected, level_time, level_best_time):
-	var score = 0
+	var score := 0.0
 	print(level_time-level_best_time)
 	score += heartsCollected*200 
 	if level_time < level_best_time:
-		score+=abs(int(level_time-level_best_time))*50
+		score+=abs(level_time-level_best_time)*50
 	
 	return score
 

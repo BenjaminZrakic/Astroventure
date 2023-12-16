@@ -97,5 +97,6 @@ func _on_level_completed_retry():
 
 func update_score():
 	heartsCollected+=1
+	print(heartsCollected)
 
 
