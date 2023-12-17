@@ -115,9 +115,9 @@ func handle_jump(input_axis):
 	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("ui_up"):
 			if speed_multiplier > 1:
-
 				if abs(velocity.x) <= movement_data.speed*(ice_acceleration_multiplier)-10:
 					speed_multiplier=1
+					#acceleration_multiplier=1
 					
 			if not GravityX: 
 				velocity.y = movement_data.jump_velocity * GravDrive
@@ -136,7 +136,8 @@ func handle_jump(input_axis):
 					velocity.x = movement_data.jump_velocity/2
 
 		if Input.is_action_just_pressed("ui_up") and air_jump and not just_wall_jumped:
-			
+#			if acceleration_multiplier == ice_acceleration_multiplier:
+#				acceleration_multiplier = 0.4
 			if not GravityX:
 				velocity.y = movement_data.jump_velocity *0.8 * GravDrive
 			else:
@@ -155,9 +156,9 @@ func handle_wall_jump():
 		wall_normal = was_wall_normal
 		
 	if Input.is_action_just_pressed("ui_up"):
-		reset_movement=true
-		#acceleration_multiplier=1
-		#speed_multiplier =1
+		friction_multiplier = 1
+		acceleration_multiplier=1
+		speed_multiplier =1
 		
 		if not GravityX:
 			velocity.x = wall_normal.x*movement_data.speed 
@@ -363,3 +364,4 @@ func _on_safe_zone_detector_area_entered(area):
 
 func _on_safe_zone_detector_area_exited(area):
 	can_pick_up_hearts = false
+
