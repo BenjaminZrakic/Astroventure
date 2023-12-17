@@ -40,7 +40,7 @@ var friction_multiplier = 1
 var speed_multiplier = 1
 var acceleration_multiplier = 1
 
-var ice_speed_multiplier = 1.50
+var ice_speed_multiplier = 1.6
 var ice_friction_multiplier = 0.1
 var ice_acceleration_multiplier = 0.2
 
@@ -88,12 +88,13 @@ func _physics_process(delta):
 		update_animations(input_axis)
 		
 	if is_on_floor() and heart_counter > 0 and can_pick_up_hearts:
-		
-		$PickupDelay.start()
-		await($PickupDelay.timeout)
-		if !playerDead:
-			heart_counter = 0
-			Events.pickup_hearts.emit()
+		if $PickupDelay.is_stopped():
+			$PickupDelay.start()
+			await($PickupDelay.timeout)
+			if !playerDead:
+				heart_counter = 0
+				Events.pickup_hearts.emit()
+				
 			
 
 func apply_gravity(delta):
@@ -114,7 +115,7 @@ func handle_jump(input_axis):
 		air_jump = true
 	# Handle Jump.
 	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
-		if Input.is_action_just_pressed("ui_up"):
+		if Input.is_action_just_pressed("jump"):
 			if speed_multiplier > 1:
 				if abs(velocity.x) <= movement_data.speed*(ice_acceleration_multiplier)-10:
 					speed_multiplier=1
@@ -127,7 +128,7 @@ func handle_jump(input_axis):
 			coyote_jump_timer.stop()
 
 	elif not is_on_floor():
-		if Input.is_action_just_released("ui_up"):
+		if Input.is_action_just_released("jump"):
 			if not GravityX:
 				if velocity.y < movement_data.jump_velocity/2: 
 					velocity.y = movement_data.jump_velocity/2 
@@ -136,7 +137,7 @@ func handle_jump(input_axis):
 				if velocity.x < movement_data.jump_velocity/2: 
 					velocity.x = movement_data.jump_velocity/2
 
-		if Input.is_action_just_pressed("ui_up") and air_jump and not just_wall_jumped:
+		if Input.is_action_just_pressed("jump") and air_jump and not just_wall_jumped:
 #			if acceleration_multiplier == ice_acceleration_multiplier:
 #				acceleration_multiplier = 0.4
 			if not GravityX:
@@ -156,7 +157,7 @@ func handle_wall_jump():
 	if wall_jump_timer.time_left > 0.0:
 		wall_normal = was_wall_normal
 		
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("jump"):
 		friction_multiplier = 1
 		acceleration_multiplier=1
 		speed_multiplier =1
@@ -169,7 +170,7 @@ func handle_wall_jump():
 			velocity.x = movement_data.jump_velocity*GravDrive
 		just_wall_jumped = true
 	
-#	if Input.is_action_just_pressed("ui_up") and wall_normal == Vector2.RIGHT:
+#	if Input.is_action_just_pressed("jump") and wall_normal == Vector2.RIGHT:
 #		velocity.x = wall_normal.x*movement_data.speed
 #		velocity.y = movement_data.jump_velocity
 
