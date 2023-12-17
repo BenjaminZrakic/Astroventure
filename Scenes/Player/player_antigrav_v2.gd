@@ -38,6 +38,11 @@ var can_pick_up_hearts
 var friction_multiplier = 1
 var speed_multiplier = 1
 var acceleration_multiplier = 1
+
+var ice_speed_multiplier = 1.50
+var ice_friction_multiplier = 0.1
+var ice_acceleration_multiplier = 0.2
+
 var reset_movement = false
 
 func _ready():
@@ -46,15 +51,17 @@ func _ready():
 
 func _physics_process(delta):
 	if not playerDead:
+		print("Velocity: "+str(abs(velocity.x)))
+		var input_axis = Input.get_axis("ui_left", "ui_right")
 		apply_gravity(delta)
 
 		handle_wall_jump()
-		handle_jump()
+		handle_jump(input_axis)
 		
 		reset_movement_values(delta)
 		
 		# Get the input direction and handle the movement/deceleration.
-		var input_axis = Input.get_axis("ui_left", "ui_right")
+		
 		apply_acceleration(input_axis, delta)
 		apply_air_accelaration(input_axis, delta)
 		apply_friction(input_axis, delta)
@@ -79,12 +86,13 @@ func _physics_process(delta):
 			wall_jump_timer.start()
 		update_animations(input_axis)
 		
-		if is_on_floor() and heart_counter > 0 and can_pick_up_hearts:
+	if is_on_floor() and heart_counter > 0 and can_pick_up_hearts:
+		
+		$PickupDelay.start()
+		await($PickupDelay.timeout)
+		if !playerDead:
 			heart_counter = 0
-			$PickupDelay.start()
-			await($PickupDelay.timeout)
-			if !playerDead:
-				Events.pickup_hearts.emit()
+			Events.pickup_hearts.emit()
 			
 
 func apply_gravity(delta):
@@ -97,7 +105,7 @@ func apply_gravity(delta):
 			velocity.x += gravity * delta * movement_data.gravity_scale * GravDrive
 			velocity.x = clamp(velocity.x, -600,600)
 
-func handle_jump():
+func handle_jump(input_axis):
 
 	#print(coyote_jump_timer.time_left)
 	
@@ -106,9 +114,11 @@ func handle_jump():
 	# Handle Jump.
 	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("ui_up"):
-#			if reset_movement_speed_jump_timer.is_stopped():
-#				reset_movement_speed_jump_timer.start()
-			
+			if speed_multiplier > 1:
+
+				if abs(velocity.x) <= movement_data.speed*(ice_acceleration_multiplier)-10:
+					speed_multiplier=1
+					
 			if not GravityX: 
 				velocity.y = movement_data.jump_velocity * GravDrive
 			else:
@@ -126,6 +136,7 @@ func handle_jump():
 					velocity.x = movement_data.jump_velocity/2
 
 		if Input.is_action_just_pressed("ui_up") and air_jump and not just_wall_jumped:
+			
 			if not GravityX:
 				velocity.y = movement_data.jump_velocity *0.8 * GravDrive
 			else:
@@ -144,6 +155,9 @@ func handle_wall_jump():
 		wall_normal = was_wall_normal
 		
 	if Input.is_action_just_pressed("ui_up"):
+		reset_movement=true
+		#acceleration_multiplier=1
+		#speed_multiplier =1
 		
 		if not GravityX:
 			velocity.x = wall_normal.x*movement_data.speed 
@@ -170,9 +184,9 @@ func apply_air_accelaration(input_axis, delta):
 		return 
 	if input_axis!=0:
 		if not GravityX:
-			velocity.x = move_toward(velocity.x, movement_data.speed*speed_multiplier*input_axis, movement_data.air_accelaration*delta)
+			velocity.x = move_toward(velocity.x, movement_data.speed*speed_multiplier*input_axis, movement_data.air_accelaration*acceleration_multiplier*delta)
 		else:
-			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1 , movement_data.air_accelaration*delta)
+			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1 , movement_data.air_accelaration*acceleration_multiplier*delta)
 			
 func apply_friction(input_axis, delta):
 	if input_axis==0 and is_on_floor():
@@ -311,9 +325,9 @@ func _on_terrain_detector_terrain_entered(terrain_type):
 	reset_movement = false
 	if terrain_type==2:
 		#print("Changing movement to ice")
-		speed_multiplier = 1.5
-		friction_multiplier = 0.1
-		acceleration_multiplier= 0.2
+		speed_multiplier = ice_speed_multiplier
+		friction_multiplier = ice_friction_multiplier
+		acceleration_multiplier= ice_acceleration_multiplier
 	elif terrain_type==1:
 		#print("Changing movement to normal")
 		reset_movement = true
