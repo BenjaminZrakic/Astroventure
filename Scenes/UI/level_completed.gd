@@ -32,3 +32,8 @@ func _on_retry_button_pressed():
 
 func _on_next_level_button_pressed():
 	next_level.emit()
+
+
+func show_yourself():
+	show()
+	$AnimationPlayer.play("show")

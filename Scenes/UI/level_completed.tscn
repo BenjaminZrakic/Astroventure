@@ -1,10 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv1202d8pg8ct"]
+[gd_scene load_steps=6 format=3 uid="uid://cv1202d8pg8ct"]
 
 [ext_resource type="Script" path="res://Scenes/UI/level_completed.gd" id="1_4voqc"]
 [ext_resource type="Theme" uid="uid://dejvr5rqllmfx" path="res://Aesthethics/button.tres" id="2_h54kp"]
 
+[sub_resource type="Animation" id="Animation_yyyw5"]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dn1g0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j0y6p"]
+_data = {
+"RESET": SubResource("Animation_dn1g0"),
+"show": SubResource("Animation_yyyw5")
+}
+
 [node name="LevelCompleted" type="ColorRect"]
 process_mode = 3
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,17 +50,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.215686)
 script = ExtResource("1_4voqc")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-layout_mode = 2
-anchor_left = 0.244444
-anchor_top = 0.222222
-anchor_right = 0.755556
-anchor_bottom = 0.755556
-grow_vertical = 2
-color = Color(0, 0, 0, 0.862745)
-metadata/_edit_use_anchors_ = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -81,6 +108,11 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 16)
 layout_mode = 2
 text = "Map Screen"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j0y6p")
+}
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]

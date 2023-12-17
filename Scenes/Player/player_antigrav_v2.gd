@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var camera_zoom : float = 1
 @onready var heart_location = $HeartsContainer/HeartLocation
 @onready var hearts_container = $HeartsContainer
+@onready var animation_player = $AnimationPlayer
 
 @onready var animated_sprite = $AnimatedSprite
 @onready var coyote_jump_timer = $"Coyote Jump Timer"
@@ -365,3 +366,14 @@ func _on_safe_zone_detector_area_entered(area):
 func _on_safe_zone_detector_area_exited(area):
 	can_pick_up_hearts = false
 
+
+func _end_level_anim():
+	playerDead = true
+	Events.pickup_hearts.emit()
+	animation_player.play("end_level")
+	
+
+
+func _on_animated_sprite_animation_finished():
+	if animated_sprite.animation == "poof":
+		animated_sprite.visible= false

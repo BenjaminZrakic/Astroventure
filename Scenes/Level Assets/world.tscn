@@ -171,6 +171,10 @@ position = Vector2(-7.62939e-06, -132)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_hpmb2")
 
+[node name="DelayEndLevel" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
 [connection signal="main_menu" from="CanvasLayer/PauseMenu" to="." method="go_to_main_menu"]
 [connection signal="map_screen" from="CanvasLayer/PauseMenu" to="." method="_on_pause_menu_map_screen"]
 [connection signal="retry" from="CanvasLayer/PauseMenu" to="." method="_on_level_completed_retry"]
