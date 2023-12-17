@@ -32,6 +32,7 @@ var rightClamp = INF
 
 var facing_right = 1
 var heart_counter = 0
+var can_pick_up_hearts 
 
 #terrain stuff
 var friction_multiplier = 1
@@ -78,7 +79,7 @@ func _physics_process(delta):
 			wall_jump_timer.start()
 		update_animations(input_axis)
 		
-		if is_on_floor() and heart_counter > 0:
+		if is_on_floor() and heart_counter > 0 and can_pick_up_hearts:
 			heart_counter = 0
 			$PickupDelay.start()
 			await($PickupDelay.timeout)
@@ -214,10 +215,11 @@ func respawn():
 	if !playerDead:
 		playerDead = true
 		heart_counter = 0
+		Events.player_dead.emit()
 		if reset_level_on_death:
 			get_tree().reload_current_scene()
 		else:
-			Events.player_dead.emit()
+			
 			#print("I'm dead oh no")
 			velocity = Vector2.ZERO
 			animated_sprite.play_backwards("respawn")
@@ -339,3 +341,11 @@ func reset_movement_values(delta):
 
 
 
+
+
+func _on_safe_zone_detector_area_entered(area):
+	can_pick_up_hearts = true
+
+
+func _on_safe_zone_detector_area_exited(area):
+	can_pick_up_hearts = false

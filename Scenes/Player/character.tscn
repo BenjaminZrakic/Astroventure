@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmj1urynsj1ph"]
+[gd_scene load_steps=9 format=3 uid="uid://bmj1urynsj1ph"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player_antigrav_v2.gd" id="1_4r3eb"]
 [ext_resource type="Resource" uid="uid://b1rkom08snay1" path="res://Resources/SlowMovementData.tres" id="2_eofbi"]
@@ -13,6 +13,9 @@ size = Vector2(6, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egt18"]
 size = Vector2(4, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbywd"]
+size = Vector2(8, 15)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
@@ -64,14 +67,20 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TerrainDetector"]
 shape = SubResource("RectangleShape2D_egt18")
 
+[node name="SafeZoneDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeZoneDetector"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_jbywd")
+
 [node name="HeartsContainer" type="Node2D" parent="."]
 position = Vector2(-12, -15)
 
 [node name="HeartLocation" type="Marker2D" parent="HeartsContainer"]
-visible = false
 
 [node name="HeartLocation2" type="Marker2D" parent="HeartsContainer"]
-visible = false
 position = Vector2(-13, -3)
 
 [node name="PickupDelay" type="Timer" parent="."]
@@ -81,3 +90,5 @@ wait_time = 0.5
 [connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
 [connection signal="body_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
 [connection signal="terrain_entered" from="TerrainDetector" to="." method="_on_terrain_detector_terrain_entered"]
+[connection signal="area_entered" from="SafeZoneDetector" to="." method="_on_safe_zone_detector_area_entered"]
+[connection signal="area_exited" from="SafeZoneDetector" to="." method="_on_safe_zone_detector_area_exited"]
