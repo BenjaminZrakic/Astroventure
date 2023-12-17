@@ -30,13 +30,13 @@ func _ready():
 func _process(delta):
 	time += delta * INGAME_TO_REAL_MINUTE * INGAME_SPEED
 	var value = (sin(time - PI/2) + 1.0) / 2.0
-	#print(value)
+	print(value)
 	
 	if(value>=0.4) and !level_animation.is_playing() and !returning:
 		level_animation.play("flashing")
 	if (value>=0.7) and level_animation.is_playing():
 		level_animation.play("red_flashing")
-	if (value >= 0.999 and level_animation.is_playing()):
+	if (value >= 0.9999 and level_animation.is_playing()):
 		level_animation.play("RESET")
 		returning = true
 	
