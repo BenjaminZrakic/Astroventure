@@ -36,13 +36,20 @@ var heart_counter = 0
 var can_pick_up_hearts 
 
 #terrain stuff
-var friction_multiplier = 1
-var speed_multiplier = 1
-var acceleration_multiplier = 1
 
-var ice_speed_multiplier = 1.6
-var ice_friction_multiplier = 0.1
-var ice_acceleration_multiplier = 0.2
+
+@export var base_friction_multiplier := 1.0
+@export var base_speed_multiplier := 1.0
+@export var base_acceleration_multiplier := 1.0
+
+
+var friction_multiplier = base_friction_multiplier
+var speed_multiplier = base_speed_multiplier
+var acceleration_multiplier = base_acceleration_multiplier
+
+@export var ice_speed_multiplier = 1.6
+@export var ice_friction_multiplier = 0.1
+@export var ice_acceleration_multiplier = 0.2
 
 var reset_movement = false
 
@@ -158,9 +165,9 @@ func handle_wall_jump():
 		wall_normal = was_wall_normal
 		
 	if Input.is_action_just_pressed("jump"):
-		friction_multiplier = 1
-		acceleration_multiplier=1
-		speed_multiplier =1
+		friction_multiplier = base_friction_multiplier
+		acceleration_multiplier=base_acceleration_multiplier
+		speed_multiplier =base_speed_multiplier
 		
 		if not GravityX:
 			velocity.x = wall_normal.x*movement_data.speed 
@@ -349,9 +356,9 @@ func _on_reset_movement_speed_timer_timeout():
 
 func reset_movement_values(delta):
 	if reset_movement:
-		speed_multiplier = move_toward(speed_multiplier, 1, 0.5*delta)
-		friction_multiplier = move_toward(friction_multiplier, 1, 0.5*delta)
-		acceleration_multiplier = move_toward(acceleration_multiplier, 1, 0.5*delta)
+		speed_multiplier = move_toward(speed_multiplier, base_speed_multiplier, 0.5*delta)
+		friction_multiplier = move_toward(friction_multiplier,base_friction_multiplier, 0.5*delta)
+		acceleration_multiplier = move_toward(acceleration_multiplier, base_acceleration_multiplier, 0.5*delta)
 		
 		if speed_multiplier == 1 and friction_multiplier == 1 and acceleration_multiplier == 1:
 			reset_movement = false

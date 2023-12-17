@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://brvg1g3uxenjl"]
+[gd_scene load_steps=14 format=3 uid="uid://brvg1g3uxenjl"]
 
 [ext_resource type="PackedScene" uid="uid://dkkor7cqf3sc2" path="res://Scenes/Level Assets/world.tscn" id="1_ouxty"]
 [ext_resource type="Script" path="res://Scenes/Levels/DisappearingTilesScript.gd" id="2_0y5fl"]
@@ -10,13 +10,19 @@
 
 [sub_resource type="Curve2D" id="Curve2D_m3aad"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -48, 0, 0, 0, 0, 0, 64)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -56, 0, 0, 0, 0, 0, 64)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_tfog7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -64, 0, 0, 0, 0, 0, 64)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_2w82t"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -8, 64, 0, 0, 0, 0, -8, -48)
+"points": PackedVector2Array(0, 0, 0, 0, -8, 64, 0, 0, 0, 0, -8, -64)
 }
 point_count = 2
 
@@ -48,6 +54,8 @@ disappearing_tiles = ExtResource("3_cybth")
 position = Vector2(-152, 0)
 movement_data = ExtResource("4_w4t87")
 camera_zoom = 0.75
+base_speed_multiplier = 1.25
+base_acceleration_multiplier = 1.15
 
 [node name="Heart" parent="Hearts" index="0" instance=ExtResource("5_4e6fm")]
 position = Vector2(192, -144)
@@ -78,7 +86,7 @@ speed = 225
 
 [node name="AnomaBall2" parent="." index="11" instance=ExtResource("2_l3dhl")]
 position = Vector2(512, -440)
-curve = SubResource("Curve2D_m3aad")
+curve = SubResource("Curve2D_tfog7")
 
 [node name="AnomaBall3" parent="." index="12" instance=ExtResource("2_l3dhl")]
 position = Vector2(560, -440)
