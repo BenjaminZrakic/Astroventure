@@ -125,7 +125,7 @@ func handle_jump(input_axis):
 		if Input.is_action_just_pressed("jump"):
 			if speed_multiplier > 1:
 				if abs(velocity.x) <= movement_data.speed*(ice_acceleration_multiplier)-10:
-					speed_multiplier=1
+					speed_multiplier=base_speed_multiplier
 					#acceleration_multiplier=1
 					
 			if not GravityX: 
