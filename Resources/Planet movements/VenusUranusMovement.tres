@@ -10,4 +10,4 @@ friction = 800
 jump_velocity = -200.0
 gravity_scale = 0.475
 air_resistance = 200
-air_accelaration = 400
+air_accelaration = 500
