@@ -131,7 +131,7 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_50apt"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -120, 0, 0, 0, 0, 0.000244141, 88)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -120, 0, 0, 0, 0, 0.000366211, 144)
 }
 point_count = 2
 
@@ -173,7 +173,7 @@ script = ExtResource("2_0y5fl")
 disappearing_tiles = ExtResource("3_cybth")
 
 [node name="Player" parent="." index="2"]
-position = Vector2(-160, 0)
+position = Vector2(-192, 0)
 movement_data = ExtResource("4_w4t87")
 camera_zoom = 0.75
 base_speed_multiplier = 1.25

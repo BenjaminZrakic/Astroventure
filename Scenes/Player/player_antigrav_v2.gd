@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var hearts_container = $HeartsContainer
 @onready var animation_player = $AnimationPlayer
 @onready var collision_shape_2d = $CollisionShape2D
+@onready var wall_slide_sticky = $WallSlideSticky
 
 @onready var animated_sprite = $AnimatedSprite
 @onready var coyote_jump_timer = $"Coyote Jump Timer"
@@ -36,9 +37,9 @@ var facing_right = 1
 var heart_counter = 0
 var can_pick_up_hearts 
 
+
+
 #terrain stuff
-
-
 @export var base_friction_multiplier := 1.0
 @export var base_speed_multiplier := 1.0
 @export var base_acceleration_multiplier := 1.0
@@ -64,7 +65,7 @@ func _physics_process(delta):
 		var input_axis = Input.get_axis("ui_left", "ui_right")
 		apply_gravity(delta)
 
-		handle_wall_jump()
+		handle_wall_jump(input_axis)
 		handle_jump(input_axis)
 		
 		reset_movement_values(delta)
@@ -102,12 +103,13 @@ func _physics_process(delta):
 			if !playerDead:
 				heart_counter = 0
 				Events.pickup_hearts.emit()
-				
-			
 
 func apply_gravity(delta):
 	# Add the gravity.
 	if not is_on_floor():
+		#if is_on_wall_only():
+		#	gravity = ProjectSettings.get_setting("physics/2d/default_gravity")/4 if !Input.is_action_pressed("ui_down") else ProjectSettings.get_setting("physics/2d/default_gravity")
+		
 		if not GravityX:
 			velocity.y += gravity * delta * movement_data.gravity_scale * GravDrive
 			velocity.y = clamp(velocity.y, -600,600)
@@ -156,11 +158,18 @@ func handle_jump(input_axis):
 			
 
 
-func handle_wall_jump():
+
+func handle_wall_jump(input_axis):
 	if not is_on_wall_only() and wall_jump_timer.time_left <= 0.0:
 		return
 	
 	var wall_normal = get_wall_normal() #vector that points away from the wall
+	
+#	if input_axis!=0 and input_axis != wall_normal.x:
+#		if wall_slide_sticky.is_stopped():
+#			wall_slide_sticky.start()
+#	else: 
+#		wall_slide_sticky.stop()
 	
 	if wall_jump_timer.time_left > 0.0:
 		wall_normal = was_wall_normal
