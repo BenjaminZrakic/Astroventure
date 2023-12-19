@@ -19,18 +19,20 @@ func reset_tiles():
 		await(animation_player.animation_finished)
 		set_activator_area_active(true)
 
-func _on_activator_area_area_entered(area):
-	if activator_area_active:
-		set_activator_area_active(false)
-		animation_player.play("disappear")
-		return_timer.start()
-		if tile_right != null:
-			tile_right._on_activator_area_area_entered(area)
-		if tile_left != null:
-			tile_left._on_activator_area_area_entered(area)
 
 func _on_return_timer_timeout():
 	reset_tiles()
 	
 func set_activator_area_active(value):
 	activator_area_active = value
+
+
+func _on_activator_area_body_entered(body):
+	if activator_area_active:
+		set_activator_area_active(false)
+		animation_player.play("disappear")
+		return_timer.start()
+		if tile_right != null:
+			tile_right._on_activator_area_body_entered(body)
+		if tile_left != null:
+			tile_left._on_activator_area_body_entered(body)

@@ -59,7 +59,7 @@ func _ready():
 
 func _physics_process(delta):
 	if not playerDead:
-		print("Velocity: "+str(abs(velocity.x)))
+		#print("Velocity: "+str(abs(velocity.x)))
 		var input_axis = Input.get_axis("ui_left", "ui_right")
 		apply_gravity(delta)
 
@@ -237,6 +237,7 @@ func update_animations(input_axis):
 
 func respawn():
 	if !playerDead:
+		print("Respawning player")
 		playerDead = true
 		heart_counter = 0
 		Events.player_dead.emit()
@@ -248,7 +249,7 @@ func respawn():
 			velocity = Vector2.ZERO
 			animated_sprite.play_backwards("respawn")
 			animated_sprite.position.y += 1
-			await animated_sprite.animation_finished
+			await(animated_sprite.animation_finished)
 			if CheckpointGravityDirection == GravityDirections.DOWN:
 				set_gravity_down()
 			elif CheckpointGravityDirection== GravityDirections.UP:
@@ -258,9 +259,9 @@ func respawn():
 			elif CheckpointGravityDirection==GravityDirections.RIGHT:
 				set_gravity_right()
 			global_position = starting_position
-			await camera_2d.global_position == global_position
+			await(camera_2d.global_position == global_position)
 			animated_sprite.play("respawn")
-			await animated_sprite.animation_finished
+			await(animated_sprite.animation_finished)
 			animated_sprite.position.y-=1
 			playerDead = false
 			animated_sprite.play("idle")
