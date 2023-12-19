@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var heart_location = $HeartsContainer/HeartLocation
 @onready var hearts_container = $HeartsContainer
 @onready var animation_player = $AnimationPlayer
+@onready var collision_shape_2d = $CollisionShape2D
 
 @onready var animated_sprite = $AnimatedSprite
 @onready var coyote_jump_timer = $"Coyote Jump Timer"
@@ -239,6 +240,7 @@ func respawn():
 	if !playerDead:
 		print("Respawning player")
 		playerDead = true
+		collision_shape_2d.set_deferred("disabled", true)
 		heart_counter = 0
 		Events.player_dead.emit()
 		if reset_level_on_death:
@@ -247,7 +249,7 @@ func respawn():
 			
 			#print("I'm dead oh no")
 			velocity = Vector2.ZERO
-			animated_sprite.play_backwards("respawn")
+			animated_sprite.play_backwards("respawn") #sometimes this just doesn't play, dunno why
 			animated_sprite.position.y += 1
 			await(animated_sprite.animation_finished)
 			if CheckpointGravityDirection == GravityDirections.DOWN:
@@ -263,6 +265,7 @@ func respawn():
 			animated_sprite.play("respawn")
 			await(animated_sprite.animation_finished)
 			animated_sprite.position.y-=1
+			collision_shape_2d.set_deferred("disabled", false)
 			playerDead = false
 			animated_sprite.play("idle")
 		

@@ -48,9 +48,10 @@ func _on_body_entered(body):
 
 func reset_position():
 	if follow_player == true:
+		print("Player dead, resetting heart")
 		follow_player = false
-		collision_shape_2d.set_deferred("disabled", false)
 		heart_location.queue_free()
+		collision_shape_2d.set_deferred("disabled", false)
 		rotation_degrees = 0
 
 
