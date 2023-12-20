@@ -185,7 +185,7 @@ script = ExtResource("2_0y5fl")
 disappearing_tiles = ExtResource("3_cybth")
 
 [node name="Player" parent="." index="2"]
-position = Vector2(544, -712)
+position = Vector2(-200, 0)
 movement_data = ExtResource("4_w4t87")
 camera_zoom = 0.75
 base_speed_multiplier = 1.25
