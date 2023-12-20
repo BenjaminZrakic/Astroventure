@@ -29,7 +29,7 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_v16rv"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -8, 72, 0, 0, 0, 0, -8, 0)
+"points": PackedVector2Array(0, 0, 0, 0, -8, 72, 0, 0, 0, 0, -8, 8)
 }
 point_count = 2
 
@@ -41,7 +41,7 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_ql3g5"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -8.00012, 56, 0, 0, 0, 0, -8, 0)
+"points": PackedVector2Array(0, 0, 0, 0, -24.0002, 63.9999, 0, 0, 0, 0, -24, -6.10352e-05)
 }
 point_count = 2
 
@@ -185,7 +185,7 @@ script = ExtResource("2_0y5fl")
 disappearing_tiles = ExtResource("3_cybth")
 
 [node name="Player" parent="." index="2"]
-position = Vector2(-176, 0)
+position = Vector2(544, -712)
 movement_data = ExtResource("4_w4t87")
 camera_zoom = 0.75
 base_speed_multiplier = 1.25
@@ -310,17 +310,17 @@ position = Vector2(560, -440)
 curve = SubResource("Curve2D_2w82t")
 
 [node name="AnomaBall6" parent="Anomaballs" index="3" instance=ExtResource("2_l3dhl")]
-position = Vector2(400, -728)
+position = Vector2(400, -736)
 curve = SubResource("Curve2D_v16rv")
 speed = 50
 
 [node name="AnomaBall20" parent="Anomaballs" index="4" instance=ExtResource("2_l3dhl")]
-position = Vector2(928, -816)
+position = Vector2(1288, -632)
 curve = SubResource("Curve2D_hmc7k")
 speed = 50
 
 [node name="AnomaBall8" parent="Anomaballs" index="5" instance=ExtResource("2_l3dhl")]
-position = Vector2(384, -600)
+position = Vector2(368, -600)
 rotation = 3.14159
 curve = SubResource("Curve2D_ql3g5")
 speed = 50
