@@ -84,8 +84,6 @@ func show_level_completed():
 	await($DelayEndLevel.timeout)
 	level_time_label.hide()
 	level_completed.show_data(heartsCollected, heartsMax, float(level_time_label.text), level_best_time)
-	level_completed.show_yourself()
-	level_completed.retry_button.grab_focus()
 	get_tree().paused = true
 
 func go_to_next_level():
