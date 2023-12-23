@@ -196,7 +196,7 @@ func apply_acceleration(input_axis, delta):
 		if not GravityX:
 			velocity.x = move_toward(velocity.x, movement_data.speed*speed_multiplier*input_axis, movement_data.accelaration*acceleration_multiplier*delta)
 		else: 
-			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1, movement_data.accelaration*acceleration_multiplier*delta)
+			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1 * (GravDrive if Globals.invert_anti_gravity_controls else 1), movement_data.accelaration*acceleration_multiplier*delta)
 
 
 func apply_air_accelaration(input_axis, delta):
@@ -206,7 +206,7 @@ func apply_air_accelaration(input_axis, delta):
 		if not GravityX:
 			velocity.x = move_toward(velocity.x, movement_data.speed*speed_multiplier*input_axis, movement_data.air_accelaration*acceleration_multiplier*delta)
 		else:
-			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1 , movement_data.air_accelaration*acceleration_multiplier*delta)
+			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1 * (GravDrive if Globals.invert_anti_gravity_controls else 1), movement_data.air_accelaration*acceleration_multiplier*delta)
 			
 func apply_friction(input_axis, delta):
 	if input_axis==0 and is_on_floor():
@@ -230,14 +230,23 @@ func update_animations(input_axis):
 	elif facing_right == -1:
 		hearts_container.position.x = abs(hearts_container.position.x)
 		hearts_container.scale.x = -abs(hearts_container.scale.x)
+
+
 	if input_axis!=0:
-		
-		if GravityDirection== GravityDirections.UP or GravityDirection == GravityDirections.LEFT: 
-			animated_sprite.flip_h = (input_axis>0)
-			facing_right = -input_axis
+		if Globals.invert_anti_gravity_controls:
+			if GravityDirection==GravityDirections.UP: 
+				animated_sprite.flip_h = (input_axis>0)
+				facing_right = -input_axis
+			else:
+				animated_sprite.flip_h = (input_axis<0)
+				facing_right = input_axis
 		else:
-			animated_sprite.flip_h = (input_axis<0)
-			facing_right = input_axis
+			if GravityDirection== GravityDirections.UP or GravityDirection == GravityDirections.LEFT: 
+				animated_sprite.flip_h = (input_axis>0)
+				facing_right = -input_axis
+			else:
+				animated_sprite.flip_h = (input_axis<0)
+				facing_right = input_axis
 		animated_sprite.play("run")
 	else:
 		animated_sprite.play("idle")
