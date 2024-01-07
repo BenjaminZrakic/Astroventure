@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var reset_level_on_death = false
 @export var world_boundary_active = false
 @export var camera_zoom : float = 1
+@export var can_change_camera_zoom := true
+
 @onready var heart_location = $HeartsContainer/HeartLocation
 @onready var hearts_container = $HeartsContainer
 @onready var animation_player = $AnimationPlayer
@@ -54,10 +56,28 @@ var acceleration_multiplier = base_acceleration_multiplier
 @export var ice_acceleration_multiplier = 0.2
 
 var reset_movement = false
+var inverted_anti_gravity_controls = false
 
 func _ready():
-	camera_2d.zoom.x = camera_zoom
-	camera_2d.zoom.y = camera_zoom
+	Events.settings_changed.connect(update_settings)
+	update_settings()
+
+func update_settings():
+	var config = ConfigFile.new()
+	var err = config.load("user://settings.cfg")
+	print("Loading settings")
+	
+	if err != OK:
+		print("Failed to load")
+		return
+	else:
+		print("Loaded settings")
+		inverted_anti_gravity_controls = config.get_value("Settings", "AntiGravityInverted")
+		if can_change_camera_zoom:
+			camera_zoom = config.get_value("Settings","CameraZoom")
+	
+	camera_2d.zoom = Vector2(camera_zoom,camera_zoom)
+
 
 func _physics_process(delta):
 	if not playerDead:
@@ -196,7 +216,7 @@ func apply_acceleration(input_axis, delta):
 		if not GravityX:
 			velocity.x = move_toward(velocity.x, movement_data.speed*speed_multiplier*input_axis, movement_data.accelaration*acceleration_multiplier*delta)
 		else: 
-			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1 * (GravDrive if Globals.invert_anti_gravity_controls else 1), movement_data.accelaration*acceleration_multiplier*delta)
+			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1 * (GravDrive if inverted_anti_gravity_controls else 1), movement_data.accelaration*acceleration_multiplier*delta)
 
 
 func apply_air_accelaration(input_axis, delta):
@@ -206,7 +226,7 @@ func apply_air_accelaration(input_axis, delta):
 		if not GravityX:
 			velocity.x = move_toward(velocity.x, movement_data.speed*speed_multiplier*input_axis, movement_data.air_accelaration*acceleration_multiplier*delta)
 		else:
-			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1 * (GravDrive if Globals.invert_anti_gravity_controls else 1), movement_data.air_accelaration*acceleration_multiplier*delta)
+			velocity.y = move_toward(velocity.y, movement_data.speed*speed_multiplier*input_axis*-1 * (GravDrive if inverted_anti_gravity_controls else 1), movement_data.air_accelaration*acceleration_multiplier*delta)
 			
 func apply_friction(input_axis, delta):
 	if input_axis==0 and is_on_floor():
@@ -233,7 +253,7 @@ func update_animations(input_axis):
 
 
 	if input_axis!=0:
-		if Globals.invert_anti_gravity_controls:
+		if inverted_anti_gravity_controls:
 			if GravityDirection==GravityDirections.UP: 
 				animated_sprite.flip_h = (input_axis>0)
 				facing_right = -input_axis

@@ -5,13 +5,26 @@ extends ColorRect
 @onready var pause_menu_tab = %PauseMenuTab
 @onready var options_menu_tab = %OptionsMenuTab
 @onready var anti_gravity_check = %AntiGravityCheck
+@onready var camera_zoom = $CenterContainer/OptionsMenuTab/HFlowContainer/CameraZoom
+@onready var camera_zoom_value = $CenterContainer/OptionsMenuTab/HFlowContainer/CameraZoomValue
 
 signal retry()
 signal main_menu()
 signal map_screen()
 
-func _ready():
-	anti_gravity_check.button_pressed = Globals.invert_anti_gravity_controls
+@onready var config = ConfigFile.new()
+
+func _load_options():
+	var err = config.load("user://settings.cfg")
+	print("Loading settings")
+	
+	if err != OK:
+		print("Failed to load")
+		return
+	else:
+		print("Loaded settings")
+		anti_gravity_check.button_pressed = config.get_value("Settings", "AntiGravityInverted")
+		camera_zoom.value = config.get_value("Settings","CameraZoom")
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -52,6 +65,7 @@ func _on_map_screen_button_pressed():
 
 
 func _on_options_pressed():
+	_load_options()
 	pause_menu_tab.hide()
 	options_menu_tab.show()
 
@@ -63,3 +77,20 @@ func _on_back_button_pressed():
 
 func _on_anti_gravity_check_pressed():
 	Globals.invert_anti_gravity_controls = !Globals.invert_anti_gravity_controls
+
+
+func _on_camera_zoom_value_changed(value):
+	camera_zoom_value.text = str(camera_zoom.value)+"x"
+
+
+func _on_save_settings_pressed():
+	config.set_value("Settings","AntiGravityInverted", Globals.invert_anti_gravity_controls)
+	config.set_value("Settings","CameraZoom", camera_zoom.value)
+	
+	config.save("user://settings.cfg")
+	
+	print("settings saved")
+	print(config.get_value("Settings", "AntiGravityInverted"))
+	print(config.get_value("Settings","CameraZoom"))
+	Events.settings_changed.emit()
+	

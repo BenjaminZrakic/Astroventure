@@ -103,6 +103,33 @@ theme_override_styles/focus = ExtResource("3_gryay")
 text = "Inverted Antigravity Controls"
 alignment = 1
 
+[node name="Label2" type="Label" parent="CenterContainer/OptionsMenuTab"]
+layout_mode = 2
+text = "Camera zoom:"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CenterContainer/OptionsMenuTab"]
+layout_mode = 2
+
+[node name="CameraZoom" type="HSlider" parent="CenterContainer/OptionsMenuTab/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.25
+max_value = 1.0
+step = 0.01
+value = 0.75
+
+[node name="CameraZoomValue" type="Label" parent="CenterContainer/OptionsMenuTab/HFlowContainer"]
+custom_minimum_size = Vector2(21, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.75x"
+clip_text = true
+
+[node name="SaveSettings" type="Button" parent="CenterContainer/OptionsMenuTab"]
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+text = "Apply"
+
 [connection signal="pressed" from="CenterContainer/PauseMenuTab/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CenterContainer/PauseMenuTab/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="CenterContainer/PauseMenuTab/MapScreenButton" to="." method="_on_map_screen_button_pressed"]
@@ -111,3 +138,5 @@ alignment = 1
 [connection signal="pressed" from="CenterContainer/PauseMenuTab/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="CenterContainer/OptionsMenuTab/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="CenterContainer/OptionsMenuTab/AntiGravityCheck" to="." method="_on_anti_gravity_check_pressed"]
+[connection signal="value_changed" from="CenterContainer/OptionsMenuTab/HFlowContainer/CameraZoom" to="." method="_on_camera_zoom_value_changed"]
+[connection signal="pressed" from="CenterContainer/OptionsMenuTab/SaveSettings" to="." method="_on_save_settings_pressed"]

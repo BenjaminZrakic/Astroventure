@@ -14,6 +14,7 @@ position = Vector2(1, 0)
 movement_data = ExtResource("2_hqp0r")
 world_boundary_active = true
 camera_zoom = 0.704
+can_change_camera_zoom = false
 
 [node name="Camera2D" parent="Player" index="5"]
 zoom = Vector2(0.704, 0.704)

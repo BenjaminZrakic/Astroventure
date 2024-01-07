@@ -9,3 +9,5 @@ signal player_safe(value)
 signal player_dead()
 
 signal pickup_hearts()
+
+signal settings_changed()
