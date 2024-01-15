@@ -19,7 +19,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer4/TextureRect:modulate")
+tracks/0/path = NodePath("WarningHeart/TextureRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -35,7 +35,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = false
-tracks/0/path = NodePath("CanvasLayer4/TextureRect:visible")
+tracks/0/path = NodePath("WarningHeart/TextureRect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -47,7 +47,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer4/TextureRect:modulate")
+tracks/1/path = NodePath("WarningHeart/TextureRect:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -63,7 +63,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = false
-tracks/0/path = NodePath("CanvasLayer4/TextureRect:visible")
+tracks/0/path = NodePath("WarningHeart/TextureRect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -75,7 +75,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer4/TextureRect:modulate")
+tracks/1/path = NodePath("WarningHeart/TextureRect:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -97,7 +97,6 @@ timer = true
 
 [node name="CanvasLayer3" type="CanvasLayer" parent="." index="0"]
 layer = -2
-follow_viewport_enabled = true
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer3" index="0"]
 anchors_preset = -1
@@ -105,19 +104,28 @@ anchor_left = -0.236778
 anchor_top = -0.124
 anchor_right = -0.059
 anchor_bottom = -0.124
-offset_left = -268.76
-offset_top = -728.68
-offset_right = 3127.24
-offset_bottom = 955.32
+offset_left = 85.2401
+offset_top = 22.32
+offset_right = 3481.24
+offset_bottom = 1968.57
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.211671, 0.211671)
 texture = ExtResource("9_pxyhu")
+expand_mode = 5
+stretch_mode = 6
 metadata/_edit_use_anchors_ = true
 
 [node name="DayNightCycle" type="CanvasModulate" parent="CanvasLayer3" index="1"]
-position = Vector2(90, 54)
+position = Vector2(90.0805, 54)
+scale = Vector2(1.00089, 1)
 color = Color(0.603922, 0.819608, 1, 1)
 script = ExtResource("10_avtf7")
 gradient = ExtResource("11_xdaev")
 INITIAL_HOUR = 18
+
+[node name="CanvasLayer2" parent="." index="2"]
+visible = false
 
 [node name="Player" parent="." index="3"]
 position = Vector2(-42, 154)
@@ -259,9 +267,9 @@ position = Vector2(1882, -215)
 position = Vector2(2070, -212)
 size = 1
 
-[node name="CanvasLayer4" type="CanvasLayer" parent="." index="14"]
+[node name="WarningHeart" type="CanvasLayer" parent="." index="14"]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer4" index="0"]
+[node name="TextureRect" type="TextureRect" parent="WarningHeart" index="0"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 1
 anchor_left = 1.0

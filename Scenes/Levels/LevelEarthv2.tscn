@@ -22,6 +22,7 @@ moving_spikes = ExtResource("3_1i5cu")
 tilemap = NodePath("../LevelTileMap2")
 
 [node name="Player" parent="." index="2"]
+position = Vector2(-58, 12)
 movement_data = ExtResource("4_y7ylk")
 world_boundary_active = true
 
@@ -181,9 +182,10 @@ scale = Vector2(1.07775, 0.606878)
 theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
 text = "[center]
-FIND AND COLLECT ^
-COLLECTABLES TO  ^
-GAIN EXTRA LIVES ^
+FIND AND COLLECT  ^
+COLLECTABLES TO   ^
+INCREAES YOUR     ^
+SCORE
 [/center]"
 fit_content = true
 autowrap_mode = 0

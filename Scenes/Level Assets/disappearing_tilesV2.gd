@@ -2,11 +2,13 @@ extends Node2D
 
 @export var tile_left : Node = null
 @export var tile_right : Node = null
-@onready var activator_area_active = true
+@onready var activator_area_active = false
 @onready var animation_player = $AnimationPlayer
 @onready var return_timer = $ReturnTimer
 @onready var activator_area = $ActivatorArea
 
+func _ready():
+	reset_tiles()
 
 func _process(delta):
 	if get_tree().get_root().get_node("World/Player").get("playerDead") and !animation_player.is_playing():

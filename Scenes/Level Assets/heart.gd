@@ -6,6 +6,8 @@ extends Area2D
 
 @onready var starting_position = global_position
 
+signal pick_up
+
 var follow_player = false
 var speed = 20
 #@onready var player = get_tree().get_root().get_node("World/Player")
@@ -63,7 +65,7 @@ func pickup():
 		var hearts = get_tree().get_nodes_in_group("Hearts")
 		print(hearts.size())
 		animation_player.play("pickup")
-		
+		pick_up.emit()
 		Events.update_score.emit()
 
 

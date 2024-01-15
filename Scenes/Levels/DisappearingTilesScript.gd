@@ -27,6 +27,7 @@ func addObjects():
 			placed_positions.append(place_at)
 			placed_tiles.append(tile_instance)
 			check_neighbouring_tiles(cell, usedCells, cellLayer, placed_positions, placed_tiles, tile_instance)
+			
 	tilemap.clear_layer(2)
 
 func place_tile(tile_instance, place_at, cellLayer):
