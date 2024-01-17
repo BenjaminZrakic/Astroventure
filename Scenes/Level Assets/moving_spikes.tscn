@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bbxitpfb3kgxa"]
 
 [ext_resource type="Texture2D" uid="uid://b2r41lkcilorg" path="res://Assets/spikes.png" id="1_44uhb"]
-[ext_resource type="Script" path="res://Scenes/Level Assets/moving_spikes.gd" id="1_lxsc6"]
+[ext_resource type="Script" path="res://Scenes/Level Assets/moving_spikes.gd" id="1_hi60s"]
 [ext_resource type="Texture2D" uid="uid://bfbytecnnvgyh" path="res://Assets/spikes_anim.png" id="2_eodsu"]
 [ext_resource type="PackedScene" uid="uid://3mgi3xpbrlny" path="res://Scenes/Level Assets/hazard_area.tscn" id="2_iap5r"]
 
@@ -89,7 +89,8 @@ _data = {
 
 [node name="MovingSpikes" type="Node2D"]
 position = Vector2(168, 94)
-script = ExtResource("1_lxsc6")
+script = ExtResource("1_hi60s")
+metadata/_edit_group_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://wudeengc3dmr"]
 
-[ext_resource type="Script" path="res://Scenes/Level Assets/moving_spikes.gd" id="1_4bwyu"]
+[ext_resource type="Script" path="res://Scenes/Level Assets/spikes_that_hide.gd" id="1_qi2vk"]
 [ext_resource type="Texture2D" uid="uid://bfbytecnnvgyh" path="res://Assets/spikes_anim.png" id="3_5jcnf"]
 [ext_resource type="PackedScene" uid="uid://3mgi3xpbrlny" path="res://Scenes/Level Assets/hazard_area.tscn" id="4_o0ec1"]
 
@@ -86,9 +86,9 @@ _data = {
 "show": SubResource("Animation_top5n")
 }
 
-[node name="MovingSpikes" type="Node2D"]
+[node name="SpikesThatHide" type="Node2D"]
 position = Vector2(168, 94)
-script = ExtResource("1_4bwyu")
+script = ExtResource("1_qi2vk")
 metadata/_edit_group_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
