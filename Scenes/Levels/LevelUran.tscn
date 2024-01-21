@@ -191,12 +191,11 @@ script = ExtResource("4_jia2n")
 disappearing_tiles = ExtResource("3_cybth")
 
 [node name="Player" parent="." index="3"]
-position = Vector2(384, -1592)
+position = Vector2(-208, 0)
 movement_data = ExtResource("4_w4t87")
 camera_zoom = 0.75
 base_speed_multiplier = 1.25
 base_acceleration_multiplier = 1.15
-metadata/_edit_lock_ = true
 
 [node name="Heart" parent="Hearts" index="0" instance=ExtResource("5_4e6fm")]
 position = Vector2(192, -144)
