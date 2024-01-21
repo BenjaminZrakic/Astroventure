@@ -93,6 +93,7 @@ script = ExtResource("1_hi60s")
 metadata/_edit_group_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_vy7xw")
 }
@@ -115,6 +116,6 @@ collision_mask = 2
 polygon = PackedVector2Array(0, 0, 0, -4, 1, -4, 1, -6, 2, -6, 2, -8, 3, -8, 3, -9, 4, -9, 4, -8, 5, -8, 5, -6, 6, -6, 6, -4, 7, -4, 7, -2, 8, -2, 8, -4, 9, -4, 9, -6, 10, -6, 10, -8, 11, -8, 11, -9, 12, -9, 12, -8, 13, -8, 13, -7, 13, -6, 14, -6, 14, -4, 15, -4, 15, -2, 16, -2, 16, 0)
 
 [node name="RetractExtendTimer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 2.0
 
 [connection signal="timeout" from="RetractExtendTimer" to="." method="_on_retract_extend_timer_timeout"]
