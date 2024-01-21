@@ -42,7 +42,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [false],
@@ -107,7 +107,7 @@ texture = ExtResource("1_44uhb")
 position = Vector2(8, -8)
 texture = ExtResource("2_eodsu")
 hframes = 5
-frame = 1
+frame = 2
 
 [node name="HazardArea" parent="." instance=ExtResource("2_iap5r")]
 collision_mask = 2
