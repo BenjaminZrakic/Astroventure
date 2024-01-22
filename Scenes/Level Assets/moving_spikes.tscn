@@ -107,7 +107,7 @@ texture = ExtResource("1_44uhb")
 position = Vector2(8, -8)
 texture = ExtResource("2_eodsu")
 hframes = 5
-frame = 2
+frame = 1
 
 [node name="HazardArea" parent="." instance=ExtResource("2_iap5r")]
 collision_mask = 2

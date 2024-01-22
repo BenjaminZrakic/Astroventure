@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1llbuplgaq0g"]
+[gd_scene load_steps=9 format=3 uid="uid://d1llbuplgaq0g"]
 
 [ext_resource type="Script" path="res://Scenes/Screens/main_menu.gd" id="1_4lr2w"]
 [ext_resource type="Theme" uid="uid://dejvr5rqllmfx" path="res://Aesthethics/button.tres" id="2_ct3br"]
 [ext_resource type="Texture2D" uid="uid://dcoyclq8dtwjm" path="res://Assets/Main Menu background/Space Background (11).png" id="3_61u4g"]
 [ext_resource type="Shader" path="res://Aesthethics/Shaders/starfield.gdshader" id="3_obgim"]
 [ext_resource type="FontFile" uid="uid://y40yurqaewrq" path="res://Crang.ttf" id="4_a4oju"]
+[ext_resource type="AudioStream" uid="uid://djcu764clkphe" path="res://Assets/Musics/Lofi/Caramel Macchiato.mp3" id="6_fpw74"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qypt2"]
 shader = ExtResource("3_obgim")
@@ -87,6 +88,10 @@ custom_minimum_size = Vector2(64, 16)
 layout_mode = 2
 focus_neighbor_top = NodePath("../StartGameButton")
 text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_fpw74")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

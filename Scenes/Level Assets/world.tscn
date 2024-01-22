@@ -79,6 +79,10 @@ size = Vector2(1483, 20)
 [node name="World" type="Node2D"]
 script = ExtResource("1_mrn2n")
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+autoplay = true
+
 [node name="ScriptNode" type="Node" parent="."]
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]

@@ -7,6 +7,8 @@ extends Node2D
 @onready var level_time_label = %LevelTimeLabel
 @onready var pause_menu = $CanvasLayer/PauseMenu
 @onready var player = $Player
+@onready var music_player = $MusicPlayer
+
 
 
 @export var next_level: PackedScene
@@ -14,6 +16,7 @@ extends Node2D
 @export var timer = false
 @export var scene_tile_name : PackedScene
 @export var level_best_time : float
+@export var music : AudioStreamOggVorbis
 
 var level_time = 0.0
 var start_level_msec = 0.0
