@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/Levels/DisappearingTilesScript.gd" id="2_0y5fl"]
 [ext_resource type="AudioStream" path="res://Assets/Musics/DavidKBD - My Little Bots Pack - 02 - Keep dancing.ogg" id="2_kps0p"]
 [ext_resource type="PackedScene" uid="uid://beaja6sbffrub" path="res://Scenes/Level Assets/Hazards/anoma_ball.tscn" id="2_l3dhl"]
-[ext_resource type="AudioStream" uid="uid://den15ls7qfa6u" path="res://Assets/Musics/Lofi/Cappuccino.mp3" id="3_2oqt7"]
+[ext_resource type="AudioStream" uid="uid://bg44484616lko" path="res://Assets/Musics/Lofi/Chantilly.mp3" id="3_718es"]
 [ext_resource type="PackedScene" uid="uid://r7ntx6orfvyd" path="res://Scenes/Level Assets/disappearing_tilesV2.tscn" id="3_cybth"]
 [ext_resource type="Script" path="res://Scenes/Levels/FinalCheckpointUran.gd" id="4_jia2n"]
 [ext_resource type="Resource" uid="uid://krjikwb6osnb" path="res://Resources/Planet movements/VenusUranusMovement.tres" id="4_w4t87"]
@@ -186,7 +186,8 @@ timer = true
 music = ExtResource("2_kps0p")
 
 [node name="MusicPlayer" parent="." index="0"]
-stream = ExtResource("3_2oqt7")
+stream = ExtResource("3_718es")
+volume_db = -20.0
 
 [node name="FinalCheckpoint" type="Node" parent="." index="1"]
 script = ExtResource("4_jia2n")

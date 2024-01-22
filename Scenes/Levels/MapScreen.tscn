@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c20by7l4tiaml"]
+[gd_scene load_steps=31 format=3 uid="uid://c20by7l4tiaml"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/MapScreen.gd" id="1_058mk"]
 [ext_resource type="PackedScene" uid="uid://deuo0m6mfokye" path="res://Scenes/Level Assets/ship.tscn" id="1_lgnu1"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://brvg1g3uxenjl" path="res://Scenes/Levels/LevelUran.tscn" id="17_3lup7"]
 [ext_resource type="PackedScene" uid="uid://b1jlpjoke3a3l" path="res://Scenes/Levels/LevelNeptune2.tscn" id="17_q8e5f"]
 [ext_resource type="PackedScene" uid="uid://e5byije8qotb" path="res://Scenes/UI/pause_menu.tscn" id="22_y8gi4"]
+[ext_resource type="AudioStream" uid="uid://djcu764clkphe" path="res://Assets/Musics/Lofi/Caramel Macchiato.mp3" id="25_e0pxr"]
 
 [sub_resource type="Curve2D" id="Curve2D_l5f74"]
 _data = {
@@ -339,5 +340,8 @@ visible = false
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("22_y8gi4")]
 visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_e0pxr")
 
 [editable path="CanvasLayer/PauseMenu"]
