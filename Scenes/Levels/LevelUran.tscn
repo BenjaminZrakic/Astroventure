@@ -1,8 +1,7 @@
-[gd_scene load_steps=41 format=3 uid="uid://brvg1g3uxenjl"]
+[gd_scene load_steps=40 format=3 uid="uid://brvg1g3uxenjl"]
 
 [ext_resource type="PackedScene" uid="uid://dkkor7cqf3sc2" path="res://Scenes/Level Assets/world.tscn" id="1_ouxty"]
 [ext_resource type="Script" path="res://Scenes/Levels/DisappearingTilesScript.gd" id="2_0y5fl"]
-[ext_resource type="AudioStream" path="res://Assets/Musics/DavidKBD - My Little Bots Pack - 02 - Keep dancing.ogg" id="2_kps0p"]
 [ext_resource type="PackedScene" uid="uid://beaja6sbffrub" path="res://Scenes/Level Assets/Hazards/anoma_ball.tscn" id="2_l3dhl"]
 [ext_resource type="AudioStream" uid="uid://bg44484616lko" path="res://Assets/Musics/Lofi/Chantilly.mp3" id="3_718es"]
 [ext_resource type="PackedScene" uid="uid://r7ntx6orfvyd" path="res://Scenes/Level Assets/disappearing_tilesV2.tscn" id="3_cybth"]
@@ -183,7 +182,6 @@ point_count = 2
 
 [node name="World" instance=ExtResource("1_ouxty")]
 timer = true
-music = ExtResource("2_kps0p")
 
 [node name="MusicPlayer" parent="." index="0"]
 stream = ExtResource("3_718es")

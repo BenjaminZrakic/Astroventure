@@ -342,6 +342,8 @@ visible = false
 visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("25_e0pxr")
+autoplay = true
 
 [editable path="CanvasLayer/PauseMenu"]
