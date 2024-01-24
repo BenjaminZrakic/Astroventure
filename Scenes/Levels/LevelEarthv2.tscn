@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dt1nnv6uygko1"]
+[gd_scene load_steps=11 format=3 uid="uid://dt1nnv6uygko1"]
 
 [ext_resource type="PackedScene" uid="uid://dkkor7cqf3sc2" path="res://Scenes/Level Assets/world.tscn" id="1_68jp3"]
+[ext_resource type="AudioStream" uid="uid://cacxkj3u4648n" path="res://Assets/Musics/Lofi/Vanilla Shake.mp3" id="2_4yw8f"]
 [ext_resource type="Script" path="res://Scenes/Levels/EarthScript.gd" id="2_jhq21"]
 [ext_resource type="PackedScene" uid="uid://bbxitpfb3kgxa" path="res://Scenes/Level Assets/moving_spikes.tscn" id="3_1i5cu"]
 [ext_resource type="PackedScene" uid="uid://iqsopd1ey4aw" path="res://Scenes/Level Assets/heart.tscn" id="3_8p4bm"]
@@ -16,12 +17,15 @@ height = 118.0
 [node name="World" instance=ExtResource("1_68jp3")]
 timer = true
 
-[node name="ScriptNode" parent="." index="0" node_paths=PackedStringArray("tilemap")]
+[node name="MusicPlayer" parent="." index="0"]
+stream = ExtResource("2_4yw8f")
+
+[node name="ScriptNode" parent="." index="1" node_paths=PackedStringArray("tilemap")]
 script = ExtResource("2_jhq21")
 moving_spikes = ExtResource("3_1i5cu")
 tilemap = NodePath("../LevelTileMap2")
 
-[node name="Player" parent="." index="2"]
+[node name="Player" parent="." index="3"]
 position = Vector2(-58, 12)
 movement_data = ExtResource("4_y7ylk")
 world_boundary_active = true
@@ -76,7 +80,7 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" parent="Checkpoints/Checkpoint6" index="1"]
 shape = SubResource("CapsuleShape2D_teskp")
 
-[node name="LevelTileMap" parent="." index="9"]
+[node name="LevelTileMap" parent="." index="10"]
 position = Vector2(-1098, 42)
 
 [node name="LevelTileMap2" parent="." index="12" instance=ExtResource("4_5upas")]
@@ -174,23 +178,39 @@ fit_content = true
 autowrap_mode = 0
 
 [node name="Collectables" type="RichTextLabel" parent="Text" index="5"]
-offset_left = 950.0
+offset_left = 957.0
 offset_top = -100.0
-offset_right = 1111.0
-offset_bottom = -47.0
+offset_right = 1083.0
+offset_bottom = -27.0
 scale = Vector2(1.07775, 0.606878)
 theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
 text = "[center]
-FIND AND COLLECT  ^
-COLLECTABLES TO   ^
-INCREAES YOUR     ^
+FIND AND COLLECT
+COLLECTABLES TO
+INCREASE YOUR
 SCORE
 [/center]"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Checkpoints" type="RichTextLabel" parent="Text" index="6"]
+[node name="Collectables2" type="RichTextLabel" parent="Text" index="6"]
+offset_left = 1091.0
+offset_top = -100.0
+offset_right = 1109.0
+offset_bottom = -23.0
+scale = Vector2(1.07775, 0.606878)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[center]
+^
+^
+^
+[/center]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Checkpoints" type="RichTextLabel" parent="Text" index="7"]
 offset_left = 1136.0
 offset_top = -96.0
 offset_right = 1296.0
