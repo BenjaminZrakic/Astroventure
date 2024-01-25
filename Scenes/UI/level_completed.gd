@@ -47,6 +47,7 @@ func show_data(heartsCollectedTemp, heartsMaxTemp, levelTimeTemp, levelBestTimeT
 
 
 func show_heart_label():
+	text_timer.wait_time = 1/heartsCollected
 	hearts.text = hearts_text % [0,heartsMax]
 	animation_player.play("show_hearts")
 	await(animation_player.animation_finished)
@@ -57,6 +58,7 @@ func show_heart_label():
 	show_death_label()
 
 func show_death_label():
+	text_timer.wait_time = 0.05 if player_death_counter==0 else 1/player_death_counter
 	deaths.text = deaths_text % [0]
 	animation_player.play("show_deaths")
 	await(animation_player.animation_finished)
@@ -67,10 +69,11 @@ func show_death_label():
 	show_time_labels()
 
 func show_time_labels():
+	text_timer.wait_time = 0.05
 	time.text =time_text % [level_time]
 	animation_player.play("show_time")
 	await(animation_player.animation_finished)
-
+	
 	level_goal_time.text = goal_time_text % [level_best_time]
 	animation_player.play("show_goal_time")
 	await(animation_player.animation_finished)
@@ -80,10 +83,11 @@ func show_time_labels():
 func show_score_label():
 	var final_score = calculate_score(heartsCollected, level_time, level_best_time)
 	var score_temp := 0.0
-	text_timer.wait_time = 0.01
+	#text_timer.wait_time = 0.01
 	score.text = score_text % [0]
 	animation_player.play("show_score")
 	await(animation_player.animation_finished)
+	text_timer.wait_time = 0.01 if final_score==0 else 1/final_score
 	while score_temp<final_score:
 		if score_temp>final_score:
 			score_temp = final_score

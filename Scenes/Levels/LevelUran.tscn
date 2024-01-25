@@ -182,10 +182,10 @@ point_count = 2
 
 [node name="World" instance=ExtResource("1_ouxty")]
 timer = true
+level_best_time = 1000.0
 
 [node name="MusicPlayer" parent="." index="0"]
 stream = ExtResource("3_718es")
-volume_db = -20.0
 
 [node name="FinalCheckpoint" type="Node" parent="." index="1"]
 script = ExtResource("4_jia2n")
@@ -543,7 +543,7 @@ scale = Vector2(1, -1)
 curve = SubResource("Curve2D_nex8d")
 
 [node name="AnomaBall33" parent="Anomaballs" index="39" instance=ExtResource("2_l3dhl")]
-position = Vector2(368, -1336)
+position = Vector2(368, -1328)
 scale = Vector2(1, -1)
 curve = SubResource("Curve2D_nex8d")
 speed = 75

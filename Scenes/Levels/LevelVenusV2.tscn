@@ -29,8 +29,9 @@ size = Vector2(217, 59)
 size = Vector2(165, 20)
 
 [node name="World" instance=ExtResource("1_kk6hj")]
+level_best_time = 300.0
 
-[node name="Player" parent="." index="2"]
+[node name="Player" parent="." index="3"]
 movement_data = ExtResource("2_hugsq")
 
 [node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource("3_l20vf")]

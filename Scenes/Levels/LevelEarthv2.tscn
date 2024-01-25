@@ -16,6 +16,7 @@ height = 118.0
 
 [node name="World" instance=ExtResource("1_68jp3")]
 timer = true
+level_best_time = 300.0
 
 [node name="MusicPlayer" parent="." index="0"]
 stream = ExtResource("2_4yw8f")

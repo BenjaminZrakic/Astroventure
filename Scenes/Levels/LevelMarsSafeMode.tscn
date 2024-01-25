@@ -39,6 +39,7 @@ size = Vector2(5066, 134.75)
 size = Vector2(618, 5301.75)
 
 [node name="World" instance=ExtResource("1_djg7w")]
+level_best_time = 500.0
 
 [node name="WindParticles" type="GPUParticles2D" parent="CanvasLayer2" index="1" node_paths=PackedStringArray("player")]
 position = Vector2(173, 90)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dkkor7cqf3sc2"]
+[gd_scene load_steps=15 format=3 uid="uid://dkkor7cqf3sc2"]
 
 [ext_resource type="Script" path="res://Scenes/Level Assets/world.gd" id="1_mrn2n"]
 [ext_resource type="PackedScene" uid="uid://bmj1urynsj1ph" path="res://Scenes/Player/character.tscn" id="2_iwlls"]
+[ext_resource type="AudioStream" uid="uid://djcu764clkphe" path="res://Assets/Musics/Lofi/Caramel Macchiato.mp3" id="2_yvx81"]
 [ext_resource type="PackedScene" uid="uid://e5byije8qotb" path="res://Scenes/UI/pause_menu.tscn" id="3_2b7md"]
 [ext_resource type="PackedScene" uid="uid://dv1p5jxki2fse" path="res://Scenes/Level Assets/LevelTileMap.tscn" id="4_h2cwe"]
 [ext_resource type="PackedScene" uid="uid://3mgi3xpbrlny" path="res://Scenes/Level Assets/hazard_area.tscn" id="5_rl5ou"]
@@ -78,9 +79,11 @@ size = Vector2(1483, 20)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_mrn2n")
+level_best_time = 300.0
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
+stream = ExtResource("2_yvx81")
 autoplay = true
 
 [node name="ScriptNode" type="Node" parent="."]

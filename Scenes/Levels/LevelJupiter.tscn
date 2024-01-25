@@ -71,6 +71,7 @@ size = Vector2(215, 523)
 
 [node name="World" instance=ExtResource("1_8g07i")]
 timer = true
+level_best_time = 1000.0
 
 [node name="ScriptNode" parent="." index="1" node_paths=PackedStringArray("tilemap")]
 script = ExtResource("2_v8wpg")
